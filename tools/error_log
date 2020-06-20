@@ -1,0 +1,28 @@
+[22-Apr-2020 02:50:36 UTC] PHP Parse error:  syntax error, unexpected '~' in /home/cjthedj97/public_html/tools/test.php on line 2
+[22-Apr-2020 02:52:02 UTC] PHP Parse error:  syntax error, unexpected '~', expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 2
+[22-Apr-2020 02:54:40 UTC] PHP Parse error:  syntax error, unexpected '~', expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 2
+[22-Apr-2020 02:55:18 UTC] PHP Parse error:  syntax error, unexpected '9400111298370381144972' (T_DNUMBER), expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 4
+[22-Apr-2020 02:55:20 UTC] PHP Parse error:  syntax error, unexpected '9400111298370381144972' (T_DNUMBER), expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 4
+[22-Apr-2020 02:55:23 UTC] PHP Parse error:  syntax error, unexpected '9400111298370381144972' (T_DNUMBER), expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 4
+[22-Apr-2020 02:57:53 UTC] PHP Parse error:  syntax error, unexpected '$id' (T_VARIABLE), expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 4
+[22-Apr-2020 02:59:05 UTC] PHP Parse error:  syntax error, unexpected '$_GET' (T_VARIABLE), expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 4
+[22-Apr-2020 03:10:30 UTC] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home/cjthedj97/public_html/tools/test.php on line 3
+[22-Apr-2020 03:10:54 UTC] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home/cjthedj97/public_html/tools/test.php on line 3
+[22-Apr-2020 03:11:19 UTC] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home/cjthedj97/public_html/tools/test.php on line 4
+[22-Apr-2020 03:11:46 UTC] PHP Parse error:  syntax error, unexpected '$id' (T_VARIABLE), expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 7
+[22-Apr-2020 03:12:11 UTC] PHP Parse error:  syntax error, unexpected '$id' (T_VARIABLE), expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 7
+[22-Apr-2020 03:12:51 UTC] PHP Parse error:  syntax error, unexpected '$id' (T_VARIABLE), expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 7
+[22-Apr-2020 03:13:06 UTC] PHP Parse error:  syntax error, unexpected '$id' (T_VARIABLE), expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 7
+[22-Apr-2020 03:13:34 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 7
+[22-Apr-2020 03:15:51 UTC] PHP Parse error:  syntax error, unexpected '$id' (T_VARIABLE), expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 7
+[22-Apr-2020 03:16:32 UTC] PHP Parse error:  syntax error, unexpected '$_GET' (T_VARIABLE), expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 7
+[22-Apr-2020 03:16:34 UTC] PHP Parse error:  syntax error, unexpected '$_GET' (T_VARIABLE), expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 7
+[22-Apr-2020 03:17:25 UTC] PHP Parse error:  syntax error, unexpected '$id' (T_VARIABLE), expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 7
+[22-Apr-2020 03:22:25 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 7
+[22-Apr-2020 03:24:18 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 7
+[22-Apr-2020 03:26:03 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 8
+[22-Apr-2020 03:26:08 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 8
+[22-Apr-2020 03:27:33 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 8
+[22-Apr-2020 03:28:01 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 8
+[22-Apr-2020 03:28:04 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 8
+[22-Apr-2020 03:34:57 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/cjthedj97/public_html/tools/test.php on line 8
