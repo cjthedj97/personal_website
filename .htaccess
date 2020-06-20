@@ -31,7 +31,7 @@ RewriteRule ^ %1 [R=301,L]
 ### Redirects to subdomains ############################################
 Redirect 301 /blog https://blog.cjthedj97.me/
 Redirect 301 /ip https://ip.cjthedj97.me/
-#Redirect 301 /portfolio https://portfolio.cjthedj97.me/
+Redirect 301 /portfolio https://portfolio.cjthedj97.me/
 
 
 ### Set Error Doc ######################################################
