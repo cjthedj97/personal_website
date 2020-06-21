@@ -8,7 +8,7 @@ Header append X-FRAME-OPTIONS "SAMEORIGIN"
 Header add Feature-Policy none
 Header add Referrer-Policy same-origin
 Header add X-XSS-Protection "1"
-Header add Content-Security-Policy "default-src 'self'; script-src 'sha256-7b8JfyC2p1TP/xwCwfXqpWrCbX1YZHYBCmL9iJl8cNQ='; script-src 'sha256-c06ZuE+z1X8OYg3p2vIxyvPkWl6d36BlGXHRvSwNB5U='"
+Header add Content-Security-Policy "default-src 'self'; script-src 'sha256-7b8JfyC2p1TP/xwCwfXqpWrCbX1YZHYBCmL9iJl8cNQ=' 'sha256-c06ZuE+z1X8OYg3p2vIxyvPkWl6d36BlGXHRvSwNB5U='"
 
 ### Force HTTPS #########################################################
 RewriteEngine On
