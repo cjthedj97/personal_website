@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/cjthedj97
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://cjthedj97.me
+  * I am cjthedj97 (https://keybase.io/cjthedj97) on keybase.
+  * I have a public key ASAFwEGnSy_Ujw5BF3GFRQt2k2RGSGtKEKUqCJ5JuSBHZgo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "010145c18cb397345d67e3d9f799a7c73b19a0c569886081cf4cde27a38242f8dba90a",
+      "host": "keybase.io",
+      "kid": "012005c041a74b2fd48f0e41177185450b76936446486b4a10a52a089e49b92047660a",
+      "uid": "6c5c62df6f655de382bf18d46d5fdf19",
+      "username": "cjthedj97"
+    },
+    "merkle_root": {
+      "ctime": 1536028344,
+      "hash": "96bf31470aedb9ddc4828b04d1fef990e97542170609274413b4767b68c505f07f63c66f839f54b6b5c32367eb60d5c4a1f9c8bda0d6417bee87b024c516010a",
+      "hash_meta": "178aabb8dd3c729fa054e0eb591859eaff00b88f52b5e4c3fa52dd22284a7f2e",
+      "seqno": 3558809
+    },
+    "service": {
+      "entropy": "brYqlA9pF5+kKfbIwcHuPHMu",
+      "hostname": "cjthedj97.me",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "2.6.0"
+  },
+  "ctime": 1536028366,
+  "expire_in": 504576000,
+  "prev": "d8e8e47a63167efd053b29a9dd7e4c9074ed4c2a1c16f8c52dce6d6f4c621c87",
+  "seqno": 83,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgBcBBp0sv1I8OQRdxhUULdpNkRkhrShClKgieSbkgR2YKp3BheWxvYWTESpcCU8Qg2OjkemMWfv0FOymp3X5MkHTtTCocFvjFLc5tb0xiHIfEIBS4CmFSsUkGhoF7uHIXX4M1w8LEOa2Pr7V6NoPfzzE+AgHCo3NpZ8RAZpayiOO7thMbrLHJIKNxuoiLwx4gwJffeC+j/xQMfkbLeVpKcQ4rhryN/5q4pxzZ9BiMx/UKrEyKq1oD994wDKhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEILRr2lC4n05L9NhJxNDcVXphxEpYln7N5pqp+KYP1gqho3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/cjthedj97
+
+==================================================================
