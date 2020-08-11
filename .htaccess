@@ -1,9 +1,5 @@
 
 ### Set Headers ##########################################################
-Header add X-Security-Contact "webmaster@saathoff.tech"
-Header add X-Security-Keybase "https://keybase.io/cjthedj97/"
-Header add X-Security-Encryption "https://keybase.io/cjthedj97/pgp_keys.asc"
-Header add X-Security-Preferred-Language "en"
 Header append X-FRAME-OPTIONS "SAMEORIGIN"
 Header add Feature-Policy none
 Header add Referrer-Policy same-origin
@@ -16,36 +12,12 @@ RewriteBase /
 RewriteCond %{HTTPS} !=on
 RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
 
-
-### Remove www from domain ##############################################
-RewriteEngine on
-RewriteCond %{HTTP_HOST} ^www\.
-
-### Force HTTPS #########################################################
-RewriteEngine On
-RewriteBase /
-RewriteCond %{HTTPS} !=on
-RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
-
-
-### Remove www from domain ##############################################
-RewriteEngine on
-RewriteCond %{HTTP_HOST} ^www\.
-
-### Force HTTPS #########################################################
-RewriteEngine On
-RewriteBase /
-RewriteCond %{HTTPS} !=on
-RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
-
-
 ### Remove www from domain ##############################################
 RewriteEngine on
 RewriteCond %{HTTP_HOST} ^www\.
 RewriteCond %{HTTPS}s ^on(s)|off
 RewriteCond http%1://%{HTTP_HOST} ^(https?://)(www\.)?(.+)$
 RewriteRule ^ %1%3%{REQUEST_URI} [R=301,L]
-
 
 ### Remove Trailing / ##################################################
 RewriteCond %{REQUEST_FILENAME} !-d
