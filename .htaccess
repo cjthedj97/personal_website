@@ -4,7 +4,7 @@ Header append X-FRAME-OPTIONS "SAMEORIGIN"
 Header add Feature-Policy none
 Header add Referrer-Policy same-origin
 Header add X-XSS-Protection "1"
-Header add Content-Security-Policy "default-src 'none'; script-src 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; style-src-elem 'self' https://fonts.googleapis.com pkfrom.github.io; style-src 'unsafe-inline';img-src *;"
+Header add Content-Security-Policy "default-src 'none'; script-src 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; style-src-elem 'self' https://fonts.googleapis.com pkfrom.github.io *.bootstrapcdn.com; style-src 'unsafe-inline';img-src *;"
 
 ### Force HTTPS #########################################################
 RewriteEngine On
