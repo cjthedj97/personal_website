@@ -4,7 +4,7 @@ Header append X-FRAME-OPTIONS "SAMEORIGIN"
 Header add Feature-Policy none
 Header add Referrer-Policy same-origin
 Header add X-XSS-Protection "1"
-Header add Content-Security-Policy "default-src 'none'; script-src 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; style-src-elem 'self' https://fonts.googleapis.com; style-src 'unsafe-inline';img-src 'self';"
+Header add Content-Security-Policy "default-src 'none'; script-src 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; style-src-elem 'self' https://fonts.googleapis.com; style-src 'unsafe-inline';img-src 'unsafe-inline';"
 
 ### Force HTTPS #########################################################
 RewriteEngine On
