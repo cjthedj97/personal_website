@@ -1,10 +1,10 @@
 
 ### Set Headers ##########################################################
 Header append X-FRAME-OPTIONS "SAMEORIGIN"
-Header add Feature-Policy none
+#Header add Feature-Policy none
 Header add Referrer-Policy same-origin
 Header add X-XSS-Protection "1"
-Header add Content-Security-Policy "default-src 'none'; script-src 'unsafe-inline'; script-src-elem https://pkfrom.github.io https://cdnjs.cloudflare.com https://maxcdn.bootstrapcdn.com https://code.jquery.com ; font-src 'self' https://fonts.gstatic.com https://maxcdn.bootstrapcdn.com; style-src-elem 'self' https://fonts.googleapis.com https://pkfrom.github.io *.bootstrapcdn.com; style-src 'unsafe-inline';img-src *;"
+#Header add Content-Security-Policy "default-src 'none'; script-src 'unsafe-inline'; script-src-elem https://pkfrom.github.io https://cdnjs.cloudflare.com https://maxcdn.bootstrapcdn.com https://code.jquery.com ; font-src 'self' https://fonts.gstatic.com https://maxcdn.bootstrapcdn.com; style-src-elem 'self' https://fonts.googleapis.com https://pkfrom.github.io *.bootstrapcdn.com; style-src 'unsafe-inline';img-src *;"
 
 ### Force HTTPS #########################################################
 RewriteEngine On
