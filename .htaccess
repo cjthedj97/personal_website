@@ -1,7 +1,4 @@
-### Redirects to subdomains ############################################
-Redirect 301 /blog https://blog.cjthedj97.me/
-Redirect 301 /ip https://ip.cjthedj97.me/
-Redirect 301 /portfolio https://portfolio.cjthedj97.me/
+
 
 ### Webp checks and rewrite #############################################
 RewriteEngine On
