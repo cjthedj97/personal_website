@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+{% include head.html %}
+
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+</style>
+
+<body id="page-top" class="index">
+  {% include nav.html %}
+
+  <article class="post-content">
+    {{ content }}
+  </article>
+
+</body>
+
+</html>
