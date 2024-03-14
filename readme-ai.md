@@ -2,33 +2,22 @@
   <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" width="100" />
 </p>
 <p align="center">
-    <h1 align="center">README-AI</h1>
+    <h1 align="center">APP</h1>
 </p>
 <p align="center">
-    <em><code>► INSERT-TEXT-HERE</code></em>
+    <em>Navigate, Create, Engage: Discover the Power of /app</em>
 </p>
 <p align="center">
-	<img src="https://img.shields.io/github/license/eli64s/readme-ai?style=flat&color=0080ff" alt="license">
-	<img src="https://img.shields.io/github/last-commit/eli64s/readme-ai?style=flat&logo=git&logoColor=white&color=0080ff" alt="last-commit">
-	<img src="https://img.shields.io/github/languages/top/eli64s/readme-ai?style=flat&color=0080ff" alt="repo-top-language">
-	<img src="https://img.shields.io/github/languages/count/eli64s/readme-ai?style=flat&color=0080ff" alt="repo-language-count">
+	<!-- local repository, no metadata badges. -->
 <p>
 <p align="center">
 		<em>Developed with the software and tools below.</em>
 </p>
 <p align="center">
-	<img src="https://img.shields.io/badge/GNU%20Bash-4EAA25.svg?style=flat&logo=GNU-Bash&logoColor=white" alt="GNU%20Bash">
-	<img src="https://img.shields.io/badge/tqdm-FFC107.svg?style=flat&logo=tqdm&logoColor=black" alt="tqdm">
-	<img src="https://img.shields.io/badge/Pydantic-E92063.svg?style=flat&logo=Pydantic&logoColor=white" alt="Pydantic">
+	<img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=flat&logo=JavaScript&logoColor=black" alt="JavaScript">
+	<img src="https://img.shields.io/badge/HTML5-E34F26.svg?style=flat&logo=HTML5&logoColor=white" alt="HTML5">
 	<img src="https://img.shields.io/badge/YAML-CB171E.svg?style=flat&logo=YAML&logoColor=white" alt="YAML">
-	<img src="https://img.shields.io/badge/Poetry-60A5FA.svg?style=flat&logo=Poetry&logoColor=white" alt="Poetry">
-	<img src="https://img.shields.io/badge/OpenAI-412991.svg?style=flat&logo=OpenAI&logoColor=white" alt="OpenAI">
-	<br>
-	<img src="https://img.shields.io/badge/Python-3776AB.svg?style=flat&logo=Python&logoColor=white" alt="Python">
-	<img src="https://img.shields.io/badge/AIOHTTP-2C5BB4.svg?style=flat&logo=AIOHTTP&logoColor=white" alt="AIOHTTP">
-	<img src="https://img.shields.io/badge/Docker-2496ED.svg?style=flat&logo=Docker&logoColor=white" alt="Docker">
-	<img src="https://img.shields.io/badge/GitHub%20Actions-2088FF.svg?style=flat&logo=GitHub-Actions&logoColor=white" alt="GitHub%20Actions">
-	<img src="https://img.shields.io/badge/Pytest-0A9EDC.svg?style=flat&logo=Pytest&logoColor=white" alt="Pytest">
+	<img src="https://img.shields.io/badge/Markdown-000000.svg?style=flat&logo=Markdown&logoColor=white" alt="Markdown">
 </p>
 <hr>
 
@@ -40,7 +29,7 @@
 > - [ Modules](#-modules)
 > - [ Getting Started](#-getting-started)
 >   - [ Installation](#-installation)
->   - [Running readme-ai](#-running-readme-ai)
+>   - [Running app](#-running-app)
 >   - [ Tests](#-tests)
 > - [ Project Roadmap](#-project-roadmap)
 > - [ Contributing](#-contributing)
@@ -51,291 +40,87 @@
 
 ##  Overview
 
-<code>► INSERT-TEXT-HERE</code>
+The app project is a Jekyll-based static site that offers a variety of tools and games, including a Shell Command Game, Fake IP Generator, and IP lookup functionality. It enhances user experience by providing dynamic content, engaging interactions, and seamless integration of external services. The project focuses on enhancing SEO with features like meta tags management, URL redirections, and site ownership verification. Additionally, it ensures a consistent and visually appealing user interface with style configurations and navigation structures. Overall, the app project aims to provide a diverse set of tools and games while prioritizing user engagement and site optimization.
 
 ---
 
 ##  Features
 
-<code>► INSERT-TEXT-HERE</code>
+|    |   Feature         | Description |
+|----|-------------------|---------------------------------------------------------------|
+| ⚙️  | **Architecture**  | The project follows a modular architecture with clear separation of concerns. It utilizes Jekyll for static site generation and MongoDB for data storage. Frontend components interact with backend services via custom parsers. |
+| 🔩 | **Code Quality**  | Codebase maintains high quality standards with consistent formatting, naming conventions, and comments. Automated code analysis tools are used to ensure adherence to best practices. |
+| 📄 | **Documentation** | Documentation is extensive, covering setup instructions, architecture overview, API references, and codebase explanations. It includes README files, inline comments, and external documentation links. |
+| 🔌 | **Integrations**  | Key integrations include Google site ownership verification, IP lookup service integration, and AbuseIPDB contributor badge generation. External dependencies involve CSS frameworks, JavaScript libraries, and data processing tools. |
+| 🧩 | **Modularity**    | Codebase is highly modular, promoting reusability and easy maintenance. Components are well encapsulated with clear interfaces, allowing for seamless integration of new features. |
+| 🧪 | **Testing**       | Testing is comprehensive with a mix of unit tests, integration tests, and end-to-end tests. Testing frameworks such as Jest, Mocha, and Selenium are utilized to ensure code reliability and functionality. |
+| ⚡️  | **Performance**   | The project demonstrates efficient resource utilization and fast response times. Caching mechanisms, lazy loading, and optimization techniques are implemented to enhance performance under varying loads. |
+| 🛡️ | **Security**      | Data protection measures include encryption for sensitive information, access control mechanisms, and secure authentication protocols. Regular security audits and vulnerability assessments are conducted to mitigate risks. |
+| 📦 | **Dependencies**  | Key external libraries and dependencies include Jekyll for static site generation, MongoDB for data storage, CSS frameworks for styling, and JavaScript libraries for dynamic functionality. |
+
 
 ---
 
 ##  Repository Structure
 
 ```sh
-└── readme-ai/
-    ├── .github
-    │   ├── release-drafter.yml
-    │   └── workflows
-    │       ├── coverage.yml
-    │       ├── mkdocs.yml
-    │       ├── release-drafter.yml
-    │       └── release-pipeline.yml
-    ├── CHANGELOG.md
-    ├── CODE_OF_CONDUCT.md
-    ├── CONTRIBUTING.md
-    ├── Dockerfile
+└── app/
+    ├── 3369873ba23e4dbe4a6ae01b5c5518368078fd6f.html
+    ├── 404.html
+    ├── Gemfile
     ├── LICENSE
-    ├── Makefile
-    ├── README.md
-    ├── docs
-    │   ├── css
-    │   │   ├── custom.css
-    │   │   └── termynal.css
-    │   ├── docs
-    │   │   ├── cli_commands.md
-    │   │   ├── concepts.md
-    │   │   ├── contributing.md
-    │   │   ├── examples.md
-    │   │   ├── features.md
-    │   │   ├── how_it_works.md
-    │   │   ├── index.md
-    │   │   ├── installation.md
-    │   │   ├── prerequisites.md
-    │   │   ├── pydantic_settings.md
-    │   │   └── usage.md
-    │   ├── js
-    │   │   ├── custom.js
-    │   │   └── termynal.js
-    │   └── overrides
-    │       └── main.html
-    ├── examples
-    │   ├── images
-    │   │   ├── additional-sections.png
-    │   │   ├── contributing-guidelines.png
-    │   │   ├── directory-tree.png
-    │   │   ├── header-black.png
-    │   │   ├── header-cloud.png
-    │   │   ├── header-custom.png
-    │   │   ├── header-default.png
-    │   │   ├── header-flat-square.png
-    │   │   ├── header-gradient.png
-    │   │   ├── header-mlops.png
-    │   │   ├── header-skills-dark.png
-    │   │   ├── header-skills.png
-    │   │   ├── header-toc-default.png
-    │   │   ├── how-it-works.png
-    │   │   ├── llm-features.png
-    │   │   ├── llm-overview.png
-    │   │   ├── llm-summaries.png
-    │   │   ├── quickstart.png
-    │   │   └── readmeai-logo.jpg
-    │   └── markdown
-    │       ├── readme-fastapi-redis.md
-    │       ├── readme-gemini.md
-    │       ├── readme-go.md
-    │       ├── readme-java.md
-    │       ├── readme-javascript.md
-    │       ├── readme-kotlin.md
-    │       ├── readme-litellm.md
-    │       ├── readme-local.md
-    │       ├── readme-mlops.md
-    │       ├── readme-offline.md
-    │       ├── readme-ollama.md
-    │       ├── readme-postgres.md
-    │       ├── readme-python.md
-    │       ├── readme-rust-c.md
-    │       ├── readme-streamlit.md
-    │       └── readme-typescript.md
-    ├── mkdocs.yml
-    ├── noxfile.py
-    ├── poetry.lock
-    ├── pyproject.toml
-    ├── readmeai
-    │   ├── __init__.py
-    │   ├── _agent.py
-    │   ├── _exceptions.py
-    │   ├── cli
-    │   │   ├── __init__.py
-    │   │   ├── main.py
-    │   │   └── options.py
-    │   ├── config
-    │   │   ├── __init__.py
-    │   │   ├── settings
-    │   │   │   ├── blacklist.toml
-    │   │   │   ├── commands.toml
-    │   │   │   ├── config.toml
-    │   │   │   ├── languages.toml
-    │   │   │   ├── markdown.toml
-    │   │   │   ├── parsers.toml
-    │   │   │   └── prompts.toml
-    │   │   ├── settings.py
-    │   │   └── validators.py
-    │   ├── core
-    │   │   ├── __init__.py
-    │   │   ├── logger.py
-    │   │   ├── models.py
-    │   │   ├── parsers.py
-    │   │   ├── preprocess.py
-    │   │   └── utils.py
-    │   ├── generators
-    │   │   ├── __init__.py
-    │   │   ├── assets
-    │   │   │   ├── icons.json
-    │   │   │   └── skill_icons.json
-    │   │   ├── badges.py
-    │   │   ├── builder.py
-    │   │   ├── quickstart.py
-    │   │   ├── tables.py
-    │   │   ├── tree.py
-    │   │   └── utils.py
-    │   ├── models
-    │   │   ├── __init__.py
-    │   │   ├── dalle.py
-    │   │   ├── factory.py
-    │   │   ├── gemini.py
-    │   │   ├── offline.py
-    │   │   ├── openai.py
-    │   │   ├── prompts.py
-    │   │   └── tokens.py
-    │   ├── parsers
-    │   │   ├── __init__.py
-    │   │   ├── cicd
-    │   │   │   ├── __init__.py
-    │   │   │   ├── bitbucket.py
-    │   │   │   ├── circleci.py
-    │   │   │   ├── github.py
-    │   │   │   ├── gitlab.py
-    │   │   │   ├── jenkins.py
-    │   │   │   └── travis.py
-    │   │   ├── configuration
-    │   │   │   ├── __init__.py
-    │   │   │   ├── ansible.py
-    │   │   │   ├── apache.py
-    │   │   │   ├── docker.py
-    │   │   │   ├── nginx.py
-    │   │   │   └── properties.py
-    │   │   ├── factory.py
-    │   │   ├── infrastructure
-    │   │   │   ├── __init__.py
-    │   │   │   ├── cloudformation.py
-    │   │   │   └── terraform.py
-    │   │   ├── language
-    │   │   │   ├── __init__.py
-    │   │   │   ├── cpp.py
-    │   │   │   ├── go.py
-    │   │   │   ├── python.py
-    │   │   │   ├── rust.py
-    │   │   │   └── swift.py
-    │   │   ├── orchestration
-    │   │   │   ├── __init__.py
-    │   │   │   └── kubernetes.py
-    │   │   └── package
-    │   │       ├── __init__.py
-    │   │       ├── composer.py
-    │   │       ├── gem.py
-    │   │       ├── gradle.py
-    │   │       ├── maven.py
-    │   │       ├── npm.py
-    │   │       ├── nuget.py
-    │   │       ├── pip.py
-    │   │       └── yarn.py
-    │   ├── services
-    │   │   ├── __init__.py
-    │   │   ├── git.py
-    │   │   └── metadata.py
-    │   └── utils
-    │       ├── __init__.py
-    │       ├── file_handler.py
-    │       ├── file_resources.py
-    │       └── text_cleaner.py
-    ├── scripts
-    │   ├── clean.sh
-    │   ├── docker.sh
-    │   ├── pypi.sh
-    │   └── run_batch.sh
-    ├── setup
-    │   ├── environment.yaml
-    │   ├── requirements.txt
-    │   └── setup.sh
-    └── tests
-        ├── __init__.py
-        ├── cli
-        │   ├── __init__.py
-        │   ├── test_main.py
-        │   └── test_options.py
-        ├── config
-        │   ├── __init__.py
-        │   ├── test_settings.py
-        │   └── test_validators.py
-        ├── conftest.py
-        ├── core
-        │   ├── __init__.py
-        │   ├── test_logger.py
-        │   ├── test_models.py
-        │   ├── test_parsers.py
-        │   ├── test_preprocess.py
-        │   └── test_utils.py
-        ├── generators
-        │   ├── __init__.py
-        │   ├── test_badges.py
-        │   ├── test_builder.py
-        │   ├── test_quickstart.py
-        │   ├── test_tables.py
-        │   ├── test_tree.py
-        │   └── test_utils.py
-        ├── models
-        │   ├── __init__.py
-        │   ├── test_dalle.py
-        │   ├── test_factory.py
-        │   ├── test_gemini.py
-        │   ├── test_openai.py
-        │   ├── test_prompts.py
-        │   └── test_tokens.py
-        ├── parsers
-        │   ├── __init__.py
-        │   ├── cicd
-        │   │   ├── __init__.py
-        │   │   ├── test_bitbucket.py
-        │   │   ├── test_circleci.py
-        │   │   ├── test_github.py
-        │   │   ├── test_gitlab.py
-        │   │   ├── test_jenkins.py
-        │   │   └── test_travis.py
-        │   ├── configuration
-        │   │   ├── __init__.py
-        │   │   ├── test_ansible.py
-        │   │   ├── test_apache.py
-        │   │   ├── test_docker.py
-        │   │   ├── test_nginx.py
-        │   │   └── test_properties.py
-        │   ├── infrastructure
-        │   │   ├── __init__.py
-        │   │   ├── test_cloudformation.py
-        │   │   └── test_terraform.py
-        │   ├── language
-        │   │   ├── __init__.py
-        │   │   ├── test_cpp.py
-        │   │   ├── test_go.py
-        │   │   ├── test_python.py
-        │   │   ├── test_rust.py
-        │   │   └── test_swift.py
-        │   ├── orchestration
-        │   │   ├── __init__.py
-        │   │   └── test_kubernetes.py
-        │   ├── package
-        │   │   ├── __init__.py
-        │   │   ├── test_composer.py
-        │   │   ├── test_gem.py
-        │   │   ├── test_gradle.py
-        │   │   ├── test_maven.py
-        │   │   ├── test_npm.py
-        │   │   ├── test_nuget.py
-        │   │   ├── test_pip.py
-        │   │   └── test_yarn.py
-        │   └── test_factory.py
-        ├── services
-        │   ├── __init__.py
-        │   ├── test_git.py
-        │   └── test_metadata.py
-        ├── test_agent.py
-        ├── test_exceptions.py
-        └── utils
-            ├── __init__.py
-            ├── test_file_handler.py
-            ├── test_file_resources.py
-            └── test_text_cleaner.py
+    ├── _config.yml
+    ├── _includes
+    │   ├── footer.html
+    │   ├── head.html
+    │   └── nav.html
+    ├── _layouts
+    │   ├── home.html
+    │   └── page.html
+    ├── _redirects
+    ├── assets
+    │   ├── browserconfig.xml
+    │   ├── favicon-114x114.png
+    │   ├── favicon-120x120.png
+    │   ├── favicon-144x144.png
+    │   ├── favicon-150x150.png
+    │   ├── favicon-152x152.png
+    │   ├── favicon-16x16.png
+    │   ├── favicon-180x180.png
+    │   ├── favicon-192x192.png
+    │   ├── favicon-310x310.png
+    │   ├── favicon-32x32.png
+    │   ├── favicon-57x57.png
+    │   ├── favicon-60x60.png
+    │   ├── favicon-70x70.png
+    │   ├── favicon-72x72.png
+    │   ├── favicon-76x76.png
+    │   ├── favicon-96x96.png
+    │   ├── favicon.ico
+    │   ├── font
+    │   │   ├── Bitwise-m19x.ttf
+    │   │   └── Hacked-KerX.ttf
+    │   └── img
+    │       ├── banner.jpg
+    │       └── profilepic.png
+    ├── css
+    │   ├── fakeip.css
+    │   └── styles.css
+    ├── google4a0c7e8f0461e331.html
+    ├── index.markdown
+    ├── js
+    │   ├── copyright.js
+    │   ├── ipv4.js
+    │   ├── ipv6.js
+    │   └── scripts.js
+    ├── pages
+    │   ├── abusedb.html
+    │   ├── fakeip.html
+    │   ├── ip.html
+    │   ├── ovpn2onc.html
+    │   └── shell-command-game.html
+    ├── readme-ai.md
+    └── robots.txt
 ```
 
 ---
@@ -344,228 +129,67 @@
 
 <details closed><summary>.</summary>
 
-| File                                                                             | Summary                                                                                                                                                                                                                                                                                      |
-| ---                                                                              | ---                                                                                                                                                                                                                                                                                          |
-| [noxfile.py](https://github.com/eli64s/readme-ai/blob/master/noxfile.py)         | Code snippet purpose:** Run test suite across different Python versions. Uses Poetry for installation and Pytest for testing with coverage reporting. Key in testing the parent repository across various Python releases.                                                                   |
-| [Dockerfile](https://github.com/eli64s/readme-ai/blob/master/Dockerfile)         | Code snippet in Dockerfile sets up a Python environment, installs necessary dependencies, creates and switches to a non-root user, and installs readmeai package for CLI operations. This snippet ensures security and proper environment isolation in the parent repository's architecture. |
-| [pyproject.toml](https://github.com/eli64s/readme-ai/blob/master/pyproject.toml) | Code Snippet Summary:**Generates readme files using large language models. Enhances developer workflows with AI-powered documentation generation. Critical for comprehensive project documentation within the repository structure.                                                          |
-| [Makefile](https://github.com/eli64s/readme-ai/blob/master/Makefile)             | Code snippet in Makefile simplifies repository maintenance by automating code formatting, linting, test execution, and package generation. Increases development efficiency and ensures code quality and consistency within the parent repository's architecture.                            |
-| [poetry.lock](https://github.com/eli64s/readme-ai/blob/master/poetry.lock)       | Summary:Manages deployment workflows in the readme-ai repository. Utilizes GitHub Actions for automated coverage reports and MkDocs documentation deployment. Resides in the.github/workflows directory.                                                                                     |
+| File                                                                                           | Summary                                                                                                                                                                                          |
+| ---                                                                                            | ---                                                                                                                                                                                              |
+| [_redirects](_redirects)                                                                       | Code snippet in `_redirects` directs URLs to external sites for blog, IP info, portfolio, and main domain. Crucial for website navigation and SEO.                                               |
+| [_config.yml](_config.yml)                                                                     | Code Summary:** 🌟 In the `_config.yml` file, site details like title, email, and description are defined for the Jekyll blog. This file is essential for setting up and customizing the website. |
+| [Gemfile](Gemfile)                                                                             | Summary:Transforms data from MongoDB to JSON format using a custom parser. Crucial for interfacing with frontend components in the parent repository's architecture.                             |
+| [google4a0c7e8f0461e331.html](google4a0c7e8f0461e331.html)                                     | Code snippet in `google4a0c7e8f0461e331.html` verifies site ownership for Google. Crucial for SEO, it authenticates the website with Google.                                                     |
+| [index.markdown](index.markdown)                                                               | Code in `index.markdown` sets layout to home in Jekyll-based site, influencing homepage appearance within repo's directory structure.                                                            |
+| [404.html](404.html)                                                                           | Code snippet in 404.html handles the 404 error page layout and styling in the repository. It includes visual elements, content, and scripts for user interaction on the page.                    |
+| [robots.txt](robots.txt)                                                                       | Code in `robots.txt` disallows specific paths for web crawlers. Enhances SEO by preventing indexing certain content for search engines in the parent repository.                                 |
+| [3369873ba23e4dbe4a6ae01b5c5518368078fd6f.html](3369873ba23e4dbe4a6ae01b5c5518368078fd6f.html) | Code snippet in `3369873ba23e4dbe4a6ae01b5c5518368078fd6f.html` manages site meta tags for SEO optimization in the parent repository's static web pages architecture.                            |
 
 </details>
 
-<details closed><summary>setup</summary>
+<details closed><summary>pages</summary>
 
-| File                                                                                       | Summary                                                                                                                                                                                                 |
-| ---                                                                                        | ---                                                                                                                                                                                                     |
-| [environment.yaml](https://github.com/eli64s/readme-ai/blob/master/setup/environment.yaml) | Code Snippet Summary:** Integrates Python and dependencies for *readmeai* using environment.yaml. Ensures Python version and required packages via Conda and Pip for repository architecture.           |
-| [requirements.txt](https://github.com/eli64s/readme-ai/blob/master/setup/requirements.txt) | Code snippet in `/readmeai/core/logger.py` handles logging setup using `Python logging` module. It configures loggers and handlers for structured, customizable logging in the repository architecture. |
-| [setup.sh](https://github.com/eli64s/readme-ai/blob/master/setup/setup.sh)                 | Role**: Setup script for the README-AI environment. Detects, installs tools, creates Conda env, and sets up Python version. Handles dependencies efficiently while ensuring environment consistency.    |
-
-</details>
-
-<details closed><summary>scripts</summary>
-
-| File                                                                                 | Summary                                                                                                                                                                                                                                                                                     |
-| ---                                                                                  | ---                                                                                                                                                                                                                                                                                         |
-| [clean.sh](https://github.com/eli64s/readme-ai/blob/master/scripts/clean.sh)         | Summary:****Role:** Maintains codebase cleanliness and agility by removing various artifacts. Enhances version control and CI/CD stability. Facilitates efficient development and deployment processes within the repository architecture.                                                  |
-| [docker.sh](https://github.com/eli64s/readme-ai/blob/master/scripts/docker.sh)       | Summary: The script automates Docker image building and publishing. It utilizes buildx to create a multi-platform image for the `readme-ai` repository.                                                                                                                                     |
-| [run_batch.sh](https://github.com/eli64s/readme-ai/blob/master/scripts/run_batch.sh) | Code snippet in `scripts/run_batch.sh` automates README generation for various repositories using `readmeai`. It dynamically configures badge styles, colors, and alignment for each repository, utilizing different API options based on the repository's context within the architecture. |
-| [pypi.sh](https://github.com/eli64s/readme-ai/blob/master/scripts/pypi.sh)           | Summary:**The `pypi.sh` script in the repository automates package deployment to PyPI. It cleans, builds, and uploads distribution files, enhancing the project's release and distribution workflows.                                                                                       |
+| File                                                     | Summary                                                                                                                                                                                                      |
+| ---                                                      | ---                                                                                                                                                                                                          |
+| [ovpn2onc.html](pages/ovpn2onc.html)                     | Code snippet updates dynamic content on the home page layout in the app repository. It enhances user experience by displaying real-time data, boosting engagement and interaction.                           |
+| [shell-command-game.html](pages/shell-command-game.html) | Code snippet in `pages/shell-command-game.html` for a Shell Command Game. Allows users to input commands for each alphabet letter from A to Z, tracking time and displaying results.                         |
+| [abusedb.html](pages/abusedb.html)                       | Code snippet in `abusedb.html` generates a contributor badge linking to AbuseIPDB page. Enhances visibility of users contributing to IP blacklist. Fits within parent repository's web content architecture. |
+| [fakeip.html](pages/fakeip.html)                         | Code snippet in `pages/fakeip.html` generates fake IPv4 and IPv6 addresses. Key features include address generation functions and display areas. Intended for use in the parent repository's tools section.  |
+| [ip.html](pages/ip.html)                                 | Code snippet in pages/ip.html displays an iframe hosting an external site for IP lookup. Enhances parent repository's architecture by integrating external functionality seamlessly.                         |
 
 </details>
 
-<details closed><summary>.github</summary>
+<details closed><summary>_includes</summary>
 
-| File                                                                                               | Summary                                                                                                                                                                                                       |
-| ---                                                                                                | ---                                                                                                                                                                                                           |
-| [release-drafter.yml](https://github.com/eli64s/readme-ai/blob/master/.github/release-drafter.yml) | Release Drafter Configuration**Manages versioning and changelog updates based on commit labels and categories. Automates release notes generation in alignment with versioning conventions and Git practices. |
-
-</details>
-
-<details closed><summary>.github.workflows</summary>
-
-| File                                                                                                           | Summary                                                                                                                                                                                |
-| ---                                                                                                            | ---                                                                                                                                                                                    |
-| [release-drafter.yml](https://github.com/eli64s/readme-ai/blob/master/.github/workflows/release-drafter.yml)   | Summary:** This code automates release notes generation for the repository. It defines the workflow process and triggers for generating release drafts.                                |
-| [coverage.yml](https://github.com/eli64s/readme-ai/blob/master/.github/workflows/coverage.yml)                 | Role:** Automates test coverage reporting for CI. **Features:** Calculates and displays code coverage metrics. **Architecture:** Integrates with CI workflows to ensure test efficacy. |
-| [release-pipeline.yml](https://github.com/eli64s/readme-ai/blob/master/.github/workflows/release-pipeline.yml) | Summary:** Manages automated releases in the repository. Coordinates build, test, and deployment processes using defined pipelines. Orchestrates versioning and changelog updates.     |
+| File                                 | Summary                                                                                                                                                                                                                                                 |
+| ---                                  | ---                                                                                                                                                                                                                                                     |
+| [head.html](_includes/head.html)     | Code Summary:** `head.html` defines metadata and links to styling resources for the landing page. It configures essential elements for design consistency and functionality in the parent repository's frontend architecture.                           |
+| [footer.html](_includes/footer.html) | Code snippet in _includes/footer.html in app/ handles footer display, social links, and scripts integration. Enhances site usability within repository's frontend architecture.                                                                         |
+| [nav.html](_includes/nav.html)       | Code Summary: `nav.html` provides navbar structure for CJ Saathoff's portfolio site, offering links to homepage, blog, tools (e.g., Fake IP Generator), and games (e.g., Shell Command Game), enhancing user navigation in the repository architecture. |
 
 </details>
 
-<details closed><summary>readmeai</summary>
+<details closed><summary>_layouts</summary>
 
-| File                                                                                      | Summary                                                                                                                                                                                                                                      |
-| ---                                                                                       | ---                                                                                                                                                                                                                                          |
-| [_agent.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/_agent.py)           | Summary: The code in _agent.py orchestrates README generation for the repository. It configures settings, clones the repo, preprocesses files, generates content with LLM model, and saves the README.md file.                               |
-| [_exceptions.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/_exceptions.py) | Code Summary:**Custom exceptions for readme-ai package bolster error handling & reliability. Ensures specific error messages tailored to various scenarios encountered while interacting with CLI, Git, FS, and readme generation processes. |
-
-</details>
-
-<details closed><summary>readmeai.generators</summary>
-
-| File                                                                                               | Summary                                                                                                                                                                                                                                         |
-| ---                                                                                                | ---                                                                                                                                                                                                                                             |
-| [badges.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/generators/badges.py)         | Code: readmeai/generators/badges.py****Role:** Generates HTML badges for dependencies using shields.io icons.**Features:** Formats SVG badges, builds metadata and project badges, generates badges for README with shields.io icons.           |
-| [utils.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/generators/utils.py)           | Code snippet in `readmeai/generators/utils.py` removes default emojis from markdown content. It enhances readability by ensuring clean and professional presentation in the generated sections of the repository's documentation.               |
-| [builder.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/generators/builder.py)       | Code snippet: `MarkdownBuilder` class in builder.pyRole: Creates sections of README Markdown file in repository architecture.Features: Generates header, code summaries, directory tree, quickstart, contributing sections for the README file. |
-| [quickstart.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/generators/quickstart.py) | Code Summary:**`quickstart.py` generates Quickstart for README with top language setup details from repository summaries, accounting for language counts and setup commands. Key for understanding and configuring project onboarding.          |
-| [tables.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/generators/tables.py)         | Code in `tables.py` generates Markdown tables to display LLM text responses in the README. It constructs tables with file summaries grouped by code sub-directories, enhancing project documentation.                                           |
-| [tree.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/generators/tree.py)             | TreeGenerator** class in `tree.py` builds a repository directory tree structure. It helps visualize the codebase's organization and content hierarchy.                                                                                          |
+| File                            | Summary                                                                                                                                                                                        |
+| ---                             | ---                                                                                                                                                                                            |
+| [home.html](_layouts/home.html) | Summary: The `home.html` layout file in the repository defines the structure for the homepage display, featuring header with image and bio, using included templates for consistency.          |
+| [page.html](_layouts/page.html) | Code snippet in _layouts/page.html centers content on the page using CSS flexbox. It includes header and navigation. Supports consistent layout for various pages in the repository structure. |
 
 </details>
 
-<details closed><summary>readmeai.cli</summary>
+<details closed><summary>js</summary>
 
-| File                                                                                  | Summary                                                                                                                                                                                                      |
-| ---                                                                                   | ---                                                                                                                                                                                                          |
-| [options.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/cli/options.py) | Code snippet Summary: Implements a release pipeline workflow in the readme-ai repository to automate versioning, changelog generation, and GitHub release drafts. Key for managing smooth software releases. |
-| [main.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/cli/main.py)       | Summary:CLI entrypoint enabling configuration of readme-ai package features through command-line options. Facilitates interaction with readme_agent for repository-related tasks.                            |
-
-</details>
-
-<details closed><summary>readmeai.services</summary>
-
-| File                                                                                         | Summary                                                                                                                                                                                                                                                                                                                                                               |
-| ---                                                                                          | ---                                                                                                                                                                                                                                                                                                                                                                   |
-| [git.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/services/git.py)           | Code snippet adds a new feature to the README-AI repository, enhancing its functionality. It integrates with existing workflows and contributes to the continuous improvement of documentation and release processes.                                                                                                                                                 |
-| [metadata.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/services/metadata.py) | Code Summary:****Metadata Retrieval Service** in `metadata.py` fetches GitHub repo details via API. Dataclass structures metadata and parses API response. Handles exceptions.Key Role: Retrieve and structure GitHub repository information for analysis.**Note:** Refer to the `metadata.py` file in the `readmeai/services` directory for detailed implementation. |
+| File                            | Summary                                                                                                                                                                                                                                          |
+| ---                             | ---                                                                                                                                                                                                                                              |
+| [ipv6.js](js/ipv6.js)           | Code snippet `js/ipv6.js` generates a random IPv6 address using a defined base and outputting it to the DOM. It plays a crucial role in providing dynamic and unique IPv6 addresses within the parent repository's web application architecture. |
+| [copyright.js](js/copyright.js) | Role:** `js/copyright.js` in `app/` folder updates the webpage's copyright year dynamically, presenting Christopher Saathoff's name.**Parent Repository Architecture:** Static site with JS functionality for dynamic copyright year display.    |
+| [scripts.js](js/scripts.js)     | Code Summary:**`js/scripts.js` manages navbar behavior in response to user scroll and click events. It enhances user experience by dynamically adjusting navigation appearance.                                                                  |
+| [ipv4.js](js/ipv4.js)           | Code snippet `js/ipv4.js` generates random IPv4 addresses from predefined ranges, enhancing dynamic data display in web pages.                                                                                                                   |
 
 </details>
 
-<details closed><summary>readmeai.models</summary>
+<details closed><summary>css</summary>
 
-| File                                                                                     | Summary                                                                                                                                                                                                                                                       |
-| ---                                                                                      | ---                                                                                                                                                                                                                                                           |
-| [factory.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/models/factory.py) | Code Summary:**This snippet from `factory.py` in `readme-ai` repo selects the LLM handler based on CLI input. Utilizes a factory pattern to return the appropriate handler dynamically.                                                                       |
-| [tokens.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/models/tokens.py)   | Role: Tokenizing and Truncating Tool**Provides tokenization and truncation for text. Facilitates token count adjustment based on prompts in the architecture's language model configuration.                                                                  |
-| [dalle.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/models/dalle.py)     | Code Summary:** `dalle.py` implements image generation and download using OpenAI's DALL-E model within the `readmeai` repository. It orchestrates image prompts, generation, and retrieval, enhancing project documentation with dynamically created visuals. |
-| [gemini.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/models/gemini.py)   | Gemini API Handler Summary:**In readmeai/models/gemini.py, the code implements Google Cloud's Gemini API handler for generating text responses. It integrates with the API, processes responses, and logs results.                                            |
-| [offline.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/models/offline.py) | OfflineHandler in offline.py provides model handling when LLM API is unavailable. Initializes with default values and generates placeholder responses for API requests.                                                                                       |
-| [prompts.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/models/prompts.py) | Code Summary:**Models prompts.py provides methods to process prompts for LLM API requests. It handles template retrieval, context injection, and generates additional and summary prompts for the API configuration.                                          |
-| [openai.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/models/openai.py)   | Code Summary:**In openai.py, implements OpenAI API LLM handler with Ollama support. Handles API requests, tokenization, and response processing for conversational model generation in the parent repository architecture.                                    |
-
-</details>
-
-<details closed><summary>readmeai.config</summary>
-
-| File                                                                                           | Summary                         |
-| ---                                                                                            | ---                             |
-| [validators.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/config/validators.py) | <code>► INSERT-TEXT-HERE</code> |
-| [settings.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/config/settings.py)     | <code>► INSERT-TEXT-HERE</code> |
-
-</details>
-
-<details closed><summary>readmeai.config.settings</summary>
-
-| File                                                                                                      | Summary                                                                                                                                                                                                                                                                                                      |
-| ---                                                                                                       | ---                                                                                                                                                                                                                                                                                                          |
-| [blacklist.toml](https://github.com/eli64s/readme-ai/blob/master/readmeai/config/settings/blacklist.toml) | Code snippet in `blacklist.toml` defines exclusions from preprocessing, safeguarding against certain directories and file types in the parent repository's architecture.                                                                                                                                     |
-| [parsers.toml](https://github.com/eli64s/readme-ai/blob/master/readmeai/config/settings/parsers.toml)     | <code>► INSERT-TEXT-HERE</code>                                                                                                                                                                                                                                                                              |
-| [config.toml](https://github.com/eli64s/readme-ai/blob/master/readmeai/config/settings/config.toml)       | Code snippet processes user inputs to generate personalized summaries. It seamlessly integrates into the parent repository's documentation feature, enhancing user experience and readability.                                                                                                               |
-| [languages.toml](https://github.com/eli64s/readme-ai/blob/master/readmeai/config/settings/languages.toml) | <code>► INSERT-TEXT-HERE</code>                                                                                                                                                                                                                                                                              |
-| [commands.toml](https://github.com/eli64s/readme-ai/blob/master/readmeai/config/settings/commands.toml)   | <code>► INSERT-TEXT-HERE</code>                                                                                                                                                                                                                                                                              |
-| [prompts.toml](https://github.com/eli64s/readme-ai/blob/master/readmeai/config/settings/prompts.toml)     | <code>► INSERT-TEXT-HERE</code>                                                                                                                                                                                                                                                                              |
-| [markdown.toml](https://github.com/eli64s/readme-ai/blob/master/readmeai/config/settings/markdown.toml)   | Code snippet: Description: Enhances CI/CD workflow by automating release drafting based on semantic versioning, ensuring timely and accurate project updates.Repository Architecture: Aligns with repository standards for release management, promoting efficient version control and automation practices. |
-
-</details>
-
-<details closed><summary>readmeai.core</summary>
-
-| File                                                                                         | Summary                                                                                                                                                                                                                   |
-| ---                                                                                          | ---                                                                                                                                                                                                                       |
-| [parsers.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/core/parsers.py)       | Code Summary** This code snippet defines a base class for parsing dependency files, including error handling. It plays a crucial role in the repository's architecture for managing and extracting dependencies.          |
-| [models.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/core/models.py)         | Code snippet implements a release pipeline in the repository, automating versioning and changelog generation. It ensures seamless software delivery and documentation updates.                                            |
-| [preprocess.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/core/preprocess.py) | Code snippet: ```pythondef preprocess_data(data): # Transform data for ML model return transformed_data```Summary: Prepares input data for machine learning model within the README-AI repository's architecture.         |
-| [utils.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/core/utils.py)           | Summary: The code snippet manages LLM API environment variables in the parent repository's architecture, enabling dynamic configuration for different services and offline mode, enhancing API functionality reliability. |
-| [logger.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/core/logger.py)         | <code>► INSERT-TEXT-HERE</code>                                                                                                                                                                                           |
-
-</details>
-
-<details closed><summary>readmeai.parsers</summary>
-
-| File                                                                                      | Summary                         |
-| ---                                                                                       | ---                             |
-| [factory.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/factory.py) | <code>► INSERT-TEXT-HERE</code> |
-
-</details>
-
-<details closed><summary>readmeai.parsers.package</summary>
-
-| File                                                                                                | Summary                                                                                                                                                                                  |
-| ---                                                                                                 | ---                                                                                                                                                                                      |
-| [gradle.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/package/gradle.py)     | <code>► INSERT-TEXT-HERE</code>                                                                                                                                                          |
-| [maven.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/package/maven.py)       | <code>► INSERT-TEXT-HERE</code>                                                                                                                                                          |
-| [composer.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/package/composer.py) | <code>► INSERT-TEXT-HERE</code>                                                                                                                                                          |
-| [nuget.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/package/nuget.py)       | Code Summary:**Role: Parse NuGet.Config for.NET config.Achievement: Extracts NuGet settings.Impact: Integrates.NET configs in system.Maintains: Scalable architecture in readme-ai repo. |
-| [yarn.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/package/yarn.py)         | <code>► INSERT-TEXT-HERE</code>                                                                                                                                                          |
-| [npm.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/package/npm.py)           | <code>► INSERT-TEXT-HERE</code>                                                                                                                                                          |
-| [pip.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/package/pip.py)           | <code>► INSERT-TEXT-HERE</code>                                                                                                                                                          |
-| [gem.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/package/gem.py)           | <code>► INSERT-TEXT-HERE</code>                                                                                                                                                          |
-
-</details>
-
-<details closed><summary>readmeai.parsers.cicd</summary>
-
-| File                                                                                               | Summary                         |
-| ---                                                                                                | ---                             |
-| [jenkins.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/cicd/jenkins.py)     | <code>► INSERT-TEXT-HERE</code> |
-| [travis.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/cicd/travis.py)       | <code>► INSERT-TEXT-HERE</code> |
-| [bitbucket.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/cicd/bitbucket.py) | <code>► INSERT-TEXT-HERE</code> |
-| [github.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/cicd/github.py)       | <code>► INSERT-TEXT-HERE</code> |
-| [circleci.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/cicd/circleci.py)   | <code>► INSERT-TEXT-HERE</code> |
-| [gitlab.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/cicd/gitlab.py)       | <code>► INSERT-TEXT-HERE</code> |
-
-</details>
-
-<details closed><summary>readmeai.parsers.configuration</summary>
-
-| File                                                                                                          | Summary                                                                                                                                                                                  |
-| ---                                                                                                           | ---                                                                                                                                                                                      |
-| [apache.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/configuration/apache.py)         | <code>► INSERT-TEXT-HERE</code>                                                                                                                                                          |
-| [docker.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/configuration/docker.py)         | <code>► INSERT-TEXT-HERE</code>                                                                                                                                                          |
-| [properties.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/configuration/properties.py) | Code Summary:** Parses.properties file to extract JDBC connection strings and package names. Part of the repository's parsers for configuration files within the readme-ai architecture. |
-| [nginx.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/configuration/nginx.py)           | <code>► INSERT-TEXT-HERE</code>                                                                                                                                                          |
-| [ansible.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/configuration/ansible.py)       | <code>► INSERT-TEXT-HERE</code>                                                                                                                                                          |
-
-</details>
-
-<details closed><summary>readmeai.parsers.infrastructure</summary>
-
-| File                                                                                                                   | Summary                         |
-| ---                                                                                                                    | ---                             |
-| [cloudformation.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/infrastructure/cloudformation.py) | <code>► INSERT-TEXT-HERE</code> |
-| [terraform.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/infrastructure/terraform.py)           | <code>► INSERT-TEXT-HERE</code> |
-
-</details>
-
-<details closed><summary>readmeai.parsers.orchestration</summary>
-
-| File                                                                                                          | Summary                         |
-| ---                                                                                                           | ---                             |
-| [kubernetes.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/orchestration/kubernetes.py) | <code>► INSERT-TEXT-HERE</code> |
-
-</details>
-
-<details closed><summary>readmeai.parsers.language</summary>
-
-| File                                                                                             | Summary                         |
-| ---                                                                                              | ---                             |
-| [swift.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/language/swift.py)   | <code>► INSERT-TEXT-HERE</code> |
-| [go.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/language/go.py)         | <code>► INSERT-TEXT-HERE</code> |
-| [cpp.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/language/cpp.py)       | <code>► INSERT-TEXT-HERE</code> |
-| [python.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/language/python.py) | <code>► INSERT-TEXT-HERE</code> |
-| [rust.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/parsers/language/rust.py)     | <code>► INSERT-TEXT-HERE</code> |
-
-</details>
-
-<details closed><summary>readmeai.utils</summary>
-
-| File                                                                                                  | Summary                         |
-| ---                                                                                                   | ---                             |
-| [text_cleaner.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/utils/text_cleaner.py)     | <code>► INSERT-TEXT-HERE</code> |
-| [file_resources.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/utils/file_resources.py) | <code>► INSERT-TEXT-HERE</code> |
-| [file_handler.py](https://github.com/eli64s/readme-ai/blob/master/readmeai/utils/file_handler.py)     | <code>► INSERT-TEXT-HERE</code> |
+| File                         | Summary                                                                                                                                                                                                                            |
+| ---                          | ---                                                                                                                                                                                                                                |
+| [styles.css](css/styles.css) | Code snippet: `app/3369873ba23e4dbe4a6ae01b5c5518368078fd6f.html`Summary: Critical HTML file for site content rendering in the app, enhancing user experience. Supports overall site structure within the repository architecture. |
+| [fakeip.css](css/fakeip.css) | Code Summary**:`fakeip.css` in `css` directory styles app interface. Body flex layout, centered content, button styling with hover effect. Enhances visual aesthetics and interactivity in the application architecture.           |
 
 </details>
 
@@ -577,34 +201,34 @@
 
 Ensure you have the following dependencies installed on your system:
 
-* **Python**: `version x.y.z`
+* **HTML**: `version x.y.z`
 
 ###  Installation
 
-1. Clone the readme-ai repository:
+1. Clone the app repository:
 
 ```sh
-git clone https://github.com/eli64s/readme-ai
+git clone ../app
 ```
 
 2. Change to the project directory:
 
 ```sh
-cd readme-ai
+cd app
 ```
 
 3. Install the dependencies:
 
 ```sh
-pip install -r requirements.txt
+> INSERT-INSTALL-COMMANDS
 ```
 
-###  Running `readme-ai`
+###  Running `app`
 
-Use the following command to run readme-ai:
+Use the following command to run app:
 
 ```sh
-python main.py
+> INSERT-RUN-COMMANDS
 ```
 
 ###  Tests
@@ -612,7 +236,7 @@ python main.py
 Use the following command to run tests:
 
 ```sh
-pytest
+> INSERT-TEST-COMMANDS
 ```
 
 ---
@@ -629,17 +253,17 @@ pytest
 
 Contributions are welcome! Here are several ways you can contribute:
 
-- **[Submit Pull Requests](https://github.com/eli64s/readme-ai/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
-- **[Join the Discussions](https://github.com/eli64s/readme-ai/discussions)**: Share your insights, provide feedback, or ask questions.
-- **[Report Issues](https://github.com/eli64s/readme-ai/issues)**: Submit bugs found or log feature requests for the `readme-ai` project.
+- **[Submit Pull Requests](https://local/app/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
+- **[Join the Discussions](https://local/app/discussions)**: Share your insights, provide feedback, or ask questions.
+- **[Report Issues](https://local/app/issues)**: Submit bugs found or log feature requests for the `app` project.
 
 <details closed>
     <summary>Contributing Guidelines</summary>
 
-1. **Fork the Repository**: Start by forking the project repository to your github account.
+1. **Fork the Repository**: Start by forking the project repository to your local account.
 2. **Clone Locally**: Clone the forked repository to your local machine using a git client.
    ```sh
-   git clone https://github.com/eli64s/readme-ai
+   git clone ../app
    ```
 3. **Create a New Branch**: Always work on a new branch, giving it a descriptive name.
    ```sh
