@@ -1,0 +1,102 @@
+---
+title: Weather Location Redirect
+layout: page
+permalink: /wx-locator
+---
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #loading {
+            display: none;
+        }
+        #manualInput {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+        #manualInput input {
+            margin: 5px 0;
+        }
+        #instructions {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div id="instructions">
+            <h1>Welcome to My Weather Application</h1>
+            <p>This page will help you get weather updates based on your current location.</p>
+            <p>Click the button below to allow us to automatically detect your location. If this fails, you'll have the option to manually enter your location.</p>
+        </div>
+        <button id="getLocationBtn">Get Location and Redirect</button>
+        <p id="loading">Attempting to get your location...</p>
+        <div id="manualInput">
+            <p>We couldn't get your location automatically. Please enter your city or address below to continue:</p>
+            <input type="text" id="locationInput" placeholder="Enter your city or address">
+            <button id="submitLocationBtn">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('getLocationBtn').addEventListener('click', function() {
+            const loadingElement = document.getElementById('loading');
+            const buttonElement = document.getElementById('getLocationBtn');
+            const instructionsElement = document.getElementById('instructions');
+            
+            // Show loading text and hide button and instructions
+            loadingElement.style.display = 'block';
+            buttonElement.style.display = 'none';
+            instructionsElement.style.display = 'none';
+            
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+            } else {
+                showManualInput();
+            }
+        });
+
+        function successCallback(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            window.location.href = `/wx?lat=${lat}&lon=${lon}`;
+        }
+
+        function errorCallback(error) {
+            showManualInput();
+        }
+
+        function showManualInput() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('manualInput').style.display = 'flex';
+        }
+
+        document.getElementById('submitLocationBtn').addEventListener('click', function() {
+            const location = document.getElementById('locationInput').value;
+            const geocodeUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`;
+            
+            fetch(geocodeUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.length > 0) {
+                        const lat = data[0].lat;
+                        const lon = data[0].lon;
+                        window.location.href = `/wx?lat=${lat}&lon=${lon}`;
+                    } else {
+                        alert('Location not found. Please try entering a more specific address.');
+                        document.getElementById('manualInput').style.display = 'flex';
+                    }
+                })
+                .catch(error => {
+                    alert('Error fetching location: ' + error.message);
+                    document.getElementById('manualInput').style.display = 'flex';
+                });
+        });
+    </script>
