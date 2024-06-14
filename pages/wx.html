@@ -1,0 +1,170 @@
+---
+permalink: /wx
+layout: page
+---
+
+<head>
+    <title>Weather Forecast</title>
+    <style>
+        body {
+            padding: 5%;
+            font-family: Arial, sans-serif;
+        }
+        .weather-data h2 {
+            margin-top: 0;
+        }
+        .current-conditions-wrapper {
+            background-color: #e3f2fd;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .current-conditions {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        .current-conditions img {
+            max-width: 100%;
+        }
+
+        .current-conditions p {
+            margin: 5px 0;
+        }
+        .forecast-period {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .forecast-period img {
+            margin-right: 10px;
+        }
+        .upcoming-forecast h2 {
+            margin-top: 20px;
+        }
+        .radar-image {
+            max-width: 300px;
+        }
+        .detailed-forecast {
+            margin-top: 20px;
+            max-width: 85%;
+            padding-bottom: 20px;
+        }
+        /* Media query to remove images on small screens */
+        @media (max-width: 600px) {
+            .forecast-period img, .current-conditions-icon {
+                display: none;
+            }
+            .current-conditions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 id="page-title">Weather Forecast</h1>
+    <div class="weather-data" id="weather-data">
+        Loading weather data...
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const weatherDataDiv = document.getElementById('weather-data');
+            const pageTitle = document.getElementById('page-title');
+
+            // Function to get query parameters from the URL
+            function getQueryParams() {
+                const params = new URLSearchParams(window.location.search);
+                return {
+                    lat: params.get('lat'),
+                    lon: params.get('lon')
+                };
+            }
+
+            // Function to fetch weather data from NOAA API
+            async function fetchWeatherData(lat, lon) {
+                try {
+                    const response = await fetch(`https://api.weather.gov/points/${lat},${lon}`);
+                    if (!response.ok) {
+                        weatherDataDiv.innerHTML = 'Failed to fetch weather data';
+                        return;
+                    }
+
+                    const data = await response.json();
+                    const forecastUrl = data.properties.forecast;
+                    const radarStation = data.properties.radarStation;
+                    const city = data.properties.relativeLocation.properties.city;
+
+                    // Update the page title and heading with the city name
+                    document.title = `${city} Weather Forecast`;
+                    pageTitle.textContent = `${city} Weather Forecast`;
+
+                    const forecastResponse = await fetch(forecastUrl);
+                    if (!forecastResponse.ok) {
+                        weatherDataDiv.innerHTML = 'Failed to fetch forecast data';
+                        return;
+                    }
+
+                    const forecastData = await forecastResponse.json();
+                    displayWeatherData(forecastData, radarStation);
+                } catch (error) {
+                    weatherDataDiv.innerHTML = 'An error occurred: ' + error.message;
+                }
+            }
+
+            // Function to display weather data
+            function displayWeatherData(data, radarStation) {
+                const periods = data.properties.periods;
+                const currentPeriod = periods[0];
+                const radarImageUrl = `https://radar.weather.gov/ridge/standard/${radarStation}_loop.gif`;
+
+                let html = `
+                    <div class="current-conditions-wrapper">
+                        <h2>${currentPeriod.name}</h2>
+
+                        <div class="current-conditions">
+                            <p class="detailed-forecast">${currentPeriod.detailedForecast}</p>
+                            <div class="left">
+                                <img class="current-conditions-icon" src="${currentPeriod.icon}" alt="Weather icon">
+                            </div>
+                            <div>
+                                <p><strong>Temperature:</strong> ${currentPeriod.temperature} ${currentPeriod.temperatureUnit}</p>
+                                <p><strong>Temperature Trend:</strong> ${currentPeriod.temperatureTrend || 'N/A'}</p>
+                                <p><strong>Probability of Precipitation:</strong> ${currentPeriod.probabilityOfPrecipitation.value}%</p>
+                                <p><strong>Relative Humidity:</strong> ${currentPeriod.relativeHumidity.value}%</p>
+                                <p><strong>Wind Speed:</strong> ${currentPeriod.windSpeed}</p>
+                            </div>
+
+                            <div>
+                                <img class="radar-image" src="${radarImageUrl}" alt="Radar image">
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                html += '<div class="upcoming-forecast"><h2>Upcoming Weather Forecast</h2>';
+                periods.slice(1).forEach(period => {
+                    html += `
+                        <div class="forecast-period">
+                            <img src="${period.icon}" alt="Weather icon">
+                            <div>
+                                <h3>${period.name}</h3>
+                                <p>${period.detailedForecast}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+                weatherDataDiv.innerHTML = html;
+            }
+
+            // Get coordinates from URL and fetch weather data
+            const { lat, lon } = getQueryParams();
+            if (lat && lon) {
+                fetchWeatherData(lat, lon);
+            } else {
+                weatherDataDiv.innerHTML = 'Invalid Coordinates: Coordinates need to be passed in the URL <br> For Example: Chicago, IL is Latitude 41.88 Longitude 87.63<br>' +
+                           '<a href="' + window.location.href + '?lat=41.88&lon=-87.63">' + window.location.href + '?lat=41.88&lon=-87.63</a>';
+            }
+        });
+    </script>
