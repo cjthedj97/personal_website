@@ -1,0 +1,72 @@
+---
+permalink: /tools/fakedomain
+layout: page
+title: Fake Domain Generator
+---
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Domain Generator</h1>
+        <button id="generateButton">Generate Domain</button>
+        <div class="result" id="result"></div>
+    </div>
+    <script>
+        document.getElementById('generateButton').addEventListener('click', generateDomain);
+
+        function generateDomain() {
+            const words = [
+                'tech', 'cloud', 'network', 'secure', 'digital', 'data', 'info', 'web', 'connect', 'online',
+                'system', 'service', 'portal', 'app', 'group', 'solutions', 'innovation', 'media', 'commerce',
+                'exchange', 'platform', 'global', 'virtual', 'enterprise', 'matrix', 'logic', 'gateway',
+                'stream', 'trend', 'source', 'alpha', 'beta', 'nova', 'link', 'techno', 'pulse', 'edge',
+                'fusion', 'vision', 'ignite', 'delta', 'omni', 'dynamic', 'infotech', 'mobile', 'core',
+                'network', 'lab', 'inno', 'spark', 'unity', 'zenith', 'macro', 'pixel', 'stream', 'byte',
+                'bit', 'pro', 'master', 'peak', 'zen', 'loop', 'space', 'nexus', 'orbit', 'star', 'cosmo',
+                'sky', 'cosmic', 'astro', 'lunar', 'stellar', 'galaxy', 'comet', 'meteor', 'saturn', 'apollo',
+                'hubble', 'telescope', 'rocket', 'launch', 'planet', 'moon', 'sun', 'earth', 'milky', 'way',
+                'pulse', 'frequency', 'wave', 'radiant', 'ray', 'quasar', 'star', 'system', 'cosmos', 'orbit',
+                'infinity', 'galactic', 'cluster', 'space', 'time', 'future', 'flux', 'emerge', 'visionary',
+                'cybernetic', 'nanotech', 'biotech', 'artificial', 'intelligence', 'machine', 'learn', 'neural',
+                'augment', 'bio', 'nano', 'infra', 'ultra', 'vibe', 'techno', 'digital', 'virtual', 'analog',
+                'sensor', 'synapse', 'transit', 'blockchain', 'crypt', 'encrypt', 'token', 'coin', 'node', 'secure',
+                'trust', 'vault', 'transact', 'cash', 'gem', 'crystal', 'treasure', 'jewel', 'wealth', 'fortune',
+                'legacy', 'heritage', 'patent', 'royal', 'king', 'queen', 'royalty', 'throne', 'crown', 'empire',
+                'dynasty', 'legend', 'myth', 'story', 'epic', 'saga', 'chronicle', 'tale', 'ballad', 'verse',
+                'lyric', 'rhythm', 'rhyme', 'prose', 'essay', 'novel', 'chapter', 'volume'
+            ];
+
+            const word1 = words[Math.floor(Math.random() * words.length)];
+            const word2 = words[Math.floor(Math.random() * words.length)];
+
+            const domain = `${word1}${word2}.example`;
+            
+            document.getElementById('result').innerText = domain;
+        }
+    </script>
