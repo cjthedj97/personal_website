@@ -1,0 +1,92 @@
+---
+title: Fake Email Generator
+layout: page
+permalink: /tools/fakeemail
+---
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Email Generator</h1>
+        <button id="generateButton">Fake Email Generator</button>
+        <div class="result" id="result"></div>
+    </div>
+    <script>
+        document.getElementById('generateButton').addEventListener('click', generateEmail);
+
+        function generateEmail() {
+            const firstNames = [
+                'john', 'jane', 'alice', 'bob', 'charlie', 'dave', 'emily', 'frank', 'grace', 'henry', 'irene', 'jack', 
+                'karen', 'louis', 'mike', 'nina', 'oliver', 'paul', 'quincy', 'rachel', 'steve', 'tina', 'ursula', 
+                'victor', 'wanda', 'xander', 'yvonne', 'zach', 'andrew', 'brenda', 'chris', 'diana', 'eric', 'fiona',
+                'george', 'helen', 'ian', 'julia', 'kevin', 'lisa', 'matt', 'nancy', 'oscar', 'pam', 'quentin', 
+                'robert', 'susan', 'tim', 'uma', 'vince', 'will', 'xena', 'yosef', 'zoe', 'abby', 'ben', 'cara', 
+                'daniel', 'ella', 'felix', 'gina', 'harry', 'ivy', 'jason', 'kim', 'leo', 'megan', 'noah', 'opal', 
+                'peter', 'queen', 'ron', 'sophie', 'tom', 'ulysses', 'victoria', 'wendy', 'xavier', 'yasmin', 'zane',
+                'brad', 'claire', 'derek', 'ethan', 'faith', 'gabriel', 'hannah', 'isabella', 'jordan', 'kayla',
+                'liam', 'madison', 'nathan', 'olivia', 'patrick', 'rebecca', 'samuel', 'taylor', 'ursula', 'vanessa',
+                'willow', 'xander', 'yara', 'zane', 'amber', 'blake', 'celine', 'damon', 'edward', 'fay', 'greg',
+                'hollie', 'isaac', 'jasmine', 'kyle', 'lara', 'mason', 'nicole', 'owen', 'phoebe', 'ryan', 'sara',
+                'todd', 'una', 'vicky', 'wayne', 'xander', 'yasmin', 'zachary', 'alex', 'beth', 'caleb', 'daisy',
+                'evan', 'frankie', 'gail', 'hunter', 'isabel', 'jake', 'kelsey', 'laura', 'maddox', 'nina', 'orlando',
+                'penny', 'quinn', 'ryan', 'scarlett', 'tyler', 'urbana', 'victor', 'willow', 'xena', 'yvette', 'zeus'
+            ];
+            const lastNames = [
+                'smith', 'doe', 'johnson', 'brown', 'davis', 'miller', 'wilson', 'moore', 'taylor', 'anderson', 
+                'thomas', 'jackson', 'white', 'harris', 'martin', 'thompson', 'garcia', 'martinez', 'robinson', 
+                'clark', 'rodriguez', 'lewis', 'lee', 'walker', 'hall', 'allen', 'young', 'hernandez', 'king', 
+                'wright', 'lopez', 'hill', 'scott', 'green', 'adams', 'baker', 'gonzalez', 'nelson', 'carter', 
+                'mitchell', 'perez', 'roberts', 'turner', 'phillips', 'campbell', 'parker', 'evans', 'edwards', 
+                'collins', 'stewart', 'sanchez', 'morris', 'rogers', 'reed', 'cook', 'morgan', 'bell', 'murphy', 
+                'bailey', 'rivera', 'cooper', 'richardson', 'cox', 'howard', 'ward', 'torres', 'peterson', 
+                'gray', 'ramirez', 'james', 'watson', 'brooks', 'kelly', 'sanders', 'price', 'bennett', 
+                'wood', 'barnes', 'ross', 'henderson', 'coleman', 'jenkins', 'perry', 'powell', 'long', 
+                'patterson', 'hughes', 'flores', 'washington', 'butler', 'simmons', 'foster', 'gonzales', 
+                'bryant', 'alexander', 'russell', 'griffin', 'diaz', 'hayes'
+            ];
+            const domains = [
+                'mail', 'service', 'company', 'provider', 'network', 'host', 'portal', 'webmail', 'client', 'system',
+                'server', 'hub', 'comm', 'net', 'tech', 'online', 'solutions', 'enterprise', 'inbox', 'contact', 
+                'communications', 'digital', 'cyber', 'virtual', 'data', 'exchange', 'connect', 'info', 'matrix', 
+                'corporation', 'group', 'center', 'express', 'direct', 'link', 'world', 'networks', 'tech', 
+                'apps', 'media', 'connectivity', 'services', 'support', 'secure', 'access', 'gateway', 'cloud', 
+                'systems', 'operations', 'logistics', 'infrastructure', 'institute', 'innovation', 'ventures', 
+                'web', 'email', 'mail', 'digital', 'security', 'business', 'commerce', 'network', 'admin', 'tech', 
+                'service', 'enterprise', 'exchange', 'communications', 'cyber', 'technology', 'group', 'net', 
+                'solutions', 'systems', 'services', 'platform', 'tools', 'infrastructure', 'info', 'suite', 
+                'engine', 'manager', 'solutions', 'hub', 'online', 'cloud', 'app', 'connect', 'data', 'web', 
+                'systems', 'software', 'tools', 'admin', 'network', 'enterprise', 'systems', 'services', 'mail', 
+                'email', 'digital', 'online', 'platform', 'hub', 'cloud', 'comm', 'net', 'cyber', 'secure'
+            ];
+
+            const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+            const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+            const domain = domains[Math.floor(Math.random() * domains.length)];
+            const number = Math.floor(Math.random() * 100);
+
+            const email = `${firstName}.${lastName}${number}@${domain}.example`;
+            
+            document.getElementById('result').innerText = email;
+        }
+    </script>
