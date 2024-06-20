@@ -155,7 +155,7 @@ layout: none
                 periods.slice(1).forEach(period => {
                     html += `
                         <div class="forecast-period">
-                            <img src="${period.icon}" alt="Weather icon">
+                            <img src="https://api.weather.gov/${period.icon}" alt="Weather icon">
                             <div>
                                 <h3>${period.name}</h3>
                                 <p>${period.detailedForecast}</p>
