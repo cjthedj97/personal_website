@@ -4,6 +4,34 @@ layout: page
 title: Clock
 ---
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #282c34;
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .clock-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
     <div class="clock-container">
         <div id="clock" class="clock"></div>
     </div>
@@ -20,3 +48,4 @@ title: Clock
         setInterval(updateClock, 1000);
         updateClock(); // Initial call to display the clock immediately
     </script>
+</body>
