@@ -26,6 +26,7 @@ layout: page
         <p id="airportName"></p>
         <p id="airportLocation"></p>
         <p id="airportICAO"></p>
+        <p id="airportManager"></p>
     </div>
 </div>
 
@@ -47,13 +48,14 @@ layout: page
                 return response.json();
             })
             .then(data => {
-                console.log('API response:', data); // For debugging
-                const airport = data[iataCode];
+                const airportArray = data[iataCode];
 
-                if (airport) {
-                    document.getElementById('airportName').innerText = `Name: ${airport.airport_name}`;
-                    document.getElementById('airportLocation').innerText = `Location: ${airport.city}, ${airport.state}`;
-                    document.getElementById('airportICAO').innerText = `ICAO Code: ${airport.icao}`;
+                if (airportArray && airportArray.length > 0) {
+                    const airport = airportArray[0];
+                    document.getElementById('airportName').innerText = `Name: ${airport.facility_name}`;
+                    document.getElementById('airportLocation').innerText = `Location: ${airport.city}, ${airport.state_full}`;
+                    document.getElementById('airportICAO').innerText = `ICAO Code: ${airport.icao_ident}`;
+                    document.getElementById('airportManager').innerText = `Manager: ${airport.manager} (${airport.manager_phone})`;
                     document.getElementById('airportInfo').style.display = 'block';
                 } else {
                     alert('No airport found with that IATA code.');
