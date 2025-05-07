@@ -8,9 +8,22 @@ layout: page
         .airport-info {
             margin-top: 20px;
             padding: 10px;
-            border: 1px solid #ccc;
             border-radius: 5px;
-            background: #f9f9f9;
+            white-space: pre-wrap;
+        }
+
+        .airport-info table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .airport-info th, .airport-info td {
+            text-align: left;
+            padding: 6px;
+        }
+
+        .airport-info th {
+            width: 30%;
         }
     </style>
 </head>
@@ -23,10 +36,7 @@ layout: page
 
     <div class="airport-info" id="airportInfo" style="display: none;">
         <h2>Airport Information</h2>
-        <p id="airportName"></p>
-        <p id="airportLocation"></p>
-        <p id="airportICAO"></p>
-        <p id="airportManager"></p>
+        <table id="airportTable"></table>
     </div>
 </div>
 
@@ -52,10 +62,23 @@ layout: page
 
                 if (airportArray && airportArray.length > 0) {
                     const airport = airportArray[0];
-                    document.getElementById('airportName').innerText = `Name: ${airport.facility_name}`;
-                    document.getElementById('airportLocation').innerText = `Location: ${airport.city}, ${airport.state_full}`;
-                    document.getElementById('airportICAO').innerText = `ICAO Code: ${airport.icao_ident}`;
-                    document.getElementById('airportManager').innerText = `Manager: ${airport.manager} (${airport.manager_phone})`;
+                    const table = document.getElementById('airportTable');
+                    table.innerHTML = '';
+
+                    for (const key in airport) {
+                        const row = document.createElement('tr');
+
+                        const keyCell = document.createElement('th');
+                        keyCell.textContent = key.replace(/_/g, ' ').toUpperCase();
+
+                        const valueCell = document.createElement('td');
+                        valueCell.textContent = airport[key];
+
+                        row.appendChild(keyCell);
+                        row.appendChild(valueCell);
+                        table.appendChild(row);
+                    }
+
                     document.getElementById('airportInfo').style.display = 'block';
                 } else {
                     alert('No airport found with that IATA code.');
