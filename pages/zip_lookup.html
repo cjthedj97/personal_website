@@ -1,0 +1,54 @@
+---
+permalink: /tools/zip_lookup
+layout: none
+---
+
+</head>
+<body>
+        <input type="text" id="zipcode" placeholder="Enter ZIP Code" style="padding: 10px; margin-right: 10px; border: 1px solid #ddd; border-radius: 4px;"/>
+        <button id="lookupButton" style="padding: 10px 15px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            Get Info
+        </button>
+        <div id="result" style="margin-top: 15px;"></div>
+    
+    <script>
+        function lookupZipCode() {
+            const zipCode = document.getElementById('zipcode').value.trim();
+            if (!zipCode) {
+                document.getElementById('result').innerHTML = '<p style="color: red;">Please enter a ZIP code.</p>';
+                return;
+            }
+    
+            fetch(`https://api.zippopotam.us/us/${zipCode}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Invalid ZIP code');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const output = `
+                        <h2 style="margin: 0; font-size: 1.25em;">Information for ZIP Code: ${data['post code']}</h2>
+                        <p><strong>City:</strong> ${data.places[0]['place name']}</p>
+                        <p><strong>State:</strong> ${data.places[0]['state']}</p>
+                        <p><strong>Country:</strong> ${data.country}</p>
+                        <p><strong>Coordinates:</strong> ${data.places[0].latitude}, ${data.places[0].longitude}</p>
+                    `;
+                    document.getElementById('result').innerHTML = output;
+                })
+                .catch(error => {
+                    document.getElementById('result').innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+                });
+        }
+    
+        document.getElementById('lookupButton').addEventListener('click', lookupZipCode);
+    
+        document.getElementById('zipcode').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                lookupZipCode();
+            }
+        });
+    </script>
+
+</body>
+</html>
