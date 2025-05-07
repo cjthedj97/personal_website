@@ -30,32 +30,40 @@ layout: page
 </div>
 
 <script>
-    document.getElementById('lookupButton').addEventListener('click', function() {
-        const iataCode = document.getElementById('iataCode').value.toUpperCase();
+    document.getElementById('lookupButton').addEventListener('click', function () {
+        const iataCode = document.getElementById('iataCode').value.toUpperCase().trim();
+        if (!iataCode) {
+            alert('Please enter a valid IATA code.');
+            return;
+        }
+
         const url = `https://corsproxy.io/?url=https://api.aviationapi.com/v1/airports?apt=${iataCode}`;
 
         fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.length > 0) {
-                const airport = data[0];
-                document.getElementById('airportName').innerText = `Name: ${airport.name}`;
-                document.getElementById('airportLocation').innerText = `Location: ${airport.city}, ${airport.state} (${airport.country})`;
-                document.getElementById('airportICAO').innerText = `ICAO Code: ${airport.icao}`;
-                document.getElementById('airportInfo').style.display = 'block';
-            } else {
-                alert('No airport found with that IATA code.');
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('API response:', data); // For debugging
+                const airport = data[iataCode];
+
+                if (airport) {
+                    document.getElementById('airportName').innerText = `Name: ${airport.airport_name}`;
+                    document.getElementById('airportLocation').innerText = `Location: ${airport.city}, ${airport.state}`;
+                    document.getElementById('airportICAO').innerText = `ICAO Code: ${airport.icao}`;
+                    document.getElementById('airportInfo').style.display = 'block';
+                } else {
+                    alert('No airport found with that IATA code.');
+                    document.getElementById('airportInfo').style.display = 'none';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching airport data:', error);
+                alert('There was an error fetching the airport data. Please try again.');
                 document.getElementById('airportInfo').style.display = 'none';
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching airport data:', error);
-            alert('There was an error fetching the airport data. Please try again.');
-        });
+            });
     });
 </script>
