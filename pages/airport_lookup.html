@@ -32,7 +32,7 @@ layout: page
 <script>
     document.getElementById('lookupButton').addEventListener('click', function() {
         const iataCode = document.getElementById('iataCode').value.toUpperCase();
-        const url = `https://api.aviationapi.com/v1/airports?apt=${iataCode}`;
+        const url = `https://corsproxy.io/?url=https://api.aviationapi.com/v1/airports?apt=${iataCode}`;
 
         fetch(url)
         .then(response => {
