@@ -7,36 +7,43 @@ layout: page
 <ul id="events"></ul>
 
 <script>
-    // Get today's date
-    const today = new Date();
-    const month = today.getUTCMonth() + 1; // Months are 0-indexed
-    const day = today.getUTCDate();
-    
-    // Construct the API URL based on today's date
-    const apiUrl = `https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/selected/${month}/${day}`;
+// Get today's date
+const today = new Date();
+const month = today.getUTCMonth() + 1; // Months are 0-indexed
+const day = today.getUTCDate();
+// Construct the API URL based on today's date
+const apiUrl = `https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/selected/${month}/${day}`;
 
-    // Fetch data from the Wikimedia API
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            const events = data.events;
-            const eventsList = document.getElementById('events');
+// Fetch data from the Wikimedia API
+fetch(apiUrl)
+    .then(response => {
+        // Check if the response is okay (status in the range 200-299)
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Extract the selected events array
+        const events = data.selected; // Change from data.events to data.selected
+        const eventsList = document.getElementById('events');
 
-            // Check if there are any events and display them
-            if(events.length === 0) {
-                eventsList.innerHTML = '<li>No events found for today.</li>';
-            } else {
-                // Loop through the events and display them in the list
-                events.forEach(event => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = `${event.year}: ${event.text}`;
-                    eventsList.appendChild(listItem);
-                });
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching the events:', error);
-            const eventsList = document.getElementById('events');
-            eventsList.innerHTML = '<li>Failed to fetch events.</li>';
-        });
+        // Check if the selected array exists and is an array
+        if (Array.isArray(events) && events.length > 0) {
+            // Loop through the events and display them in the list
+            events.forEach(event => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${event.year}: ${event.text}`;
+                eventsList.appendChild(listItem);
+            });
+        } else {
+            // If there are no events
+            eventsList.innerHTML = '<li>No events found for today.</li>';
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching the events:', error);
+        const eventsList = document.getElementById('events');
+        eventsList.innerHTML = '<li>Failed to fetch events.</li>';
+    });
 </script>
