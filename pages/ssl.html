@@ -1,0 +1,159 @@
+---
+permalink: /tools/ssl
+layout: page
+title: SSL Checker
+---
+
+<div class="ssl-checker-widget">
+    <style>
+      /* Scoped styles for ssl-checker-widget */
+      .ssl-checker-widget {
+        max-width: 460px;
+        margin: 2rem auto;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #333;
+        background: #fafafa;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 4px 8px rgb(0 0 0 / 0.05);
+      }
+  
+      .ssl-checker-widget h2 {
+        margin-top: 0;
+        font-size: 1.8rem;
+        color: #004080;
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+  
+      .ssl-checker-widget label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+        font-size: 1rem;
+      }
+  
+      .ssl-checker-widget input[type="text"] {
+        width: 100%;
+        padding: 0.6rem 0.8rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        transition: border-color 0.2s ease-in-out;
+      }
+      .ssl-checker-widget input[type="text"]:focus {
+        border-color: #004080;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 64, 128, 0.3);
+      }
+  
+      .ssl-checker-widget button {
+        margin-top: 1rem;
+        width: 100%;
+        background-color: #004080;
+        color: white;
+        padding: 0.7rem 1rem;
+        font-weight: 700;
+        font-size: 1.1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.25s ease;
+      }
+      .ssl-checker-widget button:hover,
+      .ssl-checker-widget button:focus {
+        background-color: #0066cc;
+        outline: none;
+      }
+  
+      .ssl-checker-widget pre {
+        background: #e8f0fe;
+        padding: 1rem 1.2rem;
+        margin-top: 1.5rem;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        border-radius: 5px;
+        min-height: 140px;
+        font-family: Consolas, monospace;
+        font-size: 0.9rem;
+        color: #003366;
+        line-height: 1.4;
+        user-select: text;
+      }
+  
+      .ssl-checker-widget .error {
+        color: #b00020;
+        font-weight: 600;
+      }
+    </style>
+  
+    <h2>SSL Certificate Checker</h2>
+  
+    <label for="ssl-domain-input">Enter domain</label>
+    <input type="text" aria-label="Domain to check" id="ssl-domain-input" placeholder="example.com" autocomplete="off" />
+  
+    <button type="button" id="ssl-check-btn" aria-live="polite">Check SSL</button>
+  
+    <pre id="ssl-result">Enter a domain above and click “Check SSL”</pre>
+  
+    <script>
+      (function() {
+        const input = document.getElementById('ssl-domain-input');
+        const button = document.getElementById('ssl-check-btn');
+        const result = document.getElementById('ssl-result');
+  
+        button.addEventListener('click', () => {
+          let domain = input.value.trim();
+          if (!domain) {
+            result.textContent = 'Please enter a domain to check.';
+            result.classList.add('error');
+            return;
+          }
+          result.classList.remove('error');
+          result.textContent = 'Loading...';
+  
+          const apiURL = `https://ssl-checker.io/api/v1/check/${domain}`;
+          const proxyURL = `https://corsproxy.io/?url=${encodeURIComponent(apiURL)}`;
+  
+          fetch(proxyURL)
+            .then(async (response) => {
+              if (!response.ok) {
+                throw new Error(`Error ${response.status}: ${response.statusText}`);
+              }
+              const data = await response.json();
+  
+              if (data.status !== 'ok') {
+                throw new Error(`API error: ${data.status}`);
+              }
+  
+              const cert = data.result || {};
+              const lines = [
+                `Host: ${cert.host || 'N/A'}`,
+                `Resolved IP: ${cert.resolved_ip || 'N/A'}`,
+                `Issued To: ${cert.issued_to || 'N/A'}`,
+                `Issued By: ${cert.issuer_o || 'N/A'} (${cert.issuer_c || 'N/A'})`,
+                `Certificate Valid: ${cert.cert_valid ? 'Yes' : 'No'}`,
+                `Valid From: ${cert.valid_from || 'N/A'}`,
+                `Valid Till: ${cert.valid_till || 'N/A'}`,
+                `Days Left: ${cert.days_left ?? 'N/A'}`,
+                `HSTS Header Enabled: ${cert.hsts_header_enabled ? 'Yes' : 'No'}`,
+                `SANs: ${cert.cert_sans || 'N/A'}`,
+              ];
+              result.textContent = lines.join('\n');
+            })
+            .catch(err => {
+              result.textContent = `Failed to fetch SSL info: ${err.message}`;
+              result.classList.add('error');
+            });
+        });
+  
+        // Optional: Enter key triggers button click
+        input.addEventListener('keypress', e => {
+          if (e.key === 'Enter') {
+            button.click();
+          }
+        });
+      })();
+    </script>
+  </div>

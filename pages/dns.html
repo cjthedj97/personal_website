@@ -1,0 +1,397 @@
+---
+title: DNS Lookup Tool
+permalink: /tools/dns
+layout: page
+---
+
+<h1>Cloudflare DNS Over HTTPS Recursive Lookup</h1>
+
+<style>
+/* Paste entire CSS block from your style tag here */
+body.cf-dns-doh-lookup {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #eef2f7;
+  padding: 1.5rem;
+  color: #222;
+  min-height: 100vh;
+  /* You might want to remove or adjust body styles here since your layout may handle it */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+div.cf-dns-doh-container {
+  width: 100%;
+  max-width: 680px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+h1.cf-dns-doh-header {
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 700;
+  color: #0a74da;
+  user-select: none;
+}
+form.cf-dns-doh-form {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+input[type="text"].cf-dns-doh-domain-input {
+  flex: 1 1 250px;
+  padding: 0.6rem 1rem;
+  border: 2px solid #0a74daaa;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline-offset: 2px;
+  transition: border-color 0.3s;
+}
+input[type="text"].cf-dns-doh-domain-input:focus {
+  border-color: #005bb5;
+}
+select.cf-dns-doh-record-select {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 2px solid #0a74daaa;
+  font-size: 1rem;
+  background: white;
+  outline-offset: 2px;
+  cursor: pointer;
+  min-width: 175px;
+}
+select.cf-dns-doh-record-select:focus {
+  border-color: #005bb5;
+}
+button.cf-dns-doh-query-btn {
+  background-color: #0a74da;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0 1.25rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0;
+  user-select: none;
+}
+button.cf-dns-doh-query-btn:hover {
+  background-color: #054ea4;
+}
+div.cf-dns-doh-result {
+  background: #f7faff;
+  border: 2px solid #0a74da33;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  white-space: pre-wrap;
+  font-family: Consolas, monospace;
+  color: #084a8a;
+  max-height: 400px;
+  overflow-y: auto;
+}
+div.cf-dns-doh-result strong {
+  color: #003766;
+}
+div.cf-dns-doh-answer-record {
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #cfe1fa;
+}
+span.cf-dns-doh-data {
+  font-style: italic;
+  user-select: text;
+}
+a.cf-dns-doh-ip-link {
+  font-style: italic;
+  color: #1a73e8;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: text;
+  word-break: break-word;
+  transition: color 0.3s;
+}
+a.cf-dns-doh-ip-link:hover {
+  color: #0045a5;
+  text-decoration: underline;
+}
+span.cf-dns-doh-clickable {
+  color: #1a73e8;
+  cursor: pointer;
+  text-decoration: underline;
+  user-select: none;
+  transition: color 0.3s;
+}
+span.cf-dns-doh-clickable:hover {
+  color: #d93025;
+}
+div.cf-dns-doh-loading {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #0a74da;
+  user-select: none;
+}
+</style>
+
+<div class="cf-dns-doh-container cf-dns-doh-lookup">
+  <form class="cf-dns-doh-form" onsubmit="event.preventDefault(); startLookup();">
+    <input autocomplete="off" type="text" id="domainInput" class="cf-dns-doh-domain-input" placeholder="Enter a domain like example.com" required />
+    <select id="recordTypeSelect" class="cf-dns-doh-record-select" aria-label="Select DNS Record Type">
+      <option value="A">A (IPv4)</option>
+      <option value="AAAA">AAAA (IPv6)</option>
+      <option value="CNAME">CNAME (Canonical Name)</option>
+      <option value="MX" selected>MX (Mail Exchange)</option>
+      <option value="TXT">TXT (Text Record)</option>
+      <option value="NS">NS (Name Server)</option>
+      <option value="SRV">SRV (Service Record)</option>
+      <option value="PTR">PTR (Pointer Record)</option>
+      <option value="SOA">SOA (Start of Authority)</option>
+      <option value="HINFO">HINFO (Host Information)</option>
+    </select>
+    <button type="submit" id="lookupBtn" class="cf-dns-doh-query-btn">Query DNS</button>
+  </form>
+
+  <div id="output" class="cf-dns-doh-result" aria-live="polite" aria-atomic="true" role="region"></div>
+</div>
+
+<script>
+  // Paste entire JavaScript from your <script> block here
+
+  // === Type Map for DNS types ===
+  const DNS_TYPES = {
+    1: "A (IPv4 Address)",
+    28: "AAAA (IPv6 Address)",
+    5: "CNAME (Canonical Name)",
+    15: "MX (Mail Exchange)",
+    16: "TXT (Text Record)",
+    2: "NS (Name Server)",
+    33: "SRV (Service Record)",
+    12: "PTR (Pointer Record)",
+    6: "SOA (Start of Authority)",
+    13: "HINFO (Host Information)"
+  };
+
+  const CLOUDFLARE_DNS_DOH = "https://cloudflare-dns.com/dns-query";
+
+  const outputEl = document.getElementById("output");
+  const lookupBtn = document.getElementById("lookupBtn");
+
+  function convertTTLToHumanReadable(ttl) {
+    const secondsInMinute = 60;
+    const secondsInHour = secondsInMinute * 60;
+    const secondsInDay = secondsInHour * 24;
+    const days = Math.floor(ttl / secondsInDay);
+    const hours = Math.floor((ttl % secondsInDay) / secondsInHour);
+    const minutes = Math.floor((ttl % secondsInHour) / secondsInMinute);
+    const seconds = ttl % secondsInMinute;
+    let parts = [];
+    if (days) parts.push(`${days} day${days > 1 ? "s" : ""}`);
+    if (hours) parts.push(`${hours} hour${hours > 1 ? "s" : ""}`);
+    if (minutes) parts.push(`${minutes} minute${minutes > 1 ? "s" : ""}`);
+    parts.push(`${seconds} second${seconds !== 1 ? "s" : ""}`);
+    return parts.join(", ");
+  }
+
+  async function fetchDNS(domain, recordType) {
+    const url = new URL(CLOUDFLARE_DNS_DOH);
+    url.searchParams.set("name", domain);
+    url.searchParams.set("type", recordType);
+
+    const res = await fetch(url, {
+      headers: { Accept: "application/dns-json" },
+    });
+
+    if (!res.ok) throw new Error(`DNS query failed with status ${res.status}`);
+    return res.json();
+  }
+
+  async function recursiveLookup(domain, recordType, depth = 0) {
+    if (depth > 7) throw new Error("Max recursive lookup depth reached.");
+
+    outputEl.innerHTML = `<div class="cf-dns-doh-loading">Looking up <code>${domain}</code> (${recordType})...</div>`;
+    const data = await fetchDNS(domain, recordType);
+
+    if (recordType === "A" || recordType === "AAAA") {
+      if (data.Answer && data.Answer.some(a => a.type === 1 || a.type === 28)) {
+        return {
+          finalDomain: domain,
+          recordType,
+          data,
+          resolvedIPs: data.Answer.filter(a => a.type === 1 || a.type === 28).map(a => a.data)
+        };
+      }
+      if (data.Answer && data.Answer.length > 0) {
+        const cnameRecord = data.Answer.find(a => a.type === 5);
+        if (cnameRecord) {
+          const nextDomain = cnameRecord.data.replace(/\.$/, "");
+          return recursiveLookup(nextDomain, recordType, depth + 1);
+        }
+      }
+      return { finalDomain: domain, recordType, data, resolvedIPs: null };
+    }
+
+    if (recordType === "MX" && data.Answer && data.Answer.length > 0) {
+      const exchanges = data.Answer.filter(a => a.type === 15)
+        .map(mxRecord => mxRecord.data.split(" ")[1].replace(/\.$/, ""));
+
+      const resolvedMXes = {};
+      for (const exchange of exchanges) {
+        try {
+          const aResult = await recursiveLookup(exchange, "A", depth + 1);
+          const aaaaResult = await recursiveLookup(exchange, "AAAA", depth + 1);
+
+          const ipsSet = new Set([
+            ...(aResult.resolvedIPs || []),
+            ...(aaaaResult.resolvedIPs || [])
+          ]);
+          resolvedMXes[exchange] = ipsSet;
+        } catch {
+          resolvedMXes[exchange] = new Set();
+        }
+      }
+      return { finalDomain: domain, recordType, data, resolvedMXes };
+    }
+
+    if (recordType === "NS" && data.Answer && data.Answer.length > 0) {
+      const nsHosts = data.Answer.filter(a => a.type === 2)
+        .map(nsRecord => nsRecord.data.replace(/\.$/, ''));
+
+      const resolvedNS = {};
+      for (const nsHost of nsHosts) {
+        try {
+          const aResult = await recursiveLookup(nsHost, "A", depth + 1);
+          const aaaaResult = await recursiveLookup(nsHost, "AAAA", depth + 1);
+
+          const ipsSet = new Set([
+            ...(aResult.resolvedIPs || []),
+            ...(aaaaResult.resolvedIPs || [])
+          ]);
+          resolvedNS[nsHost] = ipsSet;
+        } catch {
+          resolvedNS[nsHost] = new Set();
+        }
+      }
+      return { finalDomain: domain, recordType, data, resolvedNS };
+    }
+
+    return { finalDomain: domain, recordType, data, resolvedIPs: null };
+  }
+
+  function formatDNSResponse(data, domain, recordType) {
+    let html = `<div><strong>Results for <code>${domain}</code> (Type: ${recordType}):</strong></div>`;
+    html += `<div><strong>Status:</strong> ${data.Status} | <strong>Truncated:</strong> ${data.TC} | <strong>Recursion Desired:</strong> ${data.RD} | <strong>Recursion Available:</strong> ${data.RA}</div>`;
+    html += `<div><strong>DNSSEC Validated:</strong> ${data.AD ? "Yes" : "No"}</div><br/>`;
+
+    html += `<div><strong>Question(s):</strong></div>`;
+    data.Question.forEach(q => {
+      html += `<div>• <em>${q.name}</em> (Type: ${q.type})</div>`;
+    });
+
+    html += `<br/><div><strong>Answer(s):</strong></div>`;
+
+    if (data.Answer && data.Answer.length) {
+      data.Answer.forEach(answer => {
+        const typeStr = DNS_TYPES[answer.type] || `Unknown (Type ${answer.type})`;
+        html += `<div class="cf-dns-doh-answer-record">`;
+        html += `<div><strong>${typeStr} Record:</strong></div>`;
+        html += `<div>• <strong>Name:</strong> <em>${answer.name}</em></div>`;
+        html += `<div>• <strong>TTL:</strong> ${answer.TTL} seconds (${convertTTLToHumanReadable(answer.TTL)})</div>`;
+
+        if (answer.type === 1 || answer.type === 28) {
+          html += `<div>• <strong>Data:</strong> <a href="https://ipinfo.io/${answer.data}" target="_blank" rel="noopener noreferrer" class="cf-dns-doh-ip-link">${answer.data}</a></div>`;
+        } else if (answer.type === 15) {
+          const [pref, exch] = answer.data.split(" ");
+          html += `<div>• <strong>Data:</strong> Preference: <span class="cf-dns-doh-data">${pref}</span>, Exchange: <span class="cf-dns-doh-data">${exch}</span></div>`;
+        } else if (answer.type === 16) {
+          const txtData = answer.data.replace(/^"|"$/g, "");
+          html += `<div>• <strong>Data:</strong> <span class="cf-dns-doh-data">${txtData}</span></div>`;
+        } else {
+          html += `<div>• <strong>Data:</strong> <span class="cf-dns-doh-data">${answer.data}</span></div>`;
+        }
+        html += `</div>`;
+      });
+    } else {
+      html += `<div>No answers found.</div>`;
+    }
+
+    return html;
+  }
+
+  async function startLookup() {
+    const domain = document.getElementById("domainInput").value.trim();
+    const recordType = document.getElementById("recordTypeSelect").value;
+    if (!domain) {
+      outputEl.innerHTML = `<div style="color:red;">Please enter a domain.</div>`;
+      return;
+    }
+
+    lookupBtn.disabled = true;
+    outputEl.innerHTML = `<div class="cf-dns-doh-loading">Resolving...</div>`;
+
+    try {
+      const lookupResult = await recursiveLookup(domain, recordType);
+
+      let extraInfo = "";
+      if (lookupResult.finalDomain.toLowerCase() !== domain.toLowerCase()) {
+        extraInfo = `<div><em>Resolved domain recursively via CNAMEs:<br/><code>${domain}</code> → <code>${lookupResult.finalDomain}</code></em></div><br/>`;
+      }
+
+      outputEl.innerHTML = extraInfo + formatDNSResponse(lookupResult.data, lookupResult.finalDomain, lookupResult.recordType);
+
+      if ((lookupResult.recordType === "A" || lookupResult.recordType === "AAAA") && lookupResult.resolvedIPs && lookupResult.resolvedIPs.length > 0) {
+        const uniqueIps = [...new Set(lookupResult.resolvedIPs)];
+        outputEl.innerHTML += `<br/><div><strong>Resolved IP${uniqueIps.length > 1 ? "s" : ""}:</strong> ${uniqueIps.map(ip =>
+          `<a href="https://ipinfo.io/${ip}" target="_blank" rel="noopener noreferrer" class="cf-dns-doh-ip-link">${ip}</a>`
+        ).join(", ")}</div>`;
+      }
+
+      if (lookupResult.recordType === "MX" && lookupResult.resolvedMXes) {
+        const mxEntries = Object.entries(lookupResult.resolvedMXes);
+        if (mxEntries.length) {
+          outputEl.innerHTML += "<br/><div><strong>Resolved IPs of MX Exchanges:</strong></div>";
+          for (const [exchange, ipsSet] of mxEntries) {
+            const ips = [...ipsSet];
+            if (ips.length) {
+              outputEl.innerHTML += `<div><code>${exchange}</code>: ${ips
+                .map(ip => `<a href="https://ipinfo.io/${ip}" target="_blank" rel="noopener noreferrer" class="cf-dns-doh-ip-link">${ip}</a>`)
+                .join(", ")}</div>`;
+            } else {
+              outputEl.innerHTML += `<div><code>${exchange}</code>: <em>No IP found</em></div>`;
+            }
+          }
+        }
+      }
+
+      if (lookupResult.recordType === "NS" && lookupResult.resolvedNS) {
+        const nsEntries = Object.entries(lookupResult.resolvedNS);
+        if (nsEntries.length) {
+          outputEl.innerHTML += "<br/><div><strong>Resolved IPs of NS Hosts:</strong></div>";
+          for (const [nsHost, ipsSet] of nsEntries) {
+            const ips = [...ipsSet];
+            if (ips.length) {
+              outputEl.innerHTML += `<div><code>${nsHost}</code>: ${ips
+                .map(ip => `<a href="https://ipinfo.io/${ip}" target="_blank" rel="noopener noreferrer" class="cf-dns-doh-ip-link">${ip}</a>`)
+                .join(", ")}</div>`;
+            } else {
+              outputEl.innerHTML += `<div><code>${nsHost}</code>: <em>No IP found</em></div>`;
+            }
+          }
+        }
+      }
+    } catch (error) {
+      outputEl.innerHTML = `<div style="color:red;"><strong>Error:</strong> ${error.message}</div>`;
+    } finally {
+      lookupBtn.disabled = false;
+    }
+  }
+
+  document.getElementById("domainInput").addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      startLookup();
+    }
+  });
+</script>

@@ -1,0 +1,92 @@
+---
+permalink: /tools/anime_today
+layout: page
+title: Anime Airing Today in the US
+---
+
+<main id="anime-list">
+  <!-- Anime cards will be injected here -->
+</main>
+<footer>
+  <p>Data from Jikan API</p>
+</footer>
+
+<style>
+.anime-body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.anime-header {
+  text-align: center;
+  background: #4CAF50;
+  color: white;
+  padding: 10px 0;
+}
+
+.anime-main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.anime-card {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+}
+  
+.anime-card img {
+  width: 100%;
+  border-radius: 5px;
+}
+  
+.anime-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.8em;
+}
+</style>
+
+<script>
+// Fetch and display anime airing today
+async function fetchAiringAnime() {
+  try {
+    const response = await fetch('https://api.jikan.moe/v4/seasons/now');
+    const data = await response.json();
+    const animeList = data.data;
+    
+    const animeContainer = document.getElementById('anime-list');
+    animeContainer.innerHTML = ''; // Clear existing content
+    
+    animeList.forEach(anime => {
+      const animeCard = document.createElement('div');
+      animeCard.className = 'anime-card';
+      animeCard.innerHTML = `
+        <h3>${anime.title}</h3>
+        <img src="${anime.images.jpg.large_image_url}" alt="${anime.title}">
+        <p>${anime.synopsis.substring(0, 100)}...</p>
+        <p><strong>Score:</strong> ${anime.score ? anime.score : 'N/A'}</p>
+        <p><strong>Genre:</strong> ${anime.genres.map(g => g.name).join(', ')}</p>
+        <p><strong>Status:</strong> ${anime.status}</p>
+        <p><strong>Aired:</strong> ${anime.aired.string}</p>
+        <a href="${anime.url}" target="_blank">More Info</a>
+        ${anime.trailer ? `<a href="${anime.trailer.url}" target="_blank">Watch Trailer</a>` : ''}
+      `;
+      animeContainer.appendChild(animeCard);
+    });
+  } catch (error) {
+    console.error('Error fetching anime data:', error);
+    const animeContainer = document.getElementById('anime-list');
+    animeContainer.innerHTML = '<p>Failed to load data, please try again later.</p>';
+  }
+}
+
+window.onload = fetchAiringAnime;
+</script>
