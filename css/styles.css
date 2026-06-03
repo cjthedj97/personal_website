@@ -11057,6 +11057,14 @@ body.home-page {
   color: #e5eef8;
 }
 
+body.page-page {
+  background:
+    radial-gradient(circle at top left, rgba(26, 188, 156, 0.08), transparent 26%),
+    radial-gradient(circle at top right, rgba(59, 130, 246, 0.08), transparent 24%),
+    linear-gradient(180deg, #08111d 0%, #0b1220 42%, #101826 100%);
+  color: #e5eef8;
+}
+
 body.home-page #mainNav {
   background-color: rgba(15, 23, 42, 0.82) !important;
   backdrop-filter: blur(16px);
@@ -11075,6 +11083,11 @@ body.home-page .footer {
   border-top: 1px solid rgba(148, 163, 184, 0.12);
 }
 
+body.page-page .footer {
+  background-color: rgba(15, 23, 42, 0.55);
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+}
+
 body.home-page .copyright {
   background-color: rgba(2, 6, 23, 0.5);
 }
@@ -11085,7 +11098,17 @@ body.home-page .btn-primary {
   box-shadow: 0 10px 24px rgba(26, 188, 156, 0.22);
 }
 
+body.page-page .btn-primary {
+  background: linear-gradient(135deg, #1abc9c, #3b82f6);
+  border-color: transparent;
+  box-shadow: 0 10px 24px rgba(26, 188, 156, 0.22);
+}
+
 body.home-page .btn-outline-light {
+  border-color: rgba(229, 238, 248, 0.25);
+}
+
+body.page-page .btn-outline-light {
   border-color: rgba(229, 238, 248, 0.25);
 }
 
@@ -11094,7 +11117,51 @@ body.home-page .section-shell {
   padding: 5rem 0;
 }
 
+body.page-page .page-shell {
+  padding: 3.5rem 0 4.5rem;
+}
+
+body.page-page .page-card {
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(15, 23, 42, 0.56);
+  border-radius: 1.75rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  box-shadow: 0 24px 70px rgba(2, 6, 23, 0.24);
+  backdrop-filter: blur(18px);
+}
+
+body.page-page .page-title {
+  color: #f8fbff;
+  margin-bottom: 1.25rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+body.page-page .page-content {
+  color: rgba(226, 232, 240, 0.9);
+}
+
+body.page-page .page-content > :last-child {
+  margin-bottom: 0;
+}
+
+body.page-page .page-content h1,
+body.page-page .page-content h2,
+body.page-page .page-content h3,
+body.page-page .page-content h4,
+body.page-page .page-content h5,
+body.page-page .page-content h6 {
+  color: #f8fbff;
+}
+
+body.page-page .page-content a {
+  color: #93c5fd;
+}
+
 body.home-page .section-shell--compact {
+  padding-top: 0;
+}
+
+body.page-page .section-shell--compact {
   padding-top: 0;
 }
 

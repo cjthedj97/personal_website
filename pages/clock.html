@@ -3,50 +3,44 @@ permalink: /tools/clock
 layout: page
 title: Clock
 ---
+<style>
+  .clock-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+  }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Clock</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #282c34;
-            color: white;
-            font-family: 'Arial', sans-serif;
-        }
+  .clock-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    padding: 1.5rem 2rem;
+    border-radius: 1.25rem;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: #f8fbff;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(14px);
+  }
+</style>
 
-        .clock-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 2px solid white;
-            padding: 20px;
-            border-radius: 10px;
-            font-size: xxx-large;
-        }
+<div class="clock-page">
+  <div class="clock-container">
+    <div id="clock" class="clock"></div>
+  </div>
+</div>
 
-    </style>
-</head>
-<body>
-    <div class="clock-container">
-        <div id="clock" class="clock"></div>
-    </div>
-    <script>
-        function updateClock() {
-            const clockElement = document.getElementById('clock');
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            clockElement.textContent = `${hours}:${minutes}:${seconds}`;
-        }
+<script>
+  function updateClock() {
+    const clockElement = document.getElementById('clock');
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+  }
 
-        setInterval(updateClock, 1000);
-        updateClock(); // Initial call to display the clock immediately
-    </script>
-</body>
+  setInterval(updateClock, 1000);
+  updateClock();
+</script>
