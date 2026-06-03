@@ -11065,6 +11065,25 @@ body.page-page {
   color: #e5eef8;
 }
 
+body.home-page,
+body.page-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body.home-page > main,
+body.page-page > main {
+  flex: 1 0 auto;
+}
+
+body.home-page > .footer,
+body.page-page > .footer,
+body.home-page > .copyright,
+body.page-page > .copyright {
+  flex-shrink: 0;
+}
+
 body.home-page #mainNav {
   background-color: rgba(15, 23, 42, 0.82) !important;
   backdrop-filter: blur(16px);
