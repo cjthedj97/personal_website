@@ -15,16 +15,16 @@ title: Anime Airing Today in the US
 
 <style>
 .anime-page {
-  font-family: Arial, sans-serif;
+  font-family: inherit;
   margin: 0;
-  padding: 20px;
-  background-color: #f0f0f0;
+  padding: 0;
+  color: var(--site-text);
 }
 
 .anime-page .anime-header {
   text-align: center;
-  background: #4CAF50;
-  color: white;
+  background: linear-gradient(135deg, var(--site-accent), var(--site-accent-2));
+  color: var(--site-heading);
   padding: 10px 0;
 }
 
@@ -32,27 +32,38 @@ title: Anime Airing Today in the US
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 1rem;
 }
 
 .anime-page .anime-card {
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 200px;
-  margin: 10px;
-  padding: 10px;
-  text-align: center;
+  background: var(--site-surface);
+  border: 1px solid var(--site-border);
+  border-radius: 1.25rem;
+  width: min(100%, 240px);
+  padding: 1rem;
+  text-align: left;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 18px 50px rgba(2, 6, 23, 0.18);
 }
   
 .anime-page .anime-card img {
   width: 100%;
-  border-radius: 5px;
+  border-radius: 0.9rem;
+  margin: 0.75rem 0;
 }
   
 .anime-page .anime-footer {
   text-align: center;
   margin-top: 20px;
   font-size: 0.8em;
+  color: var(--site-muted);
+}
+
+.anime-page .anime-card a {
+  color: var(--site-link);
+  display: inline-block;
+  margin-right: 0.75rem;
+  margin-top: 0.5rem;
 }
 </style>
 
