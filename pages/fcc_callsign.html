@@ -6,19 +6,20 @@ layout: page
 
 <style>
   :root {
-    --fcc-cs-primary-color: #2a9d8f;
-    --fcc-cs-secondary-color: #264653;
-    --fcc-cs-error-color: #e76f51;
-    --fcc-cs-bg-light: #fefefe;
-    --fcc-cs-bg-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    --fcc-cs-primary-color: var(--site-accent);
+    --fcc-cs-secondary-color: var(--site-heading);
+    --fcc-cs-error-color: #f87171;
+    --fcc-cs-bg-light: var(--site-surface-strong);
+    --fcc-cs-bg-gradient: linear-gradient(135deg, color-mix(in srgb, var(--site-accent) 14%, transparent), color-mix(in srgb, var(--site-accent-2) 12%, transparent));
     --fcc-cs-border-radius: 8px;
-    --fcc-cs-box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 10px;
+    --fcc-cs-box-shadow: 0 24px 70px rgba(2, 6, 23, 0.24);
     --fcc-cs-font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
   .fcc-cs-page {
     font-family: var(--fcc-cs-font-sans);
     background: var(--fcc-cs-bg-gradient);
+    color: var(--site-text);
     margin: 0;
     padding: 2rem 1rem;
     display: flex;
@@ -32,6 +33,8 @@ layout: page
     padding: 2.5rem 3rem;
     border-radius: var(--fcc-cs-border-radius);
     box-shadow: var(--fcc-cs-box-shadow);
+    border: 1px solid var(--site-border);
+    backdrop-filter: blur(18px);
   }
 
   h1.fcc-cs-title {
@@ -54,7 +57,9 @@ layout: page
     min-width: 0;
     font-size: 1.15rem;
     padding: 0.65rem 1rem;
-    border: 2px solid #ccc;
+    border: 2px solid var(--site-border);
+    background: var(--site-surface);
+    color: var(--site-text);
     border-radius: var(--fcc-cs-border-radius);
     transition: border-color 0.3s ease;
   }
@@ -67,7 +72,7 @@ layout: page
   button.fcc-cs-button {
     background-color: var(--fcc-cs-primary-color);
     border: none;
-    color: white;
+    color: var(--site-heading);
     border-radius: var(--fcc-cs-border-radius);
     padding: 0.65rem 1.5rem;
     cursor: pointer;
@@ -77,7 +82,7 @@ layout: page
   }
   button.fcc-cs-button:hover,
   button.fcc-cs-button:focus {
-    background-color: #21867a;
+    background-color: color-mix(in srgb, var(--fcc-cs-primary-color) 82%, black);
     outline: none;
   }
 
@@ -90,12 +95,13 @@ layout: page
   }
 
   div#fcc-cs-result {
-    background: #ffffff;
+    background: var(--site-surface-strong);
     border-radius: var(--fcc-cs-border-radius);
     padding: 1.8rem 2rem;
-    box-shadow: 0 4px 12px rgba(38, 70, 83, 0.12);
+    box-shadow: 0 4px 12px rgba(2, 6, 23, 0.12);
     font-size: 1rem;
     line-height: 1.5;
+    border: 1px solid var(--site-border);
   }
 
   dl.fcc-cs-dataList {
