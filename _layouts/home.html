@@ -1,31 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 {% include head.html %}
 
-<body onload="updateYear()" id="page-top" class="index">
+<body onload="updateYear()" id="page-top" class="index home-page">
   {% include nav.html %}
 
-          <!-- Masthead-->
-          <header class="masthead text-black text-center">
-            <div class="container d-flex align-items-center flex-column">
-                <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-5" src="assets/img/profilepic.png" alt="..." />
-                <!-- Masthead Heading-->
-                <h1 class="masthead-heading text-uppercase mb-0">CJ Saathoff</h1>
-                <!-- Icon Divider-->
-                <div class="divider-custom divider-dark">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <!-- Masthead Subheading-->
-                <p class="masthead-subheading font-weight-light mb-0">Tech Enthusiast & IT Professional | Audiophile & DJ | Culinary Enthusiast | Geek | Cybersecurity Advocate</p>
+  <main>
+    <section class="hero-shell">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7">
+            <p class="eyebrow">Tech enthusiast, IT professional, and cybersecurity advocate</p>
+            <h1 class="hero-title">Practical tools, clean systems, and projects that earn their keep.</h1>
+            <p class="hero-copy">I’m CJ Saathoff. I build small utilities, experiment with security-focused ideas, and share things that make day-to-day work simpler.</p>
+            <div class="d-flex flex-wrap gap-3 mb-4">
+              <a class="btn btn-primary btn-lg" href="/tools/fakeip">Explore tools</a>
+              <a class="btn btn-outline-light btn-lg" href="https://blog.cjthedj97.me">Read the blog</a>
             </div>
-        </header>
-        <!-- Portfolio Section-->
+            <div class="hero-tags">
+              <span>Cybersecurity</span>
+              <span>Automation</span>
+              <span>Systems</span>
+              <span>DJ / Audio</span>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="profile-panel">
+              <img class="profile-panel__image" src="/assets/img/profilepic.png" alt="CJ Saathoff portrait" />
+              <div class="profile-panel__content">
+                <p class="profile-panel__label">Current focus</p>
+                <div class="profile-panel__grid">
+                  <div class="profile-panel__item">
+                    <span>Mode</span>
+                    <strong>Builder</strong>
+                  </div>
+                  <div class="profile-panel__item">
+                    <span>Focus</span>
+                    <strong>Security</strong>
+                  </div>
+                  <div class="profile-panel__item">
+                    <span>Style</span>
+                    <strong>Minimal</strong>
+                  </div>
+                  <div class="profile-panel__item">
+                    <span>Output</span>
+                    <strong>Useful</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <section class="section-shell">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Featured work</p>
+          <h2>What you’ll find here</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <a class="feature-card" href="/tools/fakeip">
+              <span class="feature-card__kicker">Tools</span>
+              <h3>Generators and checkers</h3>
+              <p>Quick utilities for fake IPs, fake domains, fake email, and IP lookups.</p>
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="feature-card" href="/games/shell-command-game">
+              <span class="feature-card__kicker">Game</span>
+              <h3>Shell Command Game</h3>
+              <p>A lightweight challenge for practicing shell commands from A to Z.</p>
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="feature-card" href="https://portfolio.cjthedj97.me/">
+              <span class="feature-card__kicker">Portfolio</span>
+              <h3>Selected work</h3>
+              <p>A more formal view of projects, experience, and things I’ve shipped.</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell section-shell--compact">
+      <div class="container">
+        <div class="cta-band">
+          <div>
+            <p class="eyebrow">Elsewhere</p>
+            <h2>Follow along or jump straight to the useful stuff.</h2>
+          </div>
+          <div class="d-flex flex-wrap gap-3">
+            <a class="btn btn-outline-light" href="https://mastodon.social/@cjthedj97">Mastodon</a>
+            <a class="btn btn-outline-light" href="https://www.linkedin.com/in/cjthedj97/">LinkedIn</a>
+            <a class="btn btn-outline-light" href="https://github.com/cjthedj97">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
   {% include footer.html %}
+  </main>
 </body>
 
 </html>
