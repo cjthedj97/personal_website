@@ -11066,6 +11066,8 @@ html {
   --site-surface-strong: rgba(15, 23, 42, 0.58);
   --site-border: rgba(148, 163, 184, 0.16);
   --site-nav-bg: rgba(15, 23, 42, 0.82);
+  --site-dropdown-bg: rgba(15, 23, 42, 0.96);
+  --site-dropdown-hover-bg: rgba(59, 130, 246, 0.16);
   --site-footer-bg: rgba(15, 23, 42, 0.55);
   --site-copyright-bg: rgba(2, 6, 23, 0.5);
   --site-pill-bg: rgba(15, 23, 42, 0.55);
@@ -11088,6 +11090,8 @@ html[data-theme="light"] {
   --site-surface-strong: rgba(255, 255, 255, 0.82);
   --site-border: rgba(100, 116, 139, 0.18);
   --site-nav-bg: rgba(255, 255, 255, 0.82);
+  --site-dropdown-bg: rgba(255, 255, 255, 0.96);
+  --site-dropdown-hover-bg: rgba(37, 99, 235, 0.12);
   --site-footer-bg: rgba(255, 255, 255, 0.78);
   --site-copyright-bg: rgba(226, 232, 240, 0.92);
   --site-pill-bg: rgba(255, 255, 255, 0.78);
@@ -11187,7 +11191,7 @@ body.page-page #mainNav .nav-link {
 body.home-page #mainNav .dropdown-menu,
 body.page-page #mainNav .dropdown-menu {
   color: var(--site-text);
-  background: var(--site-surface-strong);
+  background: var(--site-dropdown-bg);
   border: 1px solid var(--site-border);
   box-shadow: 0 20px 40px rgba(2, 6, 23, 0.22);
   backdrop-filter: blur(18px);
@@ -11203,7 +11207,7 @@ body.page-page #mainNav .dropdown-item:hover,
 body.home-page #mainNav .dropdown-item:focus,
 body.page-page #mainNav .dropdown-item:focus {
   color: var(--site-heading);
-  background: color-mix(in srgb, var(--site-link) 14%, transparent);
+  background: var(--site-dropdown-hover-bg);
 }
 
 body.home-page #mainNav .dropdown-item.active,
