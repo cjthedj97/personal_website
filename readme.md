@@ -31,6 +31,12 @@ The app project is a Jekyll-based static site that offers a variety of tools and
 
 ---
 
+##  Notes
+
+- SSL Checker is currently disabled. We need to come back and replace the third-party proxy before re-enabling it.
+
+---
+
 ##  Repository Structure
 
 ```sh
