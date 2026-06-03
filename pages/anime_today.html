@@ -4,35 +4,37 @@ layout: page
 title: Anime Airing Today in the US
 ---
 
-<main id="anime-list">
-  <!-- Anime cards will be injected here -->
-</main>
-<footer>
-  <p>Data from Jikan API</p>
-</footer>
+<div class="anime-page">
+  <div id="anime-list" class="anime-main">
+    <!-- Anime cards will be injected here -->
+  </div>
+  <div class="anime-footer">
+    <p>Data from Jikan API</p>
+  </div>
+</div>
 
 <style>
-.anime-body {
+.anime-page {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 20px;
   background-color: #f0f0f0;
 }
 
-.anime-header {
+.anime-page .anime-header {
   text-align: center;
   background: #4CAF50;
   color: white;
   padding: 10px 0;
 }
 
-.anime-main {
+.anime-page .anime-main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.anime-card {
+.anime-page .anime-card {
   background: white;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -42,12 +44,12 @@ title: Anime Airing Today in the US
   text-align: center;
 }
   
-.anime-card img {
+.anime-page .anime-card img {
   width: 100%;
   border-radius: 5px;
 }
   
-.anime-footer {
+.anime-page .anime-footer {
   text-align: center;
   margin-top: 20px;
   font-size: 0.8em;
