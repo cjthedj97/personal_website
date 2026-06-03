@@ -113,15 +113,16 @@ title: SSL Checker
           result.classList.remove('error');
           result.textContent = 'Loading...';
   
-          const apiURL = `https://ssl-checker.io/api/v1/check/${domain}`;
-          const proxyURL = `https://corsproxy.io/?url=${encodeURIComponent(apiURL)}`;
-  
+          const proxyURL = `https://r.jina.ai/http://ssl-checker.io/api/v1/check/${encodeURIComponent(domain)}`;
+
           fetch(proxyURL)
             .then(async (response) => {
               if (!response.ok) {
                 throw new Error(`Error ${response.status}: ${response.statusText}`);
               }
-              const data = await response.json();
+
+              const text = await response.text();
+              const data = JSON.parse(text);
   
               if (data.status !== 'ok') {
                 throw new Error(`API error: ${data.status}`);
