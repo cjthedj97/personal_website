@@ -11184,6 +11184,36 @@ body.page-page #mainNav .nav-link {
   letter-spacing: 0.04em;
 }
 
+body.home-page #mainNav .dropdown-menu,
+body.page-page #mainNav .dropdown-menu {
+  color: var(--site-text);
+  background: var(--site-surface-strong);
+  border: 1px solid var(--site-border);
+  box-shadow: 0 20px 40px rgba(2, 6, 23, 0.22);
+  backdrop-filter: blur(18px);
+}
+
+body.home-page #mainNav .dropdown-item,
+body.page-page #mainNav .dropdown-item {
+  color: var(--site-text);
+}
+
+body.home-page #mainNav .dropdown-item:hover,
+body.page-page #mainNav .dropdown-item:hover,
+body.home-page #mainNav .dropdown-item:focus,
+body.page-page #mainNav .dropdown-item:focus {
+  color: var(--site-heading);
+  background: color-mix(in srgb, var(--site-link) 14%, transparent);
+}
+
+body.home-page #mainNav .dropdown-item.active,
+body.page-page #mainNav .dropdown-item.active,
+body.home-page #mainNav .dropdown-item:active,
+body.page-page #mainNav .dropdown-item:active {
+  color: var(--site-heading);
+  background: var(--site-link);
+}
+
 body.home-page #mainNav .navbar-toggler,
 body.page-page #mainNav .navbar-toggler {
   color: var(--site-heading);
