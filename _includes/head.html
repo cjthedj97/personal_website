@@ -1,6 +1,18 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <script>
+      (function () {
+        let storedTheme = null;
+        try {
+          storedTheme = localStorage.getItem('theme');
+        } catch (e) {}
+        const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        const theme = storedTheme || systemTheme;
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
     {% assign page_title = page.title | default: site.title %}
     {% if page_title == site.title %}
     <title>{{ page_title }}</title>
