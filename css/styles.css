@@ -77,6 +77,11 @@
   --bs-link-hover-color: #15967d;
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
+  --site-theme-color: #0f172a;
+}
+
+html[data-theme="light"] {
+  --site-theme-color: #f8fafc;
 }
 
 *,

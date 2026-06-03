@@ -27,7 +27,10 @@ window.addEventListener('DOMContentLoaded', event => {
         }
         const themeColor = document.querySelector('meta[name="theme-color"]');
         if (themeColor) {
-            themeColor.setAttribute('content', theme === 'light' ? '#f8fafc' : '#0f172a');
+            const computedThemeColor = getComputedStyle(root).getPropertyValue('--site-theme-color').trim();
+            if (computedThemeColor) {
+                themeColor.setAttribute('content', computedThemeColor);
+            }
         }
     }
 
