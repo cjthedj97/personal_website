@@ -11091,8 +11091,21 @@ body.home-page #mainNav {
   box-shadow: 0 12px 40px rgba(2, 6, 23, 0.18);
 }
 
+body.page-page #mainNav {
+  background-color: rgba(15, 23, 42, 0.82) !important;
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+  box-shadow: 0 12px 40px rgba(2, 6, 23, 0.18);
+}
+
 body.home-page #mainNav .navbar-brand,
 body.home-page #mainNav .nav-link {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.04em;
+}
+
+body.page-page #mainNav .navbar-brand,
+body.page-page #mainNav .nav-link {
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   letter-spacing: 0.04em;
 }
@@ -11108,6 +11121,10 @@ body.page-page .footer {
 }
 
 body.home-page .copyright {
+  background-color: rgba(2, 6, 23, 0.5);
+}
+
+body.page-page .copyright {
   background-color: rgba(2, 6, 23, 0.5);
 }
 
