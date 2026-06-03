@@ -91,10 +91,10 @@ layout: none
     padding: 2rem;
     border-radius: 8px;
     font-size: 1.2rem;
-    color: #f87171;
+    color: var(--site-danger);
     text-align: center;
     user-select: none;
-    box-shadow: 0 0 10px color-mix(in srgb, #f87171 22%, transparent);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--site-danger) 22%, transparent);
   }
 
   #weather-data.loading {
@@ -121,9 +121,9 @@ layout: none
   .active-alerts li {
     margin-bottom:1em;
     padding:0.75em 1em;
-    background: color-mix(in srgb, #f87171 16%, var(--site-surface));
+    background: color-mix(in srgb, var(--site-danger) 16%, var(--site-surface));
     border-radius:6px;
-    box-shadow: 0 0 8px color-mix(in srgb, #f87171 38%, transparent);
+    box-shadow: 0 0 8px color-mix(in srgb, var(--site-danger) 38%, transparent);
     color: var(--site-text);
   }
 
@@ -365,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (alerts.length > 0) {
       alertsHtml = `
         <section class="active-alerts" aria-live="polite" aria-label="Active Alerts">
-        <h2 style="color: #f87171;">Active Weather Alerts</h2>
+        <h2 style="color: var(--site-danger);">Active Weather Alerts</h2>
           <ul>
             ${alerts.map(alert => `
               <li>

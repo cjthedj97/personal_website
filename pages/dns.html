@@ -129,7 +129,7 @@ span.cf-dns-doh-clickable {
   transition: color 0.3s;
 }
 span.cf-dns-doh-clickable:hover {
-  color: #f87171;
+  color: var(--site-danger);
 }
 div.cf-dns-doh-loading {
   text-align: center;
@@ -328,7 +328,7 @@ div.cf-dns-doh-loading {
     const domain = document.getElementById("domainInput").value.trim();
     const recordType = document.getElementById("recordTypeSelect").value;
     if (!domain) {
-      outputEl.innerHTML = `<div style="color:#f87171;">Please enter a domain.</div>`;
+      outputEl.innerHTML = `<div style="color: var(--site-danger);">Please enter a domain.</div>`;
       return;
     }
 
@@ -386,7 +386,7 @@ div.cf-dns-doh-loading {
         }
       }
     } catch (error) {
-      outputEl.innerHTML = `<div style="color:#f87171;"><strong>Error:</strong> ${error.message}</div>`;
+      outputEl.innerHTML = `<div style="color: var(--site-danger);"><strong>Error:</strong> ${error.message}</div>`;
     } finally {
       lookupBtn.disabled = false;
     }

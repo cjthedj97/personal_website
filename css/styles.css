@@ -10897,24 +10897,24 @@ html {
   font-weight: 700;
 }
 #mainNav .navbar-brand {
-  color: #fff;
+  color: var(--site-heading);
   font-family: "Bitwise";
 }
 #mainNav .navbar-nav {
   margin-top: 1rem;
 }
 #mainNav .navbar-nav li.nav-item a.nav-link {
-  color: #fff;
+  color: var(--site-heading);
   font-family: "Bitwise";
 }
 #mainNav .navbar-nav li.nav-item a.nav-link:hover {
-  color: #1abc9c;
+  color: var(--site-link);
 }
 #mainNav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item a.nav-link:focus {
-  color: #fff;
+  color: var(--site-heading);
 }
 #mainNav .navbar-nav li.nav-item a.nav-link.active {
-  color: #1abc9c;
+  color: var(--site-link);
 }
 #mainNav .navbar-toggler {
   font-size: 80%;
@@ -11041,12 +11041,13 @@ html {
 .footer {
   padding-top: 5rem;
   padding-bottom: 5rem;
-  background-color: #2c3e50;
-  color: #fff;
+  background-color: var(--site-footer-bg);
+  color: var(--site-text);
 }
 
 .copyright {
-  background-color: #1a252f;
+  background-color: var(--site-copyright-bg);
+  color: var(--site-text);
 }
 
 :root {
@@ -11067,6 +11068,7 @@ html {
   --site-link: #93c5fd;
   --site-accent: #1abc9c;
   --site-accent-2: #3b82f6;
+  --site-danger: #f87171;
   --site-btn-outline: rgba(229, 232, 240, 0.25);
 }
 
@@ -11088,6 +11090,7 @@ html[data-theme="light"] {
   --site-link: #2563eb;
   --site-accent: #0f766e;
   --site-accent-2: #2563eb;
+  --site-danger: #dc2626;
   --site-btn-outline: rgba(16, 32, 51, 0.18);
 }
 
@@ -11131,6 +11134,19 @@ body.home-page #mainNav {
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--site-border);
   box-shadow: 0 12px 40px rgba(2, 6, 23, 0.18);
+  --bs-navbar-color: var(--site-heading);
+  --bs-navbar-hover-color: var(--site-link);
+  --bs-navbar-active-color: var(--site-link);
+  --bs-navbar-brand-color: var(--site-heading);
+  --bs-navbar-brand-hover-color: var(--site-link);
+  --bs-dropdown-bg: var(--site-surface-strong);
+  --bs-dropdown-color: var(--site-text);
+  --bs-dropdown-border-color: var(--site-border);
+  --bs-dropdown-link-color: var(--site-text);
+  --bs-dropdown-link-hover-color: var(--site-heading);
+  --bs-dropdown-link-hover-bg: color-mix(in srgb, var(--site-link) 14%, transparent);
+  --bs-dropdown-link-active-color: var(--site-heading);
+  --bs-dropdown-link-active-bg: var(--site-link);
 }
 
 body.page-page #mainNav {
@@ -11138,6 +11154,19 @@ body.page-page #mainNav {
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--site-border);
   box-shadow: 0 12px 40px rgba(2, 6, 23, 0.18);
+  --bs-navbar-color: var(--site-heading);
+  --bs-navbar-hover-color: var(--site-link);
+  --bs-navbar-active-color: var(--site-link);
+  --bs-navbar-brand-color: var(--site-heading);
+  --bs-navbar-brand-hover-color: var(--site-link);
+  --bs-dropdown-bg: var(--site-surface-strong);
+  --bs-dropdown-color: var(--site-text);
+  --bs-dropdown-border-color: var(--site-border);
+  --bs-dropdown-link-color: var(--site-text);
+  --bs-dropdown-link-hover-color: var(--site-heading);
+  --bs-dropdown-link-hover-bg: color-mix(in srgb, var(--site-link) 14%, transparent);
+  --bs-dropdown-link-active-color: var(--site-heading);
+  --bs-dropdown-link-active-bg: var(--site-link);
 }
 
 body.home-page #mainNav .navbar-brand,
@@ -11148,6 +11177,38 @@ body.home-page #mainNav .nav-link {
 body.page-page #mainNav .navbar-brand,
 body.page-page #mainNav .nav-link {
   letter-spacing: 0.04em;
+}
+
+body.home-page #mainNav .navbar-toggler,
+body.page-page #mainNav .navbar-toggler {
+  color: var(--site-heading);
+  border: 1px solid var(--site-border);
+  background: var(--site-surface);
+  backdrop-filter: blur(12px);
+}
+
+body.home-page #mainNav .navbar-toggler:hover,
+body.page-page #mainNav .navbar-toggler:hover {
+  color: var(--site-link);
+  border-color: color-mix(in srgb, var(--site-link) 40%, var(--site-border));
+}
+
+body.home-page #mainNav .dropdown-menu,
+body.page-page #mainNav .dropdown-menu {
+  backdrop-filter: blur(16px);
+  box-shadow: 0 18px 50px rgba(2, 6, 23, 0.18);
+}
+
+body.home-page #mainNav .dropdown-item,
+body.page-page #mainNav .dropdown-item {
+  color: var(--site-text);
+}
+
+body.home-page #mainNav .dropdown-item:hover,
+body.page-page #mainNav .dropdown-item:hover,
+body.home-page #mainNav .dropdown-item:focus,
+body.page-page #mainNav .dropdown-item:focus {
+  color: var(--site-heading);
 }
 
 body.home-page #mainNav .theme-toggle,

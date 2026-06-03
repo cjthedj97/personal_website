@@ -45,7 +45,7 @@ layout: page
   function lookupZipCode() {
     const zipCode = document.getElementById('zipcode').value.trim();
     if (!zipCode) {
-      document.getElementById('result').innerHTML = '<p style="color: #f87171;">Please enter a ZIP code.</p>';
+      document.getElementById('result').innerHTML = '<p style="color: var(--site-danger);">Please enter a ZIP code.</p>';
       return;
     }
 
@@ -67,7 +67,7 @@ layout: page
         document.getElementById('result').innerHTML = output;
       })
       .catch(error => {
-        document.getElementById('result').innerHTML = `<p style="color: #f87171;">Error: ${error.message}</p>`;
+        document.getElementById('result').innerHTML = `<p style="color: var(--site-danger);">Error: ${error.message}</p>`;
       });
   }
 
