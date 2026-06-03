@@ -24,7 +24,7 @@ description: >-
   CJ Saathoff's personal site combining technical leadership, infrastructure work,
   practical tools, and a bit of personality.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://cjthedj97.me" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://cjthedj.me" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  cjthedj97
 
 # Build settings
