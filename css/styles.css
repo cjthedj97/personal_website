@@ -11048,11 +11048,13 @@ html {
   padding-bottom: 5rem;
   background-color: var(--site-footer-bg);
   color: var(--site-text);
+  border-top: 1px solid var(--site-border);
 }
 
 .copyright {
   background-color: var(--site-copyright-bg);
   color: var(--site-text);
+  border-top: 1px solid var(--site-border);
 }
 
 :root {
@@ -11068,8 +11070,8 @@ html {
   --site-nav-bg: rgba(15, 23, 42, 0.82);
   --site-dropdown-bg: rgba(15, 23, 42, 0.96);
   --site-dropdown-hover-bg: rgba(59, 130, 246, 0.16);
-  --site-footer-bg: rgba(15, 23, 42, 0.55);
-  --site-copyright-bg: rgba(2, 6, 23, 0.5);
+  --site-footer-bg: transparent;
+  --site-copyright-bg: transparent;
   --site-pill-bg: rgba(15, 23, 42, 0.55);
   --site-pill-border: rgba(148, 163, 184, 0.14);
   --site-link: #93c5fd;
@@ -11092,8 +11094,8 @@ html[data-theme="light"] {
   --site-nav-bg: rgba(255, 255, 255, 0.82);
   --site-dropdown-bg: rgba(255, 255, 255, 0.96);
   --site-dropdown-hover-bg: rgba(37, 99, 235, 0.12);
-  --site-footer-bg: rgba(255, 255, 255, 0.78);
-  --site-copyright-bg: rgba(226, 232, 240, 0.92);
+  --site-footer-bg: transparent;
+  --site-copyright-bg: transparent;
   --site-pill-bg: rgba(255, 255, 255, 0.78);
   --site-pill-border: rgba(100, 116, 139, 0.18);
   --site-link: #2563eb;
