@@ -9,16 +9,12 @@ layout: page
 .cf-dns-doh-lookup {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: transparent;
-  padding: 1.5rem;
+  padding: 0;
   color: var(--site-text);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
 }
 div.cf-dns-doh-container {
   width: 100%;
-  max-width: 680px;
+  max-width: 760px;
   background: var(--site-surface-strong);
   border-radius: 12px;
   box-shadow: 0 24px 70px rgba(2, 6, 23, 0.18);
@@ -34,14 +30,15 @@ div.cf-dns-doh-container {
   user-select: none;
 }
 form.cf-dns-doh-form {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(190px, auto) auto;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
+  align-items: stretch;
 }
 input[type="text"].cf-dns-doh-domain-input {
-  flex: 1 1 250px;
+  width: 100%;
+  min-width: 0;
   padding: 0.6rem 1rem;
   border: 2px solid var(--site-border);
   border-radius: 8px;
@@ -63,7 +60,8 @@ select.cf-dns-doh-record-select {
   color: var(--site-text);
   outline-offset: 2px;
   cursor: pointer;
-  min-width: 175px;
+  width: 100%;
+  min-width: 0;
 }
 select.cf-dns-doh-record-select:focus {
   border-color: var(--site-link);
@@ -73,12 +71,13 @@ button.cf-dns-doh-query-btn {
   color: var(--site-heading);
   border: none;
   border-radius: 8px;
-  padding: 0 1.25rem;
+  min-height: 48px;
+  padding: 0.6rem 1.25rem;
   font-size: 1.1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  flex-shrink: 0;
   user-select: none;
+  white-space: nowrap;
 }
 button.cf-dns-doh-query-btn:hover {
   background-color: color-mix(in srgb, var(--site-accent-2) 82%, black);
@@ -135,6 +134,16 @@ div.cf-dns-doh-loading {
   font-size: 1rem;
   color: var(--site-link);
   user-select: none;
+}
+
+@media (max-width: 767.98px) {
+  div.cf-dns-doh-container {
+    padding: 1.25rem;
+  }
+
+  form.cf-dns-doh-form {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 
