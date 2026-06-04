@@ -11057,16 +11057,6 @@ html {
   border-top: 1px solid var(--site-border);
 }
 
-.footer__copyright {
-  margin-top: 1.5rem;
-  padding-top: 1rem;
-  color: var(--site-muted);
-}
-
-.footer__copyright p {
-  margin-bottom: 0;
-}
-
 :root {
   --site-bg-start: #07111f;
   --site-bg-mid: #0b1220;
