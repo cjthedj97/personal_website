@@ -11045,7 +11045,7 @@ html {
 
 .footer {
   padding: 2rem 0 1.25rem;
-  background-color: var(--site-footer-bg);
+  background-color: transparent;
   color: var(--site-text);
 }
 
@@ -11324,12 +11324,12 @@ body.page-page #mainNav .theme-toggle__label {
 }
 
 body.home-page .footer {
-  background-color: var(--site-footer-bg);
+  background-color: transparent;
   border-top: 1px solid var(--site-border);
 }
 
 body.page-page .footer {
-  background-color: var(--site-footer-bg);
+  background-color: transparent;
   border-top: 1px solid var(--site-border);
 }
 
