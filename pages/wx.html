@@ -331,9 +331,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const observationData = await observationRes.json();
       return {
-        station: station.properties.name || station.properties.stationIdentifier || 'nearest station',
+        ...observationData.properties,
+        stationName: station.properties.name || station.properties.stationIdentifier || 'nearest station',
         observedAt: observationData.properties.timestamp,
-        ...observationData.properties
+        stationIdentifier: station.properties.stationIdentifier
       };
     } catch (err) {
       console.warn('Failed to fetch current observation:', err);
@@ -415,6 +416,23 @@ document.addEventListener('DOMContentLoaded', () => {
     return `${Math.round(value * 2.23694)} mph`;
   }
 
+  function formatWindDirection(value) {
+    if (value == null) return 'N/A';
+    const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+    const direction = directions[Math.round(value / 45) % 8];
+    return `${direction} (${Math.round(value)} degrees)`;
+  }
+
+  function formatPressure(value) {
+    if (value == null) return 'N/A';
+    return `${(value * 0.0002953).toFixed(2)} inHg`;
+  }
+
+  function formatVisibility(value) {
+    if (value == null) return 'N/A';
+    return `${(value / 1609.344).toFixed(1)} mi`;
+  }
+
   function formatPercent(value) {
     if (value == null) return 'N/A';
     return `${Math.round(value)}%`;
@@ -432,7 +450,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const radarImageUrl = `https://radar.weather.gov/ridge/standard/${radarStation}_loop.gif`;
     const currentIcon = currentObservation && currentObservation.icon ? currentObservation.icon : nextForecast.icon;
     const currentDescription = currentObservation && currentObservation.textDescription ? currentObservation.textDescription : nextForecast.shortForecast;
-    const currentDetails = currentObservation ? `Observed at ${currentObservation.station} on ${formatObservedTime(currentObservation.observedAt)}.` : nextForecast.detailedForecast;
+    const currentDetails = currentObservation ? `Observed at ${currentObservation.stationName} on ${formatObservedTime(currentObservation.observedAt)}.` : nextForecast.detailedForecast;
 
     // Alerts HTML block
     let alertsHtml = '';
@@ -476,8 +494,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <div class="current-stats" aria-label="Current weather stats">
           <p><strong>Temperature:</strong> ${currentObservation ? formatTemperature(currentObservation.temperature.value) : `${nextForecast.temperature} ${nextForecast.temperatureUnit}`}</p>
+          <p><strong>Dew Point:</strong> ${currentObservation ? formatTemperature(currentObservation.dewpoint.value) : 'N/A'}</p>
           <p><strong>Humidity:</strong> ${currentObservation ? formatPercent(currentObservation.relativeHumidity.value) : 'N/A'}</p>
           <p><strong>Wind Speed:</strong> ${currentObservation ? formatWindSpeed(currentObservation.windSpeed.value) : nextForecast.windSpeed}</p>
+          <p><strong>Wind Direction:</strong> ${currentObservation ? formatWindDirection(currentObservation.windDirection.value) : 'N/A'}</p>
+          <p><strong>Pressure:</strong> ${currentObservation ? formatPressure(currentObservation.barometricPressure.value) : 'N/A'}</p>
+          <p><strong>Visibility:</strong> ${currentObservation ? formatVisibility(currentObservation.visibility.value) : 'N/A'}</p>
           <p><strong>Next Forecast:</strong> ${nextForecast.name}</p>
         </div>
 
