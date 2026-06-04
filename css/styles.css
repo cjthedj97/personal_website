@@ -11143,11 +11143,20 @@ html[data-theme="light"] {
   --site-btn-outline: rgba(16, 32, 51, 0.18);
 }
 
+html[data-theme="dark"] {
+  background-color: var(--site-bg-mid);
+}
+
+html[data-theme="light"] {
+  background-color: var(--site-bg-end);
+}
+
 body.home-page {
   background:
     radial-gradient(circle at top left, color-mix(in srgb, var(--site-accent) 16%, transparent), transparent 28%),
     radial-gradient(circle at top right, color-mix(in srgb, var(--site-accent-2) 12%, transparent), transparent 26%),
     linear-gradient(180deg, var(--site-bg-start) 0%, var(--site-bg-mid) 44%, var(--site-bg-end) 100%);
+  background-color: var(--site-bg-mid);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   color: var(--site-text);
@@ -11158,6 +11167,7 @@ body.page-page {
     radial-gradient(circle at top left, color-mix(in srgb, var(--site-accent) 8%, transparent), transparent 26%),
     radial-gradient(circle at top right, color-mix(in srgb, var(--site-accent-2) 8%, transparent), transparent 24%),
     linear-gradient(180deg, var(--site-bg-start) 0%, var(--site-bg-mid) 42%, var(--site-bg-end) 100%);
+  background-color: var(--site-bg-mid);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   color: var(--site-text);
