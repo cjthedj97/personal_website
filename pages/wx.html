@@ -315,6 +315,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  async function fetchCurrentObservation(stationsUrl) {
+    if (!stationsUrl) return null;
+
+    try {
+      const stationsRes = await fetch(stationsUrl);
+      if (!stationsRes.ok) return null;
+
+      const stationsData = await stationsRes.json();
+      const station = stationsData.features && stationsData.features[0];
+      if (!station || !station.id) return null;
+
+      const observationRes = await fetch(`${station.id}/observations/latest`);
+      if (!observationRes.ok) return null;
+
+      const observationData = await observationRes.json();
+      return {
+        station: station.properties.name || station.properties.stationIdentifier || 'nearest station',
+        observedAt: observationData.properties.timestamp,
+        ...observationData.properties
+      };
+    } catch (err) {
+      console.warn('Failed to fetch current observation:', err);
+      return null;
+    }
+  }
+
   async function fetchWeatherData(lat, lon) {
     weatherDataDiv.className = 'loading';
     weatherDataDiv.textContent = 'Loading weather data...';
@@ -335,6 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const pointData = await pointRes.json();
       const forecastUrl = pointData.properties.forecast;
+      const stationsUrl = pointData.properties.observationStations;
       const radarStation = pointData.properties.radarStation;
       const city = pointData.properties.relativeLocation.properties.city;
 
@@ -354,12 +381,15 @@ document.addEventListener('DOMContentLoaded', () => {
         alerts = await fetchActiveAlertsForZone(zoneId);
       }
 
-      // Fetch forecast data
-      const forecastRes = await fetch(forecastUrl);
+      // Fetch forecast and current observation data
+      const [forecastRes, currentObservation] = await Promise.all([
+        fetch(forecastUrl),
+        fetchCurrentObservation(stationsUrl)
+      ]);
       if (!forecastRes.ok) throw new Error('Failed to fetch forecast data');
       const forecastData = await forecastRes.json();
 
-      displayWeatherData(forecastData, radarStation, alerts);
+      displayWeatherData(forecastData, radarStation, alerts, currentObservation);
     } catch (error) {
       weatherDataDiv.className = 'error';
       weatherDataDiv.textContent = `An error occurred: ${error.message}`;
@@ -375,11 +405,34 @@ document.addEventListener('DOMContentLoaded', () => {
       <p><a href="/wx-locator" style="color: var(--site-link); text-decoration: underline;">Try a US location</a></p>`;
   }
   
-  function displayWeatherData(data, radarStation, alerts=[]) {
+  function formatTemperature(value) {
+    if (value == null) return 'N/A';
+    return `${Math.round((value * 9 / 5) + 32)} F`;
+  }
+
+  function formatWindSpeed(value) {
+    if (value == null) return 'N/A';
+    return `${Math.round(value * 2.23694)} mph`;
+  }
+
+  function formatPercent(value) {
+    if (value == null) return 'N/A';
+    return `${Math.round(value)}%`;
+  }
+
+  function formatObservedTime(value) {
+    if (!value) return 'N/A';
+    return new Date(value).toLocaleString();
+  }
+
+  function displayWeatherData(data, radarStation, alerts=[], currentObservation=null) {
     weatherDataDiv.className = '';
     const periods = data.properties.periods;
-    const currentPeriod = periods[0];
+    const nextForecast = periods[0];
     const radarImageUrl = `https://radar.weather.gov/ridge/standard/${radarStation}_loop.gif`;
+    const currentIcon = currentObservation && currentObservation.icon ? currentObservation.icon : nextForecast.icon;
+    const currentDescription = currentObservation && currentObservation.textDescription ? currentObservation.textDescription : nextForecast.shortForecast;
+    const currentDetails = currentObservation ? `Observed at ${currentObservation.station} on ${formatObservedTime(currentObservation.observedAt)}.` : nextForecast.detailedForecast;
 
     // Alerts HTML block
     let alertsHtml = '';
@@ -411,21 +464,21 @@ document.addEventListener('DOMContentLoaded', () => {
       ${alertsHtml}
 
       <div class="current-conditions-wrapper" role="region" aria-labelledby="current-conditions-title">
-        <h2 id="current-conditions-title">${currentPeriod.name}</h2>
-        <p class="detailed-forecast" aria-label="Detailed forecast">${currentPeriod.detailedForecast}</p>
+        <h2 id="current-conditions-title">Current Conditions</h2>
+        <p class="detailed-forecast" aria-label="Current conditions summary">${currentDescription}. ${currentDetails}</p>
 
         <img 
           class="current-conditions-icon" 
-          src="${currentPeriod.icon.startsWith('http') ? currentPeriod.icon : 'https://api.weather.gov/' + currentPeriod.icon}" 
-          alt="${currentPeriod.shortForecast}" 
+          src="${currentIcon.startsWith('http') ? currentIcon : 'https://api.weather.gov/' + currentIcon}"
+          alt="${currentDescription}"
           width="96" height="96"
         />
 
         <div class="current-stats" aria-label="Current weather stats">
-          <p><strong>Temperature:</strong> ${currentPeriod.temperature} ${currentPeriod.temperatureUnit}</p>
-          <p><strong>Temperature Trend:</strong> ${currentPeriod.temperatureTrend || 'N/A'}</p>
-          <p><strong>Probability of Precipitation:</strong> ${currentPeriod.probabilityOfPrecipitation.value != null ? currentPeriod.probabilityOfPrecipitation.value + '%' : 'N/A'}</p>
-          <p><strong>Wind Speed:</strong> ${currentPeriod.windSpeed}</p>
+          <p><strong>Temperature:</strong> ${currentObservation ? formatTemperature(currentObservation.temperature.value) : `${nextForecast.temperature} ${nextForecast.temperatureUnit}`}</p>
+          <p><strong>Humidity:</strong> ${currentObservation ? formatPercent(currentObservation.relativeHumidity.value) : 'N/A'}</p>
+          <p><strong>Wind Speed:</strong> ${currentObservation ? formatWindSpeed(currentObservation.windSpeed.value) : nextForecast.windSpeed}</p>
+          <p><strong>Next Forecast:</strong> ${nextForecast.name}</p>
         </div>
 
         <div class="radar-container" aria-label="Radar image">
@@ -436,7 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Upcoming forecast cards
     html += '<section class="upcoming-forecast" aria-labelledby="upcoming-forecast-title"><h2 id="upcoming-forecast-title">Upcoming Weather Forecast</h2><div class="forecast-list">';
-    periods.slice(1).forEach(period => {
+    periods.forEach(period => {
       const iconUrl = period.icon.startsWith('http') ? period.icon : 'https://api.weather.gov/' + period.icon;
       html += `
         <article class="forecast-card" aria-label="${period.name} forecast">
