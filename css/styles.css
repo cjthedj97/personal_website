@@ -11044,15 +11044,51 @@ html {
 }
 
 .footer {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding: 2rem 0 1.25rem;
   background-color: var(--site-footer-bg);
   color: var(--site-text);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.footer h4 {
+  color: var(--site-heading);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.55rem;
+}
+
+.footer p {
+  color: var(--site-muted);
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+.footer__copyright {
+  border-top: 1px solid var(--site-border);
+  margin-top: 1.25rem;
+  padding-top: 0.95rem;
 }
 
 .copyright {
   background-color: var(--site-copyright-bg);
   color: var(--site-text);
+}
+
+@media (max-width: 767.98px) {
+  .footer {
+    padding: 1.75rem 0 1rem;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
 }
 
 :root {
