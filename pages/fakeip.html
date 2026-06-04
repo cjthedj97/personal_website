@@ -1,21 +1,23 @@
 ---
 permalink: /tools/fakeip
 layout: page
+title: Fake IP Address Generator
 ---
 
 <link rel="stylesheet" href="/css/fakeip.css">
 
-<div id="navbar-placeholder"></div>
-<div id="app">
-  <h1>Fake IPv4 Address Generator</h1>
+<div class="fakeip-page">
+<section class="fakeip-card" id="app">
+  <h2>Fake IPv4 Address Generator</h2>
   <button onclick="generateIPv4()">Generate IP</button>
   <p id="ipDisplay4">Generated IPv4: </p>
-</div>
+</section>
 <script src="/js/ipv4.js"></script>
 
-<div id="app-v6">
-  <h1>Fake IPv6 Address Generator</h1>
+<section class="fakeip-card" id="app-v6">
+  <h2>Fake IPv6 Address Generator</h2>
   <button onclick="generateIPv6()">Generate IP</button>
   <p id="ipDisplay6">Generated IPv6: </p>
-</div>
+</section>
 <script src="/js/ipv6.js"></script>
+</div>

@@ -1,31 +1,44 @@
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #343a40;
+.fakeip-page {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
 }
 
-#app {
+.fakeip-card {
     text-align: center;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #343a40;
-    margin: 10px;
+    padding: 1.5rem;
+    border: 1px solid var(--site-border);
+    border-radius: 1rem;
+    background-color: var(--site-surface);
+    color: var(--site-text);
+    backdrop-filter: blur(14px);
 }
 
-button {
+.fakeip-card h2 {
+    color: var(--site-heading);
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+}
+
+.fakeip-card button {
     cursor: pointer;
-    padding: 10px 20px;
+    padding: 0.65rem 1.25rem;
     border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #ffffff;
+    border-radius: 0.5rem;
+    background-color: var(--site-accent-2);
+    color: var(--site-heading);
 }
 
-button:hover {
-    background-color: #0056b3;
+.fakeip-card button:hover {
+    background-color: color-mix(in srgb, var(--site-accent-2) 84%, black);
+}
+
+.fakeip-card p {
+    margin: 1rem 0 0;
+}
+
+@media (max-width: 767.98px) {
+    .fakeip-page {
+        grid-template-columns: 1fr;
+    }
 }
