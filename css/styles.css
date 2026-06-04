@@ -11053,7 +11053,7 @@ html {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.5rem;
-  align-items: start;
+  align-items: center;
 }
 
 .footer h4 {
@@ -11070,9 +11070,8 @@ html {
 }
 
 .footer__copyright {
-  border-top: 1px solid var(--site-border);
-  margin-top: 1.25rem;
-  padding-top: 0.95rem;
+  justify-self: end;
+  text-align: right;
 }
 
 .copyright {
@@ -11088,6 +11087,11 @@ html {
   .footer__grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
+  }
+
+  .footer__copyright {
+    justify-self: center;
+    text-align: center;
   }
 }
 
