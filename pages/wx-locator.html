@@ -26,6 +26,29 @@ permalink: /wx-locator
     margin: 5px 0;
   }
 
+  #locationResults {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    width: min(100%, 520px);
+  }
+
+  .location-option {
+    background: var(--site-surface);
+    border: 1px solid var(--site-border);
+    border-radius: 0.75rem;
+    color: var(--site-text);
+    cursor: pointer;
+    padding: 0.75rem 1rem;
+    text-align: left;
+  }
+
+  .location-option:hover,
+  .location-option:focus {
+    border-color: var(--site-link);
+    color: var(--site-heading);
+  }
+
   #instructions {
     margin-bottom: 20px;
   }
@@ -44,6 +67,7 @@ permalink: /wx-locator
       <p>We couldn't get your location automatically. Please enter a US city or address below to continue:</p>
       <input type="text" id="locationInput" placeholder="Enter a US city or address">
       <button id="submitLocationBtn">Submit</button>
+      <div id="locationResults" aria-live="polite"></div>
     </div>
   </div>
 </div>
@@ -81,24 +105,51 @@ permalink: /wx-locator
   }
 
   document.getElementById('submitLocationBtn').addEventListener('click', function() {
-    const location = document.getElementById('locationInput').value;
-    const geocodeUrl = `https://nominatim.openstreetmap.org/search?format=json&countrycodes=us&q=${encodeURIComponent(location)}`;
+    searchLocation();
+  });
+
+  document.getElementById('locationInput').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      searchLocation();
+    }
+  });
+
+  function searchLocation() {
+    const locationInput = document.getElementById('locationInput');
+    const locationResults = document.getElementById('locationResults');
+    const location = locationInput.value.trim();
+
+    if (!location) {
+      locationResults.textContent = 'Enter a US city or address first.';
+      return;
+    }
+
+    locationResults.textContent = 'Searching...';
+    const geocodeUrl = `https://nominatim.openstreetmap.org/search?format=json&limit=5&countrycodes=us&q=${encodeURIComponent(location)}`;
 
     fetch(geocodeUrl)
       .then(response => response.json())
       .then(data => {
         if (data && data.length > 0) {
-          const lat = data[0].lat;
-          const lon = data[0].lon;
-          window.location.href = `/wx?lat=${lat}&lon=${lon}`;
+          locationResults.innerHTML = '<p>Select the correct location:</p>';
+          data.forEach(place => {
+            const option = document.createElement('button');
+            option.type = 'button';
+            option.className = 'location-option';
+            option.textContent = place.display_name;
+            option.addEventListener('click', function() {
+              window.location.href = `/wx?lat=${place.lat}&lon=${place.lon}`;
+            });
+            locationResults.appendChild(option);
+          });
         } else {
-          alert('Location not found. Please try entering a more specific address.');
-          document.getElementById('manualInput').style.display = 'flex';
+          locationResults.textContent = 'Location not found. Please try entering a more specific US address.';
         }
       })
       .catch(error => {
-        alert('Error fetching location: ' + error.message);
+        locationResults.textContent = 'Error fetching location: ' + error.message;
         document.getElementById('manualInput').style.display = 'flex';
       });
-  });
+  }
 </script>
