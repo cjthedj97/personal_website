@@ -32,6 +32,7 @@ layout: none
     --site-link: #93c5fd;
     --site-accent: #1abc9c;
     --site-accent-2: #3b82f6;
+    --site-danger: #f87171;
   }
 
   html[data-theme="light"] {
@@ -46,6 +47,7 @@ layout: none
     --site-link: #2563eb;
     --site-accent: #0f766e;
     --site-accent-2: #2563eb;
+    --site-danger: #dc2626;
   }
 
   /* Reset & base */
@@ -318,7 +320,17 @@ document.addEventListener('DOMContentLoaded', () => {
     weatherDataDiv.textContent = 'Loading weather data...';
 
     try {
+      const latitude = Number(lat);
+      const longitude = Number(lon);
+      if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+        throw new Error('Invalid coordinates. Latitude and longitude must be numbers.');
+      }
+
       const pointRes = await fetch(`https://api.weather.gov/points/${lat},${lon}`);
+      if (pointRes.status === 404) {
+        showUnsupportedLocation(latitude, longitude);
+        return;
+      }
       if (!pointRes.ok) throw new Error('Failed to fetch weather data');
 
       const pointData = await pointRes.json();
@@ -352,6 +364,15 @@ document.addEventListener('DOMContentLoaded', () => {
       weatherDataDiv.className = 'error';
       weatherDataDiv.textContent = `An error occurred: ${error.message}`;
     }
+  }
+
+  function showUnsupportedLocation(lat, lon) {
+    weatherDataDiv.className = 'error';
+    weatherDataDiv.innerHTML = `
+      <p><strong>Location outside NWS coverage.</strong></p>
+      <p>The weather page uses the National Weather Service API, which only supports the United States and its territories.</p>
+      <p>Received coordinates: ${lat.toFixed(4)}, ${lon.toFixed(4)}</p>
+      <p><a href="/wx-locator" style="color: var(--site-link); text-decoration: underline;">Try a US location</a></p>`;
   }
   
   function displayWeatherData(data, radarStation, alerts=[]) {

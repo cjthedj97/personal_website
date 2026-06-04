@@ -35,14 +35,14 @@ permalink: /wx-locator
   <div id="content">
     <div id="instructions">
       <h2>Welcome to My Weather Application</h2>
-      <p>This page will help you get weather updates based on your current location.</p>
-      <p>Click the button below to allow us to automatically detect your location. If this fails, you'll have the option to manually enter your location.</p>
+      <p>This page will help you get National Weather Service forecasts for US locations.</p>
+      <p>Click the button below to allow us to automatically detect your location. If this fails, you'll have the option to manually enter a US city or address.</p>
     </div>
     <button id="getLocationBtn">Get Location and Redirect</button>
     <p id="loading">Attempting to get your location...</p>
     <div id="manualInput">
-      <p>We couldn't get your location automatically. Please enter your city or address below to continue:</p>
-      <input type="text" id="locationInput" placeholder="Enter your city or address">
+      <p>We couldn't get your location automatically. Please enter a US city or address below to continue:</p>
+      <input type="text" id="locationInput" placeholder="Enter a US city or address">
       <button id="submitLocationBtn">Submit</button>
     </div>
   </div>
@@ -82,7 +82,7 @@ permalink: /wx-locator
 
   document.getElementById('submitLocationBtn').addEventListener('click', function() {
     const location = document.getElementById('locationInput').value;
-    const geocodeUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`;
+    const geocodeUrl = `https://nominatim.openstreetmap.org/search?format=json&countrycodes=us&q=${encodeURIComponent(location)}`;
 
     fetch(geocodeUrl)
       .then(response => response.json())
