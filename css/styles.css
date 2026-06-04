@@ -11051,7 +11051,7 @@ html {
 }
 
 .copyright {
-  background-color: var(--site-copyright-bg);
+  background-color: var(--site-footer-bg);
   color: var(--site-text);
 }
 
@@ -11069,7 +11069,7 @@ html {
   --site-dropdown-bg: rgba(15, 23, 42, 0.96);
   --site-dropdown-hover-bg: rgba(59, 130, 246, 0.16);
   --site-footer-bg: rgba(15, 23, 42, 0.55);
-  --site-copyright-bg: rgba(2, 6, 23, 0.5);
+  --site-copyright-bg: rgba(15, 23, 42, 0.55);
   --site-pill-bg: rgba(15, 23, 42, 0.55);
   --site-pill-border: rgba(148, 163, 184, 0.14);
   --site-link: #93c5fd;
@@ -11093,7 +11093,7 @@ html[data-theme="light"] {
   --site-dropdown-bg: rgba(255, 255, 255, 0.96);
   --site-dropdown-hover-bg: rgba(37, 99, 235, 0.12);
   --site-footer-bg: rgba(255, 255, 255, 0.78);
-  --site-copyright-bg: rgba(226, 232, 240, 0.92);
+  --site-copyright-bg: rgba(255, 255, 255, 0.78);
   --site-pill-bg: rgba(255, 255, 255, 0.78);
   --site-pill-border: rgba(100, 116, 139, 0.18);
   --site-link: #2563eb;
@@ -11290,11 +11290,11 @@ body.page-page .footer {
 }
 
 body.home-page .copyright {
-  background-color: var(--site-copyright-bg);
+  background-color: var(--site-footer-bg);
 }
 
 body.page-page .copyright {
-  background-color: var(--site-copyright-bg);
+  background-color: var(--site-footer-bg);
 }
 
 body.home-page .btn-primary {
