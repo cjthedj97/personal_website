@@ -11,13 +11,12 @@
         <div class="row align-items-center g-5">
           <div class="col-lg-7">
             <p class="eyebrow">Technical leader • Infrastructure • Automation</p>
-            <div class="hero-terminal" aria-label="Terminal welcome sequence">
+            <div class="hero-terminal" id="heroTerminal" tabindex="0" role="button" aria-label="Terminal welcome sequence. Activate for easter egg.">
               <div class="hero-terminal__bar">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span class="hero-terminal__label" id="heroTerminalLabel">session.log</span>
-                <button class="hero-terminal__launch" id="heroTerminalLaunch" type="button">./launch</button>
               </div>
               <pre class="hero-terminal__screen" aria-live="polite" aria-atomic="true"><code id="heroTerminalOutput"></code><span class="hero-terminal__cursor"></span></pre>
             </div>

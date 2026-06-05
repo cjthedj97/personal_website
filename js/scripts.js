@@ -42,10 +42,10 @@ window.addEventListener('DOMContentLoaded', event => {
         setTheme(root.dataset.theme || 'dark');
     }
 
+    const heroTerminal = document.getElementById('heroTerminal');
     const heroTerminalOutput = document.getElementById('heroTerminalOutput');
-    const heroTerminalLaunch = document.getElementById('heroTerminalLaunch');
     const heroTerminalLabel = document.getElementById('heroTerminalLabel');
-    if (heroTerminalOutput && heroTerminalLaunch && heroTerminalLabel) {
+    if (heroTerminal && heroTerminalOutput && heroTerminalLabel) {
         const normalSequence = [
             'cj@home:~$ whoami',
             'cj',
@@ -89,7 +89,7 @@ window.addEventListener('DOMContentLoaded', event => {
         let activeSequenceToken = 0;
         let activeTimer = null;
 
-        const typeSequence = (sequence, label, actionText) => {
+        const typeSequence = (sequence, label) => {
             activeSequenceToken += 1;
             const sequenceToken = activeSequenceToken;
             if (activeTimer) {
@@ -98,7 +98,6 @@ window.addEventListener('DOMContentLoaded', event => {
             }
 
             heroTerminalLabel.textContent = label;
-            heroTerminalLaunch.textContent = actionText;
 
             if (prefersReducedMotion) {
                 heroTerminalOutput.textContent = sequence;
@@ -124,18 +123,18 @@ window.addEventListener('DOMContentLoaded', event => {
         };
 
         const launchEasterEgg = () => {
-            typeSequence(easterEggSequence, 'easter-egg.log', './launching...');
+            typeSequence(easterEggSequence, 'easter-egg.log');
         };
 
-        heroTerminalLaunch.addEventListener('click', launchEasterEgg);
-        heroTerminalLaunch.addEventListener('keydown', event => {
+        heroTerminal.addEventListener('click', launchEasterEgg);
+        heroTerminal.addEventListener('keydown', event => {
             if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault();
                 launchEasterEgg();
             }
         });
 
-        typeSequence(normalSequence, 'session.log', './launch');
+        typeSequence(normalSequence, 'session.log');
     }
 
     // Navbar shrink function

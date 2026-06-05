@@ -11507,31 +11507,6 @@ body.home-page .hero-terminal__label {
   text-transform: uppercase;
 }
 
-body.home-page .hero-terminal__launch {
-  margin-left: auto;
-  border: 1px solid color-mix(in srgb, var(--site-link) 42%, var(--site-border));
-  background: color-mix(in srgb, var(--site-link) 16%, transparent);
-  color: var(--site-heading);
-  border-radius: 999px;
-  padding: 0.35rem 0.85rem;
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
-}
-
-body.home-page .hero-terminal__launch:hover,
-body.home-page .hero-terminal__launch:focus-visible {
-  transform: translateY(-1px);
-  background: color-mix(in srgb, var(--site-link) 26%, transparent);
-  border-color: color-mix(in srgb, var(--site-link) 62%, var(--site-border));
-}
-
-body.home-page .hero-terminal__launch:focus-visible {
-  outline: 2px solid var(--site-link);
-  outline-offset: 2px;
-}
-
 body.home-page .hero-terminal__screen {
   min-height: 13rem;
   margin: 0;
@@ -11545,6 +11520,16 @@ body.home-page .hero-terminal__screen {
 
 body.home-page .hero-terminal__screen code {
   color: inherit;
+}
+
+body.home-page .hero-terminal:hover,
+body.home-page .hero-terminal:focus-visible {
+  cursor: pointer;
+}
+
+body.home-page .hero-terminal:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--site-link) 78%, white);
+  outline-offset: 4px;
 }
 
 body.home-page .hero-terminal__cursor {
@@ -11721,10 +11706,6 @@ body.home-page .cta-band .btn-outline-light:hover {
 
   body.home-page .hero-terminal__bar {
     flex-wrap: wrap;
-  }
-
-  body.home-page .hero-terminal__launch {
-    margin-left: 0;
   }
 
   body.home-page .cta-band {
