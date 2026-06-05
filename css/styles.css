@@ -11557,6 +11557,10 @@ body.home-page .hero-terminal__output {
   color: #7CFF88;
 }
 
+body.home-page .hero-terminal__input {
+  color: color-mix(in srgb, #7CFF88 72%, transparent);
+}
+
 body.home-page .hero-terminal__finger {
   display: inline-block;
   color: #7CFF88;

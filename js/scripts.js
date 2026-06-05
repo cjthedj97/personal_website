@@ -65,6 +65,8 @@ window.addEventListener('DOMContentLoaded', event => {
 
         const makeOutputLine = text => `<span class="hero-terminal__line hero-terminal__line--output"><span class="hero-terminal__output">${escapeHtml(text)}</span></span>`;
 
+        const makeInputLine = text => `<span class="hero-terminal__line hero-terminal__line--input"><span class="hero-terminal__input">${escapeHtml(text)}</span></span>`;
+
         const makeFingerLine = text => `<span class="hero-terminal__line hero-terminal__line--finger"><span class="hero-terminal__finger">${escapeHtml(text)}</span></span>`;
 
         const makeBlankLine = () => '<span class="hero-terminal__line hero-terminal__line--blank">&nbsp;</span>';
@@ -123,7 +125,7 @@ window.addEventListener('DOMContentLoaded', event => {
                         return makeOutputLine(line.text);
                     }
                     if (line.type === 'input') {
-                        return makeOutputLine(line.text);
+                        return makeInputLine(line.text);
                     }
                     if (line.type === 'effect') {
                         return makeFingerLine(line.text);
@@ -166,12 +168,12 @@ window.addEventListener('DOMContentLoaded', event => {
                     if (line.type === 'input') {
                         const partialText = line.text.slice(0, charIndex);
                         const isComplete = charIndex >= line.text.length;
-                        const lineHtml = makeOutputLine(partialText);
+                        const lineHtml = makeInputLine(partialText);
 
                         heroTerminalOutput.innerHTML = `${renderedHtml}${lineHtml}`;
 
                         if (isComplete) {
-                            renderedHtml += makeOutputLine(line.text);
+                            renderedHtml += makeInputLine(line.text);
                             heroTerminalOutput.innerHTML = renderedHtml;
                             lineIndex += 1;
                             charIndex = 0;
