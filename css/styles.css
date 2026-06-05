@@ -11463,6 +11463,77 @@ body.home-page .hero-title {
   margin-bottom: 1.25rem;
 }
 
+body.home-page .hero-title--terminal {
+  font-size: clamp(2.35rem, 4.7vw, 4.6rem);
+  margin-top: 1.25rem;
+}
+
+body.home-page .hero-terminal {
+  max-width: 42rem;
+  border: 1px solid color-mix(in srgb, var(--site-accent) 35%, var(--site-border));
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--site-surface-strong) 92%, transparent), color-mix(in srgb, var(--site-bg-end) 86%, transparent));
+  border-radius: 1.2rem;
+  box-shadow: 0 24px 70px rgba(2, 6, 23, 0.28), inset 0 0 42px color-mix(in srgb, var(--site-accent) 8%, transparent);
+  overflow: hidden;
+  backdrop-filter: blur(18px);
+}
+
+body.home-page .hero-terminal__bar {
+  display: flex;
+  gap: 0.45rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--site-border);
+  background: color-mix(in srgb, var(--site-bg-end) 62%, transparent);
+}
+
+body.home-page .hero-terminal__bar span {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 999px;
+  background: var(--site-accent);
+  opacity: 0.9;
+}
+
+body.home-page .hero-terminal__bar span:nth-child(2) {
+  background: var(--site-link);
+}
+
+body.home-page .hero-terminal__bar span:nth-child(3) {
+  background: var(--site-accent-2);
+}
+
+body.home-page .hero-terminal__screen {
+  min-height: 13rem;
+  margin: 0;
+  padding: 1.1rem 1.25rem 1.25rem;
+  color: var(--site-heading);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: clamp(0.82rem, 1.4vw, 0.98rem);
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+body.home-page .hero-terminal__screen code {
+  color: inherit;
+}
+
+body.home-page .hero-terminal__cursor {
+  display: inline-block;
+  width: 0.58em;
+  height: 1.1em;
+  margin-left: 0.15rem;
+  vertical-align: -0.18em;
+  background: var(--site-link);
+  animation: hero-terminal-cursor 0.9s steps(2, start) infinite;
+}
+
+@keyframes hero-terminal-cursor {
+  50% {
+    opacity: 0;
+  }
+}
+
 body.home-page .hero-copy {
   max-width: 36rem;
   font-size: 1.125rem;
@@ -11613,6 +11684,10 @@ body.home-page .cta-band .btn-outline-light:hover {
   body.home-page .profile-panel {
     max-width: none;
     margin-left: 0;
+  }
+
+  body.home-page .hero-terminal {
+    max-width: none;
   }
 
   body.home-page .cta-band {

@@ -42,6 +42,44 @@ window.addEventListener('DOMContentLoaded', event => {
         setTheme(root.dataset.theme || 'dark');
     }
 
+    const heroTerminalOutput = document.getElementById('heroTerminalOutput');
+    const heroTerminalTitle = document.getElementById('heroTerminalTitle');
+    if (heroTerminalOutput && heroTerminalTitle) {
+        const terminalText = [
+            'cj@home:~$ whoami',
+            'cj',
+            'cj@home:~$ uptime',
+            'up since 1997, still learning',
+            'cj@home:~$ uname -a',
+            'Linux personal-web x86_64 GNU/Linux',
+            'cj@home:~$ history | tail -5',
+            'dig',
+            'curl',
+            'ssh',
+            'make',
+            './launch',
+            'cj@home:~$ ./launch',
+            'Welcome to /home/cj'
+        ].join('\n');
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            heroTerminalOutput.textContent = terminalText;
+        } else {
+            heroTerminalTitle.textContent = 'Initializing...';
+            let index = 0;
+            const typeTerminalText = () => {
+                heroTerminalOutput.textContent = terminalText.slice(0, index);
+                index += 1;
+                if (index <= terminalText.length) {
+                    window.setTimeout(typeTerminalText, terminalText[index - 2] === '\n' ? 180 : 24);
+                } else {
+                    heroTerminalTitle.textContent = 'Welcome to /home/cj';
+                }
+            };
+            typeTerminalText();
+        }
+    }
+
     // Navbar shrink function
     var navbarShrink = function () {
         const navbarCollapsible = document.body.querySelector('#mainNav');
