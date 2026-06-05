@@ -91,19 +91,9 @@ window.addEventListener('DOMContentLoaded', event => {
             { type: 'output', text: '45  ls ~/projects' },
             { type: 'output', text: '46  sudo make me a sandwich' },
             { type: 'output', text: 'sudo: command not found' },
-            { type: 'command', text: 'fortune | cowsay' },
-            { type: 'output', text: ' ____________________________' },
-            { type: 'output', text: '< hello from the other shell >' },
-            { type: 'output', text: ' ----------------------------' },
-            { type: 'output', text: '        \\   ^__^' },
-            { type: 'output', text: '         \\  (oo)\\_______' },
-            { type: 'output', text: '            (__)\\       )\/\\' },
-            { type: 'output', text: '                ||----w |' },
-            { type: 'output', text: '                ||     ||' },
-            { type: 'command', text: './launch --extra' },
+            { type: 'command', text: './deep_dive' },
             { type: 'output', text: 'warning: rabbit hole detected' },
-            { type: 'output', text: 'root access denied' },
-            { type: 'output', text: 'secret unlocked: side quests' }
+            { type: 'output', text: 'continue? [y/N]' }
         ];
 
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
