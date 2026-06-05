@@ -56,8 +56,9 @@ window.addEventListener('DOMContentLoaded', event => {
             'make',
             './launch',
             'cj@home:~$ ./introduction',
-            'I’m CJ Saathoff. I solve hard technical problems, improve processes, mentor others, and help teams operate more effectively.',
-            'This site mixes work, personal projects, and the interests that make it feel like mine.'
+            'I build useful things.',
+            'I fix weird problems.',
+            'I keep systems running.'
         ].join('\n');
 
         const easterEggSequence = [

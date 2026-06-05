@@ -11465,6 +11465,7 @@ body.home-page .hero-title {
 
 body.home-page .hero-terminal {
   max-width: 44rem;
+  margin-bottom: 1.75rem;
   border: 1px solid color-mix(in srgb, var(--site-accent) 35%, var(--site-border));
   background:
     linear-gradient(135deg, color-mix(in srgb, var(--site-surface-strong) 92%, transparent), color-mix(in srgb, var(--site-bg-end) 86%, transparent));
