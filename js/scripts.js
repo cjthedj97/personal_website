@@ -148,7 +148,7 @@ window.addEventListener('DOMContentLoaded', event => {
                 }
                 index += 1;
                 if (index <= sequence.length) {
-                    activeTimer = window.setTimeout(step, line && line.type === 'command' ? 160 : 100);
+                    activeTimer = window.setTimeout(step, line && line.type === 'command' ? 360 : 240);
                 } else {
                     activeTimer = null;
                 }
