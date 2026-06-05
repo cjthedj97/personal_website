@@ -79,6 +79,7 @@ window.addEventListener('DOMContentLoaded', event => {
             '                ||----w |',
             '                ||     ||',
             'cj@home:~$ ./launch --extra',
+            'warning: rabbit hole detected',
             'root access denied',
             'secret unlocked: side quests'
         ].join('\n');
