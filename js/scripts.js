@@ -95,9 +95,8 @@ window.addEventListener('DOMContentLoaded', event => {
             { type: 'output', text: 'warning: rabbit hole detected' },
             { type: 'output', text: 'continue? [y/N]' },
             { type: 'command', text: 'y' },
-            { type: 'output', text: 'hack the planet.' },
-            { type: 'output', text: 'you didn't say the magic word.' },
-            { type: 'output', text: 'secret unlocked: lower layers' }
+            { type: 'output', text: 'Ah ah ah...' },
+            { type: 'output', text: 'You didn\'t say the magic word.' }
         ];
 
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
