@@ -45,31 +45,33 @@ window.addEventListener('DOMContentLoaded', event => {
     const heroTerminal = document.getElementById('heroTerminal');
     const heroTerminalOutput = document.getElementById('heroTerminalOutput');
     if (heroTerminal && heroTerminalOutput) {
+        const prompt = 'cj@home:~/personal-web$ ';
+
         const normalSequence = [
-            'cj@home:~$ whoami',
+            `${prompt}whoami`,
             'cj',
-            'cj@home:~$ uptime',
+            `${prompt}uptime`,
             'up since 1997, still learning',
-            'cj@home:~$ uname -a',
+            `${prompt}uname -a`,
             'Linux personal-web x86_64 GNU/Linux',
-            'cj@home:~$ history | tail -2',
+            `${prompt}history | tail -2`,
             'make',
             './launch',
-            'cj@home:~$ ./introduction',
+            `${prompt}./introduction`,
             'I build useful things.',
             'I fix weird problems.',
             'I keep systems running.'
         ].join('\n');
 
         const easterEggSequence = [
-            'cj@home:~$ history | tail -5',
+            `${prompt}history | tail -5`,
             '42  whoami',
             '43  uptime',
             '44  uname -a',
             '45  ls ~/projects',
             '46  sudo make me a sandwich',
             'sudo: command not found',
-            'cj@home:~$ fortune | cowsay',
+            `${prompt}fortune | cowsay`,
             ' ____________________________',
             '< hello from the other shell >',
             ' ----------------------------',
@@ -78,7 +80,7 @@ window.addEventListener('DOMContentLoaded', event => {
             '            (__)\\       )\/\\',
             '                ||----w |',
             '                ||     ||',
-            'cj@home:~$ ./launch --extra',
+            `${prompt}./launch --extra`,
             'warning: rabbit hole detected',
             'root access denied',
             'secret unlocked: side quests'
