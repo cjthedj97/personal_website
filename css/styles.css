@@ -11517,6 +11517,46 @@ body.home-page .hero-terminal__screen code {
   color: inherit;
 }
 
+body.home-page .hero-terminal__line {
+  display: block;
+}
+
+body.home-page .hero-terminal__line + .hero-terminal__line {
+  margin-top: 0.15rem;
+}
+
+body.home-page .hero-terminal__prompt {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.08rem;
+  align-items: baseline;
+}
+
+body.home-page .hero-terminal__prompt-part--user {
+  color: #93c5fd;
+}
+
+body.home-page .hero-terminal__prompt-part--host {
+  color: #86efac;
+}
+
+body.home-page .hero-terminal__prompt-part--path {
+  color: #facc15;
+}
+
+body.home-page .hero-terminal__prompt-part--symbol,
+body.home-page .hero-terminal__prompt-part--separator {
+  color: #cbd5e1;
+}
+
+body.home-page .hero-terminal__command {
+  color: #7CFF88;
+}
+
+body.home-page .hero-terminal__output {
+  color: #7CFF88;
+}
+
 body.home-page .hero-terminal:hover,
 body.home-page .hero-terminal:focus-visible {
   cursor: pointer;

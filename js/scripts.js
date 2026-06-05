@@ -45,46 +45,66 @@ window.addEventListener('DOMContentLoaded', event => {
     const heroTerminal = document.getElementById('heroTerminal');
     const heroTerminalOutput = document.getElementById('heroTerminalOutput');
     if (heroTerminal && heroTerminalOutput) {
-        const prompt = 'cj@home:~/personal-web$ ';
+        const promptParts = {
+            user: 'cj',
+            host: 'home',
+            path: '~/personal-web',
+            symbol: '$'
+        };
+
+        const escapeHtml = value => value
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+
+        const makeCommandLine = command => {
+            return `<span class="hero-terminal__line hero-terminal__line--command"><span class="hero-terminal__prompt"><span class="hero-terminal__prompt-part hero-terminal__prompt-part--user">${escapeHtml(promptParts.user)}</span><span class="hero-terminal__prompt-part hero-terminal__prompt-part--symbol">@</span><span class="hero-terminal__prompt-part hero-terminal__prompt-part--host">${escapeHtml(promptParts.host)}</span><span class="hero-terminal__prompt-part hero-terminal__prompt-part--separator">:</span><span class="hero-terminal__prompt-part hero-terminal__prompt-part--path">${escapeHtml(promptParts.path)}</span><span class="hero-terminal__prompt-part hero-terminal__prompt-part--symbol">${escapeHtml(promptParts.symbol)}</span></span><span class="hero-terminal__command"> ${escapeHtml(command)}</span></span>`;
+        };
+
+        const makeOutputLine = text => `<span class="hero-terminal__line hero-terminal__line--output"><span class="hero-terminal__output">${escapeHtml(text)}</span></span>`;
+
+        const makeBlankLine = () => '<span class="hero-terminal__line hero-terminal__line--blank">&nbsp;</span>';
 
         const normalSequence = [
-            `${prompt}whoami`,
-            'cj',
-            `${prompt}uptime`,
-            'up since 1997, still learning',
-            `${prompt}uname -a`,
-            'Linux personal-web x86_64 GNU/Linux',
-            `${prompt}history | tail -2`,
-            'make',
-            './launch',
-            `${prompt}./introduction`,
-            'I build useful things.',
-            'I fix weird problems.',
-            'I keep systems running.'
-        ].join('\n');
+            { type: 'command', text: 'whoami' },
+            { type: 'output', text: 'cj' },
+            { type: 'command', text: 'uptime' },
+            { type: 'output', text: 'up since 1997, still learning' },
+            { type: 'command', text: 'uname -a' },
+            { type: 'output', text: 'Linux personal-web x86_64 GNU/Linux' },
+            { type: 'command', text: 'history | tail -2' },
+            { type: 'output', text: 'make' },
+            { type: 'output', text: './launch' },
+            { type: 'command', text: './introduction' },
+            { type: 'output', text: 'I build useful things.' },
+            { type: 'output', text: 'I fix weird problems.' },
+            { type: 'output', text: 'I keep systems running.' }
+        ];
 
         const easterEggSequence = [
-            `${prompt}history | tail -5`,
-            '42  whoami',
-            '43  uptime',
-            '44  uname -a',
-            '45  ls ~/projects',
-            '46  sudo make me a sandwich',
-            'sudo: command not found',
-            `${prompt}fortune | cowsay`,
-            ' ____________________________',
-            '< hello from the other shell >',
-            ' ----------------------------',
-            '        \\   ^__^',
-            '         \\  (oo)\\_______',
-            '            (__)\\       )\/\\',
-            '                ||----w |',
-            '                ||     ||',
-            `${prompt}./launch --extra`,
-            'warning: rabbit hole detected',
-            'root access denied',
-            'secret unlocked: side quests'
-        ].join('\n');
+            { type: 'command', text: 'history | tail -5' },
+            { type: 'output', text: '42  whoami' },
+            { type: 'output', text: '43  uptime' },
+            { type: 'output', text: '44  uname -a' },
+            { type: 'output', text: '45  ls ~/projects' },
+            { type: 'output', text: '46  sudo make me a sandwich' },
+            { type: 'output', text: 'sudo: command not found' },
+            { type: 'command', text: 'fortune | cowsay' },
+            { type: 'output', text: ' ____________________________' },
+            { type: 'output', text: '< hello from the other shell >' },
+            { type: 'output', text: ' ----------------------------' },
+            { type: 'output', text: '        \\   ^__^' },
+            { type: 'output', text: '         \\  (oo)\\_______' },
+            { type: 'output', text: '            (__)\\       )\/\\' },
+            { type: 'output', text: '                ||----w |' },
+            { type: 'output', text: '                ||     ||' },
+            { type: 'command', text: './launch --extra' },
+            { type: 'output', text: 'warning: rabbit hole detected' },
+            { type: 'output', text: 'root access denied' },
+            { type: 'output', text: 'secret unlocked: side quests' }
+        ];
 
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         let activeSequenceToken = 0;
@@ -99,25 +119,42 @@ window.addEventListener('DOMContentLoaded', event => {
             }
 
             if (prefersReducedMotion) {
-                heroTerminalOutput.textContent = sequence;
+                heroTerminalOutput.innerHTML = sequence.map(line => {
+                    if (line.type === 'command') {
+                        return makeCommandLine(line.text);
+                    }
+                    if (line.type === 'output') {
+                        return makeOutputLine(line.text);
+                    }
+                    return makeBlankLine();
+                }).join('');
                 return;
             }
 
             let index = 0;
+            let renderedHtml = '';
             const step = () => {
                 if (sequenceToken !== activeSequenceToken) {
                     return;
                 }
-                heroTerminalOutput.textContent = sequence.slice(0, index);
+                const line = sequence[index];
+                if (line) {
+                    renderedHtml += line.type === 'command'
+                        ? makeCommandLine(line.text)
+                        : line.type === 'output'
+                            ? makeOutputLine(line.text)
+                            : makeBlankLine();
+                    heroTerminalOutput.innerHTML = renderedHtml;
+                }
                 index += 1;
                 if (index <= sequence.length) {
-                    activeTimer = window.setTimeout(step, sequence[index - 2] === '\n' ? 180 : 24);
+                    activeTimer = window.setTimeout(step, line && line.type === 'command' ? 160 : 100);
                 } else {
                     activeTimer = null;
                 }
             };
 
-            heroTerminalOutput.textContent = '';
+            heroTerminalOutput.innerHTML = '';
             step();
         };
 
