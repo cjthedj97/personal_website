@@ -44,8 +44,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
     const heroTerminal = document.getElementById('heroTerminal');
     const heroTerminalOutput = document.getElementById('heroTerminalOutput');
-    const heroTerminalLabel = document.getElementById('heroTerminalLabel');
-    if (heroTerminal && heroTerminalOutput && heroTerminalLabel) {
+    if (heroTerminal && heroTerminalOutput) {
         const normalSequence = [
             'cj@home:~$ whoami',
             'cj',
@@ -89,15 +88,13 @@ window.addEventListener('DOMContentLoaded', event => {
         let activeSequenceToken = 0;
         let activeTimer = null;
 
-        const typeSequence = (sequence, label) => {
+        const typeSequence = sequence => {
             activeSequenceToken += 1;
             const sequenceToken = activeSequenceToken;
             if (activeTimer) {
                 window.clearTimeout(activeTimer);
                 activeTimer = null;
             }
-
-            heroTerminalLabel.textContent = label;
 
             if (prefersReducedMotion) {
                 heroTerminalOutput.textContent = sequence;
@@ -123,7 +120,7 @@ window.addEventListener('DOMContentLoaded', event => {
         };
 
         const launchEasterEgg = () => {
-            typeSequence(easterEggSequence, 'easter-egg.log');
+            typeSequence(easterEggSequence);
         };
 
         heroTerminal.addEventListener('click', launchEasterEgg);
@@ -134,7 +131,7 @@ window.addEventListener('DOMContentLoaded', event => {
             }
         });
 
-        typeSequence(normalSequence, 'session.log');
+        typeSequence(normalSequence);
     }
 
     // Navbar shrink function
