@@ -93,7 +93,10 @@ window.addEventListener('DOMContentLoaded', event => {
             { type: 'output', text: 'sudo: command not found' },
             { type: 'command', text: './deep_dive' },
             { type: 'output', text: 'warning: rabbit hole detected' },
-            { type: 'output', text: 'continue? [y/N]' }
+            { type: 'output', text: 'continue? [y/N]' },
+            { type: 'command', text: 'y' },
+            { type: 'output', text: 'descending deeper...' },
+            { type: 'output', text: 'secret unlocked: lower layers' }
         ];
 
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
