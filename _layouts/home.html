@@ -12,14 +12,15 @@
           <div class="col-lg-7">
             <p class="eyebrow">Technical leader • Infrastructure • Automation</p>
             <div class="hero-terminal" aria-label="Terminal welcome sequence">
-              <div class="hero-terminal__bar" aria-hidden="true">
-                <span></span>
-                <span></span>
-                <span></span>
+              <div class="hero-terminal__bar">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span class="hero-terminal__label">session.log</span>
+                <button class="hero-terminal__launch" id="heroTerminalLaunch" type="button">./launch</button>
               </div>
-              <pre class="hero-terminal__screen" aria-hidden="true"><code id="heroTerminalOutput"></code><span class="hero-terminal__cursor"></span></pre>
+              <pre class="hero-terminal__screen" aria-live="polite" aria-atomic="true"><code id="heroTerminalOutput">cj@home:~$ ./launch</code><span class="hero-terminal__cursor"></span></pre>
             </div>
-            <h1 class="hero-title hero-title--terminal" id="heroTerminalTitle">Welcome to /home/cj</h1>
             <p class="hero-copy">I’m CJ Saathoff. I solve hard technical problems, improve processes, mentor others, and help teams operate more effectively. This site mixes work, personal projects, and the interests that make it feel like mine.</p>
             <div class="d-flex flex-wrap gap-3 mb-4">
               <a class="btn btn-primary btn-lg" href="https://portfolio.cjthedj.me/">View portfolio</a>

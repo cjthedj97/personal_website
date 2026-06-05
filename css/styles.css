@@ -11463,13 +11463,8 @@ body.home-page .hero-title {
   margin-bottom: 1.25rem;
 }
 
-body.home-page .hero-title--terminal {
-  font-size: clamp(2.35rem, 4.7vw, 4.6rem);
-  margin-top: 1.25rem;
-}
-
 body.home-page .hero-terminal {
-  max-width: 42rem;
+  max-width: 44rem;
   border: 1px solid color-mix(in srgb, var(--site-accent) 35%, var(--site-border));
   background:
     linear-gradient(135deg, color-mix(in srgb, var(--site-surface-strong) 92%, transparent), color-mix(in srgb, var(--site-bg-end) 86%, transparent));
@@ -11485,6 +11480,7 @@ body.home-page .hero-terminal__bar {
   padding: 0.75rem 1rem;
   border-bottom: 1px solid var(--site-border);
   background: color-mix(in srgb, var(--site-bg-end) 62%, transparent);
+  align-items: center;
 }
 
 body.home-page .hero-terminal__bar span {
@@ -11501,6 +11497,39 @@ body.home-page .hero-terminal__bar span:nth-child(2) {
 
 body.home-page .hero-terminal__bar span:nth-child(3) {
   background: var(--site-accent-2);
+}
+
+body.home-page .hero-terminal__label {
+  margin-left: 0.5rem;
+  color: color-mix(in srgb, var(--site-text) 72%, transparent);
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+body.home-page .hero-terminal__launch {
+  margin-left: auto;
+  border: 1px solid color-mix(in srgb, var(--site-link) 42%, var(--site-border));
+  background: color-mix(in srgb, var(--site-link) 16%, transparent);
+  color: var(--site-heading);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+body.home-page .hero-terminal__launch:hover,
+body.home-page .hero-terminal__launch:focus-visible {
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--site-link) 26%, transparent);
+  border-color: color-mix(in srgb, var(--site-link) 62%, var(--site-border));
+}
+
+body.home-page .hero-terminal__launch:focus-visible {
+  outline: 2px solid var(--site-link);
+  outline-offset: 2px;
 }
 
 body.home-page .hero-terminal__screen {
@@ -11688,6 +11717,14 @@ body.home-page .cta-band .btn-outline-light:hover {
 
   body.home-page .hero-terminal {
     max-width: none;
+  }
+
+  body.home-page .hero-terminal__bar {
+    flex-wrap: wrap;
+  }
+
+  body.home-page .hero-terminal__launch {
+    margin-left: 0;
   }
 
   body.home-page .cta-band {

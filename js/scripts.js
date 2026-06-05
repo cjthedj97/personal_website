@@ -43,8 +43,8 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
     const heroTerminalOutput = document.getElementById('heroTerminalOutput');
-    const heroTerminalTitle = document.getElementById('heroTerminalTitle');
-    if (heroTerminalOutput && heroTerminalTitle) {
+    const heroTerminalLaunch = document.getElementById('heroTerminalLaunch');
+    if (heroTerminalOutput && heroTerminalLaunch) {
         const terminalText = [
             'cj@home:~$ whoami',
             'cj',
@@ -62,22 +62,37 @@ window.addEventListener('DOMContentLoaded', event => {
             'Welcome to /home/cj'
         ].join('\n');
 
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            heroTerminalOutput.textContent = terminalText;
-        } else {
-            heroTerminalTitle.textContent = 'Initializing...';
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let launched = false;
+
+        const runTerminal = () => {
+            if (launched) {
+                heroTerminalOutput.textContent = terminalText;
+                return;
+            }
+            launched = true;
+            heroTerminalLaunch.textContent = './launching...';
+            heroTerminalLaunch.disabled = true;
+
+            if (prefersReducedMotion) {
+                heroTerminalOutput.textContent = terminalText;
+                return;
+            }
+
             let index = 0;
             const typeTerminalText = () => {
                 heroTerminalOutput.textContent = terminalText.slice(0, index);
                 index += 1;
                 if (index <= terminalText.length) {
                     window.setTimeout(typeTerminalText, terminalText[index - 2] === '\n' ? 180 : 24);
-                } else {
-                    heroTerminalTitle.textContent = 'Welcome to /home/cj';
                 }
             };
+
+            heroTerminalOutput.textContent = '';
             typeTerminalText();
-        }
+        };
+
+        heroTerminalLaunch.addEventListener('click', runTerminal);
     }
 
     // Navbar shrink function
