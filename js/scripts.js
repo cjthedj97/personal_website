@@ -52,14 +52,12 @@ window.addEventListener('DOMContentLoaded', event => {
             'up since 1997, still learning',
             'cj@home:~$ uname -a',
             'Linux personal-web x86_64 GNU/Linux',
-            'cj@home:~$ history | tail -5',
-            'dig',
-            'curl',
-            'ssh',
+            'cj@home:~$ history | tail -2',
             'make',
             './launch',
-            'cj@home:~$ ./launch',
-            'Welcome to /home/cj'
+            'cj@home:~$ ./introduction',
+            'I’m CJ Saathoff. I solve hard technical problems, improve processes, mentor others, and help teams operate more effectively.',
+            'This site mixes work, personal projects, and the interests that make it feel like mine.'
         ].join('\n');
 
         const easterEggSequence = [
