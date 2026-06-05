@@ -46,12 +46,7 @@ window.addEventListener('DOMContentLoaded', event => {
     const heroTerminalLaunch = document.getElementById('heroTerminalLaunch');
     const heroTerminalLabel = document.getElementById('heroTerminalLabel');
     if (heroTerminalOutput && heroTerminalLaunch && heroTerminalLabel) {
-        const idleText = [
-            'cj@home:~$ ./launch --standby',
-            'waiting for input...'
-        ].join('\n');
-
-        const terminalText = [
+        const normalSequence = [
             'cj@home:~$ whoami',
             'cj',
             'cj@home:~$ uptime',
@@ -68,39 +63,79 @@ window.addEventListener('DOMContentLoaded', event => {
             'Welcome to /home/cj'
         ].join('\n');
 
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        let launched = false;
+        const easterEggSequence = [
+            'cj@home:~$ history | tail -5',
+            '42  whoami',
+            '43  uptime',
+            '44  uname -a',
+            '45  ls ~/projects',
+            '46  sudo make me a sandwich',
+            'sudo: command not found',
+            'cj@home:~$ fortune | cowsay',
+            ' ____________________________',
+            '< hello from the other shell >',
+            ' ----------------------------',
+            '        \\   ^__^',
+            '         \\  (oo)\\_______',
+            '            (__)\\       )\/\\',
+            '                ||----w |',
+            '                ||     ||',
+            'cj@home:~$ ./launch --extra',
+            'root access denied',
+            'secret unlocked: side quests'
+        ].join('\n');
 
-        const runTerminal = () => {
-            if (launched) {
-                heroTerminalOutput.textContent = terminalText;
-                return;
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let activeSequenceToken = 0;
+        let activeTimer = null;
+
+        const typeSequence = (sequence, label, actionText) => {
+            activeSequenceToken += 1;
+            const sequenceToken = activeSequenceToken;
+            if (activeTimer) {
+                window.clearTimeout(activeTimer);
+                activeTimer = null;
             }
-            launched = true;
-            heroTerminalLabel.textContent = 'session.log';
-            heroTerminalLaunch.textContent = './launching...';
-            heroTerminalLaunch.disabled = true;
+
+            heroTerminalLabel.textContent = label;
+            heroTerminalLaunch.textContent = actionText;
 
             if (prefersReducedMotion) {
-                heroTerminalOutput.textContent = terminalText;
+                heroTerminalOutput.textContent = sequence;
                 return;
             }
 
             let index = 0;
-            const typeTerminalText = () => {
-                heroTerminalOutput.textContent = terminalText.slice(0, index);
+            const step = () => {
+                if (sequenceToken !== activeSequenceToken) {
+                    return;
+                }
+                heroTerminalOutput.textContent = sequence.slice(0, index);
                 index += 1;
-                if (index <= terminalText.length) {
-                    window.setTimeout(typeTerminalText, terminalText[index - 2] === '\n' ? 180 : 24);
+                if (index <= sequence.length) {
+                    activeTimer = window.setTimeout(step, sequence[index - 2] === '\n' ? 180 : 24);
+                } else {
+                    activeTimer = null;
                 }
             };
 
             heroTerminalOutput.textContent = '';
-            typeTerminalText();
+            step();
         };
 
-        heroTerminalOutput.textContent = idleText;
-        heroTerminalLaunch.addEventListener('click', runTerminal);
+        const launchEasterEgg = () => {
+            typeSequence(easterEggSequence, 'easter-egg.log', './launching...');
+        };
+
+        heroTerminalLaunch.addEventListener('click', launchEasterEgg);
+        heroTerminalLaunch.addEventListener('keydown', event => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                launchEasterEgg();
+            }
+        });
+
+        typeSequence(normalSequence, 'session.log', './launch');
     }
 
     // Navbar shrink function
