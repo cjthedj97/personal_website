@@ -131,24 +131,40 @@ window.addEventListener('DOMContentLoaded', event => {
                 return;
             }
 
-            let index = 0;
+            let lineIndex = 0;
+            let charIndex = 0;
             let renderedHtml = '';
             const step = () => {
                 if (sequenceToken !== activeSequenceToken) {
                     return;
                 }
-                const line = sequence[index];
+                const line = sequence[lineIndex];
                 if (line) {
-                    renderedHtml += line.type === 'command'
-                        ? makeCommandLine(line.text)
+                    const partialText = line.text.slice(0, charIndex);
+                    const isComplete = charIndex >= line.text.length;
+                    const lineHtml = line.type === 'command'
+                        ? makeCommandLine(partialText)
                         : line.type === 'output'
-                            ? makeOutputLine(line.text)
+                            ? makeOutputLine(partialText)
                             : makeBlankLine();
-                    heroTerminalOutput.innerHTML = renderedHtml;
+
+                    heroTerminalOutput.innerHTML = `${renderedHtml}${lineHtml}`;
+
+                    if (isComplete) {
+                        renderedHtml += line.type === 'command'
+                            ? makeCommandLine(line.text)
+                            : line.type === 'output'
+                                ? makeOutputLine(line.text)
+                                : makeBlankLine();
+                        heroTerminalOutput.innerHTML = renderedHtml;
+                        lineIndex += 1;
+                        charIndex = 0;
+                    } else {
+                        charIndex += 1;
+                    }
                 }
-                index += 1;
-                if (index <= sequence.length) {
-                    activeTimer = window.setTimeout(step, line && line.type === 'command' ? 360 : 240);
+                if (lineIndex < sequence.length) {
+                    activeTimer = window.setTimeout(step, line && line.type === 'command' ? 72 : 48);
                 } else {
                     activeTimer = null;
                 }
