@@ -138,33 +138,39 @@ window.addEventListener('DOMContentLoaded', event => {
                 if (sequenceToken !== activeSequenceToken) {
                     return;
                 }
-                const line = sequence[lineIndex];
+                let line = sequence[lineIndex];
                 if (line) {
-                    const partialText = line.text.slice(0, charIndex);
-                    const isComplete = charIndex >= line.text.length;
-                    const lineHtml = line.type === 'command'
-                        ? makeCommandLine(partialText)
-                        : line.type === 'output'
-                            ? makeOutputLine(partialText)
-                            : makeBlankLine();
+                    if (line.type === 'command') {
+                        const partialText = line.text.slice(0, charIndex);
+                        const isComplete = charIndex >= line.text.length;
+                        const lineHtml = makeCommandLine(partialText);
 
-                    heroTerminalOutput.innerHTML = `${renderedHtml}${lineHtml}`;
+                        heroTerminalOutput.innerHTML = `${renderedHtml}${lineHtml}`;
 
-                    if (isComplete) {
-                        renderedHtml += line.type === 'command'
-                            ? makeCommandLine(line.text)
-                            : line.type === 'output'
-                                ? makeOutputLine(line.text)
-                                : makeBlankLine();
+                        if (isComplete) {
+                            renderedHtml += makeCommandLine(line.text);
+                            heroTerminalOutput.innerHTML = renderedHtml;
+                            lineIndex += 1;
+                            charIndex = 0;
+                            activeTimer = window.setTimeout(step, 0);
+                            return;
+                        }
+
+                        charIndex += 1;
+                        activeTimer = window.setTimeout(step, 72);
+                        return;
+                    }
+
+                    while (line && line.type === 'output') {
+                        renderedHtml += makeOutputLine(line.text);
                         heroTerminalOutput.innerHTML = renderedHtml;
                         lineIndex += 1;
                         charIndex = 0;
-                    } else {
-                        charIndex += 1;
+                        line = sequence[lineIndex];
                     }
                 }
                 if (lineIndex < sequence.length) {
-                    activeTimer = window.setTimeout(step, line && line.type === 'command' ? 72 : 48);
+                    activeTimer = window.setTimeout(step, 0);
                 } else {
                     activeTimer = null;
                 }
