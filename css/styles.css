@@ -11557,6 +11557,26 @@ body.home-page .hero-terminal__output {
   color: #7CFF88;
 }
 
+body.home-page .hero-terminal__finger {
+  display: inline-block;
+  color: #7CFF88;
+  text-shadow: 0 0 10px color-mix(in srgb, #7CFF88 38%, transparent);
+  transform-origin: 50% 100%;
+  animation: hero-terminal-finger-wag 0.45s ease-in-out infinite;
+}
+
+@keyframes hero-terminal-finger-wag {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-1px) rotate(-8deg);
+  }
+  75% {
+    transform: translateX(1px) rotate(8deg);
+  }
+}
+
 body.home-page .hero-terminal:hover,
 body.home-page .hero-terminal:focus-visible {
   cursor: pointer;

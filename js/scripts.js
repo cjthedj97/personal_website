@@ -65,6 +65,8 @@ window.addEventListener('DOMContentLoaded', event => {
 
         const makeOutputLine = text => `<span class="hero-terminal__line hero-terminal__line--output"><span class="hero-terminal__output">${escapeHtml(text)}</span></span>`;
 
+        const makeFingerLine = text => `<span class="hero-terminal__line hero-terminal__line--finger"><span class="hero-terminal__finger">${escapeHtml(text)}</span></span>`;
+
         const makeBlankLine = () => '<span class="hero-terminal__line hero-terminal__line--blank">&nbsp;</span>';
 
         const normalSequence = [
@@ -96,6 +98,7 @@ window.addEventListener('DOMContentLoaded', event => {
             { type: 'output', text: 'continue? [y/N]' },
             { type: 'command', text: 'y' },
             { type: 'output', text: 'Ah ah ah...' },
+            { type: 'effect', text: '☝' },
             { type: 'output', text: 'You didn\'t say the magic word.' }
         ];
 
@@ -118,6 +121,9 @@ window.addEventListener('DOMContentLoaded', event => {
                     }
                     if (line.type === 'output') {
                         return makeOutputLine(line.text);
+                    }
+                    if (line.type === 'effect') {
+                        return makeFingerLine(line.text);
                     }
                     return makeBlankLine();
                 }).join('');
@@ -151,6 +157,14 @@ window.addEventListener('DOMContentLoaded', event => {
 
                         charIndex += 1;
                         activeTimer = window.setTimeout(step, 72);
+                        return;
+                    }
+
+                    if (line.type === 'effect') {
+                        renderedHtml += makeFingerLine(line.text);
+                        heroTerminalOutput.innerHTML = renderedHtml;
+                        lineIndex += 1;
+                        activeTimer = window.setTimeout(step, 0);
                         return;
                     }
 
