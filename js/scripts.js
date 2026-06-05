@@ -96,7 +96,7 @@ window.addEventListener('DOMContentLoaded', event => {
             { type: 'command', text: './deep_dive' },
             { type: 'output', text: 'warning: rabbit hole detected' },
             { type: 'output', text: 'continue? [y/N]' },
-            { type: 'command', text: 'y' },
+            { type: 'input', text: 'y' },
             { type: 'output', text: 'Ah ah ah...' },
             { type: 'effect', text: '☝' },
             { type: 'output', text: 'You didn\'t say the magic word.' }
@@ -120,6 +120,9 @@ window.addEventListener('DOMContentLoaded', event => {
                         return makeCommandLine(line.text);
                     }
                     if (line.type === 'output') {
+                        return makeOutputLine(line.text);
+                    }
+                    if (line.type === 'input') {
                         return makeOutputLine(line.text);
                     }
                     if (line.type === 'effect') {
@@ -160,6 +163,27 @@ window.addEventListener('DOMContentLoaded', event => {
                         return;
                     }
 
+                    if (line.type === 'input') {
+                        const partialText = line.text.slice(0, charIndex);
+                        const isComplete = charIndex >= line.text.length;
+                        const lineHtml = makeOutputLine(partialText);
+
+                        heroTerminalOutput.innerHTML = `${renderedHtml}${lineHtml}`;
+
+                        if (isComplete) {
+                            renderedHtml += makeOutputLine(line.text);
+                            heroTerminalOutput.innerHTML = renderedHtml;
+                            lineIndex += 1;
+                            charIndex = 0;
+                            activeTimer = window.setTimeout(step, 120);
+                            return;
+                        }
+
+                        charIndex += 1;
+                        activeTimer = window.setTimeout(step, 72);
+                        return;
+                    }
+
                     if (line.type === 'effect') {
                         renderedHtml += makeFingerLine(line.text);
                         heroTerminalOutput.innerHTML = renderedHtml;
@@ -173,7 +197,9 @@ window.addEventListener('DOMContentLoaded', event => {
                         heroTerminalOutput.innerHTML = renderedHtml;
                         lineIndex += 1;
                         charIndex = 0;
+                        activeTimer = window.setTimeout(step, 180);
                         line = sequence[lineIndex];
+                        return;
                     }
                 }
                 if (lineIndex < sequence.length) {
