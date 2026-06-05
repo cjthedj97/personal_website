@@ -44,7 +44,13 @@ window.addEventListener('DOMContentLoaded', event => {
 
     const heroTerminalOutput = document.getElementById('heroTerminalOutput');
     const heroTerminalLaunch = document.getElementById('heroTerminalLaunch');
-    if (heroTerminalOutput && heroTerminalLaunch) {
+    const heroTerminalLabel = document.getElementById('heroTerminalLabel');
+    if (heroTerminalOutput && heroTerminalLaunch && heroTerminalLabel) {
+        const idleText = [
+            'cj@home:~$ ./launch --standby',
+            'waiting for input...'
+        ].join('\n');
+
         const terminalText = [
             'cj@home:~$ whoami',
             'cj',
@@ -71,6 +77,7 @@ window.addEventListener('DOMContentLoaded', event => {
                 return;
             }
             launched = true;
+            heroTerminalLabel.textContent = 'session.log';
             heroTerminalLaunch.textContent = './launching...';
             heroTerminalLaunch.disabled = true;
 
@@ -92,6 +99,7 @@ window.addEventListener('DOMContentLoaded', event => {
             typeTerminalText();
         };
 
+        heroTerminalOutput.textContent = idleText;
         heroTerminalLaunch.addEventListener('click', runTerminal);
     }
 
