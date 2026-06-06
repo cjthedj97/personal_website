@@ -6,35 +6,38 @@ layout: page
 
 <style>
   :root {
-    --fcc-cs-primary-color: #2a9d8f;
-    --fcc-cs-secondary-color: #264653;
-    --fcc-cs-error-color: #e76f51;
-    --fcc-cs-bg-light: #fefefe;
-    --fcc-cs-bg-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    --fcc-cs-primary-color: var(--site-accent);
+    --fcc-cs-secondary-color: var(--site-heading);
+    --fcc-cs-error-color: var(--site-danger);
+    --fcc-cs-bg-light: var(--site-surface-strong);
+    --fcc-cs-bg-gradient: linear-gradient(135deg, color-mix(in srgb, var(--site-accent) 14%, transparent), color-mix(in srgb, var(--site-accent-2) 12%, transparent));
     --fcc-cs-border-radius: 8px;
-    --fcc-cs-box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 10px;
+    --fcc-cs-box-shadow: 0 24px 70px rgba(2, 6, 23, 0.24);
     --fcc-cs-font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
-  body {
+  .fcc-cs-page {
     font-family: var(--fcc-cs-font-sans);
     background: var(--fcc-cs-bg-gradient);
+    color: var(--site-text);
     margin: 0;
     padding: 2rem 1rem;
     display: flex;
     justify-content: center;
   }
 
-  main.fcc-cs-container {
+  .fcc-cs-container {
     background: var(--fcc-cs-bg-light);
     max-width: 600px;
     width: 100%;
     padding: 2.5rem 3rem;
     border-radius: var(--fcc-cs-border-radius);
     box-shadow: var(--fcc-cs-box-shadow);
+    border: 1px solid var(--site-border);
+    backdrop-filter: blur(18px);
   }
 
-  h1.fcc-cs-title {
+  .fcc-cs-title {
     text-align: center;
     color: var(--fcc-cs-secondary-color);
     font-weight: 700;
@@ -54,7 +57,9 @@ layout: page
     min-width: 0;
     font-size: 1.15rem;
     padding: 0.65rem 1rem;
-    border: 2px solid #ccc;
+    border: 2px solid var(--site-border);
+    background: var(--site-surface);
+    color: var(--site-text);
     border-radius: var(--fcc-cs-border-radius);
     transition: border-color 0.3s ease;
   }
@@ -67,7 +72,7 @@ layout: page
   button.fcc-cs-button {
     background-color: var(--fcc-cs-primary-color);
     border: none;
-    color: white;
+    color: var(--site-heading);
     border-radius: var(--fcc-cs-border-radius);
     padding: 0.65rem 1.5rem;
     cursor: pointer;
@@ -77,7 +82,7 @@ layout: page
   }
   button.fcc-cs-button:hover,
   button.fcc-cs-button:focus {
-    background-color: #21867a;
+    background-color: color-mix(in srgb, var(--fcc-cs-primary-color) 82%, black);
     outline: none;
   }
 
@@ -90,12 +95,13 @@ layout: page
   }
 
   div#fcc-cs-result {
-    background: #ffffff;
+    background: var(--site-surface-strong);
     border-radius: var(--fcc-cs-border-radius);
     padding: 1.8rem 2rem;
-    box-shadow: 0 4px 12px rgba(38, 70, 83, 0.12);
+    box-shadow: 0 4px 12px rgba(2, 6, 23, 0.12);
     font-size: 1rem;
     line-height: 1.5;
+    border: 1px solid var(--site-border);
   }
 
   dl.fcc-cs-dataList {
@@ -125,7 +131,7 @@ layout: page
   }
 
   @media (max-width: 480px) {
-    main.fcc-cs-container {
+    .fcc-cs-container {
       padding: 2rem 1rem;
     }
     form#fcc-cs-lookupForm {
@@ -139,8 +145,9 @@ layout: page
   }
 </style>
 
+<div class="fcc-cs-page">
 <main class="fcc-cs-container" role="main">
-  <h1 class="fcc-cs-title">FCC Call Sign Lookup</h1>
+  <h2 class="fcc-cs-title">FCC Call Sign Lookup</h2>
 
   <form id="fcc-cs-lookupForm" aria-label="FCC Call Sign lookup form">
     <input 
@@ -158,10 +165,13 @@ layout: page
     <button type="submit" class="fcc-cs-button" aria-label="Lookup call sign">Lookup</button>
   </form>
 
+  <p id="fcc-cs-callsignHelp" class="visually-hidden">Enter 1 to 6 alphanumeric characters.</p>
+
   <div id="fcc-cs-error" class="fcc-cs-error" role="alert" aria-live="assertive" aria-atomic="true"></div>
 
   <div id="fcc-cs-result" class="fcc-cs-result" hidden aria-live="polite" aria-atomic="true"></div>
 </main>
+</div>
 
 <script>
   (() => {
@@ -170,6 +180,17 @@ layout: page
     const resultDiv = document.getElementById('fcc-cs-result');
     const errorDiv = document.getElementById('fcc-cs-error');
 
+    const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (ch) => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    }[ch]));
+
+    const safeText = (value, fallback = 'N/A') => escapeHtml(value || fallback);
+    const safeOptional = (value) => escapeHtml(value || '');
+
     const clearOutput = () => {
       errorDiv.textContent = '';
       resultDiv.innerHTML = '';
@@ -177,34 +198,34 @@ layout: page
     };
 
     const renderData = (data) => {
-      const status = data.status || 'N/A';
-      const type = data.type || 'N/A';
-      const callsign = data.current?.callsign || 'N/A';
-      const operClass = data.current?.operClass || 'N/A';
-      const prevCallsign = data.previous?.callsign || 'None';
-      const prevOperClass = data.previous?.operClass || 'None';
+      const status = safeText(data.status);
+      const type = safeText(data.type);
+      const callsign = safeText(data.current?.callsign);
+      const operClass = safeText(data.current?.operClass);
+      const prevCallsign = safeText(data.previous?.callsign, 'None');
+      const prevOperClass = safeText(data.previous?.operClass, 'None');
 
-      const trusteeCallsign = data.trustee?.callsign || 'None';
-      const trusteeName = data.trustee?.name || 'None';
+      const trusteeCallsign = safeText(data.trustee?.callsign, 'None');
+      const trusteeName = safeText(data.trustee?.name, 'None');
 
-      const name = data.name || 'N/A';
+      const name = safeText(data.name);
 
       const addr = data.address || {};
-      const addrLine1 = addr.line1 || '';
-      const addrLine2 = addr.line2 || '';
-      const addrAttn = addr.attn || '';
+      const addrLine1 = safeOptional(addr.line1);
+      const addrLine2 = safeOptional(addr.line2);
+      const addrAttn = safeOptional(addr.attn);
 
       const loc = data.location || {};
-      const latitude = loc.latitude || 'N/A';
-      const longitude = loc.longitude || 'N/A';
-      const gridsquare = loc.gridsquare || 'N/A';
+      const latitude = safeText(loc.latitude);
+      const longitude = safeText(loc.longitude);
+      const gridsquare = safeText(loc.gridsquare);
 
       const other = data.otherInfo || {};
-      const grantDate = other.grantDate || 'N/A';
-      const expiryDate = other.expiryDate || 'N/A';
-      const lastActionDate = other.lastActionDate || 'N/A';
-      const frn = other.frn || 'N/A';
-      const ulsUrl = other.ulsUrl || '';
+      const grantDate = safeText(other.grantDate);
+      const expiryDate = safeText(other.expiryDate);
+      const lastActionDate = safeText(other.lastActionDate);
+      const frn = safeText(other.frn);
+      const ulsUrl = safeOptional(other.ulsUrl);
 
       const html = `
         <dl class="fcc-cs-dataList">

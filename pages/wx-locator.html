@@ -3,100 +3,153 @@ title: Weather Location Redirect
 layout: page
 permalink: /wx-locator
 ---
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        #loading {
-            display: none;
-        }
-        #manualInput {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-        }
-        #manualInput input {
-            margin: 5px 0;
-        }
-        #instructions {
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div id="content">
-        <div id="instructions">
-            <h1>Welcome to My Weather Application</h1>
-            <p>This page will help you get weather updates based on your current location.</p>
-            <p>Click the button below to allow us to automatically detect your location. If this fails, you'll have the option to manually enter your location.</p>
-        </div>
-        <button id="getLocationBtn">Get Location and Redirect</button>
-        <p id="loading">Attempting to get your location...</p>
-        <div id="manualInput">
-            <p>We couldn't get your location automatically. Please enter your city or address below to continue:</p>
-            <input type="text" id="locationInput" placeholder="Enter your city or address">
-            <button id="submitLocationBtn">Submit</button>
-        </div>
+<style>
+  .wx-locator {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  #loading {
+    display: none;
+  }
+
+  #manualInput {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #manualInput input {
+    margin: 5px 0;
+  }
+
+  #locationResults {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    width: min(100%, 520px);
+  }
+
+  .location-option {
+    background: var(--site-surface);
+    border: 1px solid var(--site-border);
+    border-radius: 0.75rem;
+    color: var(--site-text);
+    cursor: pointer;
+    padding: 0.75rem 1rem;
+    text-align: left;
+  }
+
+  .location-option:hover,
+  .location-option:focus {
+    border-color: var(--site-link);
+    color: var(--site-heading);
+  }
+
+  #instructions {
+    margin-bottom: 20px;
+  }
+</style>
+
+<div class="wx-locator">
+  <div id="content">
+    <div id="instructions">
+      <h2>Welcome to My Weather Application</h2>
+      <p>This page will help you get National Weather Service forecasts for US locations.</p>
+      <p>Click the button below to allow us to automatically detect your location. If this fails, you'll have the option to manually enter a US city or address.</p>
     </div>
+    <button id="getLocationBtn">Get Location and Redirect</button>
+    <p id="loading">Attempting to get your location...</p>
+    <div id="manualInput">
+      <p>We couldn't get your location automatically. Please enter a US city or address below to continue:</p>
+      <input type="text" id="locationInput" placeholder="Enter a US city or address">
+      <button id="submitLocationBtn">Submit</button>
+      <div id="locationResults" aria-live="polite"></div>
+    </div>
+  </div>
+</div>
 
-    <script>
-        document.getElementById('getLocationBtn').addEventListener('click', function() {
-            const loadingElement = document.getElementById('loading');
-            const buttonElement = document.getElementById('getLocationBtn');
-            const instructionsElement = document.getElementById('instructions');
-            
-            // Show loading text and hide button and instructions
-            loadingElement.style.display = 'block';
-            buttonElement.style.display = 'none';
-            instructionsElement.style.display = 'none';
-            
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-            } else {
-                showManualInput();
-            }
-        });
+<script>
+  document.getElementById('getLocationBtn').addEventListener('click', function() {
+    const loadingElement = document.getElementById('loading');
+    const buttonElement = document.getElementById('getLocationBtn');
+    const instructionsElement = document.getElementById('instructions');
 
-        function successCallback(position) {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-            window.location.href = `/wx?lat=${lat}&lon=${lon}`;
+    loadingElement.style.display = 'block';
+    buttonElement.style.display = 'none';
+    instructionsElement.style.display = 'none';
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+    } else {
+      showManualInput();
+    }
+  });
+
+  function successCallback(position) {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+    window.location.href = `/wx?lat=${lat}&lon=${lon}`;
+  }
+
+  function errorCallback(error) {
+    showManualInput();
+  }
+
+  function showManualInput() {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('manualInput').style.display = 'flex';
+  }
+
+  document.getElementById('submitLocationBtn').addEventListener('click', function() {
+    searchLocation();
+  });
+
+  document.getElementById('locationInput').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      searchLocation();
+    }
+  });
+
+  function searchLocation() {
+    const locationInput = document.getElementById('locationInput');
+    const locationResults = document.getElementById('locationResults');
+    const location = locationInput.value.trim();
+
+    if (!location) {
+      locationResults.textContent = 'Enter a US city or address first.';
+      return;
+    }
+
+    locationResults.textContent = 'Searching...';
+    const geocodeUrl = `https://nominatim.openstreetmap.org/search?format=json&limit=5&countrycodes=us&q=${encodeURIComponent(location)}`;
+
+    fetch(geocodeUrl)
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          locationResults.innerHTML = '<p>Select the correct location:</p>';
+          data.forEach(place => {
+            const option = document.createElement('button');
+            option.type = 'button';
+            option.className = 'location-option';
+            option.textContent = place.display_name;
+            option.addEventListener('click', function() {
+              window.location.href = `/wx?lat=${place.lat}&lon=${place.lon}`;
+            });
+            locationResults.appendChild(option);
+          });
+        } else {
+          locationResults.textContent = 'Location not found. Please try entering a more specific US address.';
         }
-
-        function errorCallback(error) {
-            showManualInput();
-        }
-
-        function showManualInput() {
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('manualInput').style.display = 'flex';
-        }
-
-        document.getElementById('submitLocationBtn').addEventListener('click', function() {
-            const location = document.getElementById('locationInput').value;
-            const geocodeUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`;
-            
-            fetch(geocodeUrl)
-                .then(response => response.json())
-                .then(data => {
-                    if (data && data.length > 0) {
-                        const lat = data[0].lat;
-                        const lon = data[0].lon;
-                        window.location.href = `/wx?lat=${lat}&lon=${lon}`;
-                    } else {
-                        alert('Location not found. Please try entering a more specific address.');
-                        document.getElementById('manualInput').style.display = 'flex';
-                    }
-                })
-                .catch(error => {
-                    alert('Error fetching location: ' + error.message);
-                    document.getElementById('manualInput').style.display = 'flex';
-                });
-        });
-    </script>
+      })
+      .catch(error => {
+        locationResults.textContent = 'Error fetching location: ' + error.message;
+        document.getElementById('manualInput').style.display = 'flex';
+      });
+  }
+</script>

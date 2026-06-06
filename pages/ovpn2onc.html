@@ -3,30 +3,25 @@ permalink: /tools/ovpn2onc
 layout: page
 ---
 
-<!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-
-    <title>OpenVPN to ONC</title>
-    <meta name="description" content="Convert OpenVPN config files to ONC files">
-
-    <style>
+<style>
     #output {
-      background-color: #f8f9fa;
+      background-color: var(--site-surface);
+      color: var(--site-text);
+      border: 1px solid var(--site-border);
     }
     #log {
       width: 40em;
       min-height: 7em;
       overflow-x: auto;
-      background-color: #f8f9fa;
+      background-color: var(--site-surface);
+      color: var(--site-text);
+      border: 1px solid var(--site-border);
     }
     #log>p {
       margin: 0px;
     }
     </style>
-    <script>
+<script>
     /**
      * Register the function `handler` to be called when the `Convert` button is
      * pressed.
@@ -499,39 +494,35 @@ layout: page
       }
       return [certs, certGuids]
     }
-    </script>
-  </head>
+    window.addEventListener('load', setHandler)
+  </script>
 
-  <body onload="setHandler()">
-    <div>
-      <h1>ovpn2onc</h1>
-	<body>Taken from https://github.com/thomkeh/ovpn2onc</body>
-	<body>and is licensed under GPLv3 according to gethub</body>
-      <ul>
-       <li>
-          <label for="connname">Name for connection (can be chosen freely):</label>
-          <input type="text" id="connname">
-        </li>
-        <li>
-          <label for="inputopenvpn">OpenVPN config file (*.ovpn):</label>
-          <input type="file" id="inputopenvpn">
-        </li>
-        <li>
-          <label for="inputcertificates">Certificates and keys (can be multiple files):</label>
-          <input type="file" id="inputcertificates" multiple>
-        </li>
-      </ul>
-      <button id="convertbutton" type="button">Convert</button>
-    </div>
-    <div>
-      <p><b>Output</b> (copy this into a new file and load it in ChromeOS)</p>
-      <textarea readonly id="output" wrap="off" rows="40" cols="100"></textarea>
-    </div>
-    <div>
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-      <p>Debugging info:</p>
-      <div id="log"></div>
-    </div>
-  </body>
-</html>
+  <div>
+    <h1>ovpn2onc</h1>
+    <p>Taken from https://github.com/thomkeh/ovpn2onc and licensed under GPLv3.</p>
+    <ul>
+      <li>
+        <label for="connname">Name for connection (can be chosen freely):</label>
+        <input type="text" id="connname">
+      </li>
+      <li>
+        <label for="inputopenvpn">OpenVPN config file (*.ovpn):</label>
+        <input type="file" id="inputopenvpn">
+      </li>
+      <li>
+        <label for="inputcertificates">Certificates and keys (can be multiple files):</label>
+        <input type="file" id="inputcertificates" multiple>
+      </li>
+    </ul>
+    <button id="convertbutton" type="button">Convert</button>
+  </div>
+  <div>
+    <p><b>Output</b> (copy this into a new file and load it in ChromeOS)</p>
+    <textarea readonly id="output" wrap="off" rows="40" cols="100"></textarea>
+  </div>
+  <div>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>Debugging info:</p>
+    <div id="log"></div>
+  </div>

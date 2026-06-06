@@ -1,9 +1,37 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
+    <script>
+      (function () {
+        let storedTheme = null;
+        try {
+          storedTheme = localStorage.getItem('theme');
+        } catch (e) {}
+        const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        const theme = storedTheme || systemTheme;
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
+    {% assign page_title = page.title | default: site.title %}
+    {% if page_title == site.title %}
+    <title>{{ page_title }}</title>
+    {% else %}
+    <title>{{ page_title }} | {{ site.title }}</title>
+    {% endif %}
+    <meta name="description" content="{{ page.description | default: site.description }}" />
     <meta name="author" content="CJ Saathoff" />
-    <title>CJ Saathoff - Landing Page</title>
+    <link rel="canonical" href="{{ page.url | absolute_url }}" />
+    <meta property="og:site_name" content="CJ Saathoff" />
+    <meta property="og:title" content="{{ page_title | escape }}" />
+    <meta property="og:description" content="{{ page.description | default: site.description }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ page.url | absolute_url }}" />
+    <meta property="og:image" content="{{ '/assets/img/banner.jpg' | absolute_url }}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ page_title | escape }}" />
+    <meta name="twitter:description" content="{{ page.description | default: site.description }}" />
+    <meta name="theme-color" content="">
     <!-- Favicon-->
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicon-60x60.png">
@@ -28,5 +56,4 @@
     <link href="/css/styles.css" rel="stylesheet" />
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <meta name="theme-color" content="#2c3e50">
 </head>

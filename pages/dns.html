@@ -4,101 +4,102 @@ permalink: /tools/dns
 layout: page
 ---
 
-<h1>Cloudflare DNS Over HTTPS Recursive Lookup</h1>
-
 <style>
 /* Paste entire CSS block from your style tag here */
-body.cf-dns-doh-lookup {
+.cf-dns-doh-lookup {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #eef2f7;
-  padding: 1.5rem;
-  color: #222;
-  min-height: 100vh;
-  /* You might want to remove or adjust body styles here since your layout may handle it */
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  background: transparent;
+  padding: 0;
+  color: var(--site-text);
 }
 div.cf-dns-doh-container {
   width: 100%;
-  max-width: 680px;
-  background: #fff;
+  max-width: 760px;
+  background: var(--site-surface-strong);
   border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 24px 70px rgba(2, 6, 23, 0.18);
   padding: 2rem;
+  border: 1px solid var(--site-border);
+  backdrop-filter: blur(18px);
 }
-h1.cf-dns-doh-header {
+.cf-dns-doh-header {
   margin-bottom: 1rem;
   text-align: center;
   font-weight: 700;
-  color: #0a74da;
+  color: var(--site-heading);
   user-select: none;
 }
 form.cf-dns-doh-form {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(190px, auto) auto;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
+  align-items: stretch;
 }
 input[type="text"].cf-dns-doh-domain-input {
-  flex: 1 1 250px;
+  width: 100%;
+  min-width: 0;
   padding: 0.6rem 1rem;
-  border: 2px solid #0a74daaa;
+  border: 2px solid var(--site-border);
   border-radius: 8px;
   font-size: 1rem;
   outline-offset: 2px;
   transition: border-color 0.3s;
+  background: var(--site-surface);
+  color: var(--site-text);
 }
 input[type="text"].cf-dns-doh-domain-input:focus {
-  border-color: #005bb5;
+  border-color: var(--site-link);
 }
 select.cf-dns-doh-record-select {
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  border: 2px solid #0a74daaa;
+  border: 2px solid var(--site-border);
   font-size: 1rem;
-  background: white;
+  background: var(--site-surface);
+  color: var(--site-text);
   outline-offset: 2px;
   cursor: pointer;
-  min-width: 175px;
+  width: 100%;
+  min-width: 0;
 }
 select.cf-dns-doh-record-select:focus {
-  border-color: #005bb5;
+  border-color: var(--site-link);
 }
 button.cf-dns-doh-query-btn {
-  background-color: #0a74da;
-  color: white;
+  background-color: var(--site-accent-2);
+  color: var(--site-heading);
   border: none;
   border-radius: 8px;
-  padding: 0 1.25rem;
+  min-height: 48px;
+  padding: 0.6rem 1.25rem;
   font-size: 1.1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  flex-shrink: 0;
   user-select: none;
+  white-space: nowrap;
 }
 button.cf-dns-doh-query-btn:hover {
-  background-color: #054ea4;
+  background-color: color-mix(in srgb, var(--site-accent-2) 82%, black);
 }
 div.cf-dns-doh-result {
-  background: #f7faff;
-  border: 2px solid #0a74da33;
+  background: var(--site-surface);
+  border: 2px solid var(--site-border);
   border-radius: 10px;
   padding: 1rem 1.2rem;
   white-space: pre-wrap;
   font-family: Consolas, monospace;
-  color: #084a8a;
+  color: var(--site-text);
   max-height: 400px;
   overflow-y: auto;
 }
 div.cf-dns-doh-result strong {
-  color: #003766;
+  color: var(--site-heading);
 }
 div.cf-dns-doh-answer-record {
   margin-bottom: 1rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid #cfe1fa;
+  border-bottom: 1px solid var(--site-border);
 }
 span.cf-dns-doh-data {
   font-style: italic;
@@ -106,7 +107,7 @@ span.cf-dns-doh-data {
 }
 a.cf-dns-doh-ip-link {
   font-style: italic;
-  color: #1a73e8;
+  color: var(--site-link);
   text-decoration: none;
   cursor: pointer;
   user-select: text;
@@ -114,25 +115,35 @@ a.cf-dns-doh-ip-link {
   transition: color 0.3s;
 }
 a.cf-dns-doh-ip-link:hover {
-  color: #0045a5;
+  color: color-mix(in srgb, var(--site-link) 76%, black);
   text-decoration: underline;
 }
 span.cf-dns-doh-clickable {
-  color: #1a73e8;
+  color: var(--site-link);
   cursor: pointer;
   text-decoration: underline;
   user-select: none;
   transition: color 0.3s;
 }
 span.cf-dns-doh-clickable:hover {
-  color: #d93025;
+  color: var(--site-danger);
 }
 div.cf-dns-doh-loading {
   text-align: center;
   margin-top: 1rem;
   font-size: 1rem;
-  color: #0a74da;
+  color: var(--site-link);
   user-select: none;
+}
+
+@media (max-width: 767.98px) {
+  div.cf-dns-doh-container {
+    padding: 1.25rem;
+  }
+
+  form.cf-dns-doh-form {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 
@@ -324,7 +335,7 @@ div.cf-dns-doh-loading {
     const domain = document.getElementById("domainInput").value.trim();
     const recordType = document.getElementById("recordTypeSelect").value;
     if (!domain) {
-      outputEl.innerHTML = `<div style="color:red;">Please enter a domain.</div>`;
+      outputEl.innerHTML = `<div style="color: var(--site-danger);">Please enter a domain.</div>`;
       return;
     }
 
@@ -382,7 +393,7 @@ div.cf-dns-doh-loading {
         }
       }
     } catch (error) {
-      outputEl.innerHTML = `<div style="color:red;"><strong>Error:</strong> ${error.message}</div>`;
+      outputEl.innerHTML = `<div style="color: var(--site-danger);"><strong>Error:</strong> ${error.message}</div>`;
     } finally {
       lookupBtn.disabled = false;
     }

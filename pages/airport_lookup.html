@@ -3,92 +3,90 @@ permalink: /tools/airport_lookup
 layout: page
 ---
 
-<head>
-    <style>
-        .airport-info {
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 5px;
-            white-space: pre-wrap;
-        }
+<style>
+  .airport-info {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    white-space: pre-wrap;
+  }
 
-        .airport-info table {
-            border-collapse: collapse;
-            width: 100%;
-        }
+  .airport-info table {
+    border-collapse: collapse;
+    width: 100%;
+  }
 
-        .airport-info th, .airport-info td {
-            text-align: left;
-            padding: 6px;
-        }
+  .airport-info th,
+  .airport-info td {
+    text-align: left;
+    padding: 6px;
+  }
 
-        .airport-info th {
-            width: 30%;
-        }
-    </style>
-</head>
-<body>
+  .airport-info th {
+    width: 30%;
+  }
+</style>
 
 <div class="container">
-    <h1>Airport Lookup</h1>
-    <input type="text" id="iataCode" placeholder="Enter IATA code (e.g., LAX)">
-    <button id="lookupButton">Lookup Airport</button>
+  <h1>Airport Lookup</h1>
+  <input type="text" id="iataCode" placeholder="Enter IATA code (e.g., LAX)">
+  <button id="lookupButton">Lookup Airport</button>
 
-    <div class="airport-info" id="airportInfo" style="display: none;">
-        <h2>Airport Information</h2>
-        <table id="airportTable"></table>
-    </div>
+  <div class="airport-info" id="airportInfo" style="display: none;">
+    <h2>Airport Information</h2>
+    <table id="airportTable"></table>
+  </div>
 </div>
 
 <script>
-    document.getElementById('lookupButton').addEventListener('click', function () {
-        const iataCode = document.getElementById('iataCode').value.toUpperCase().trim();
-        if (!iataCode) {
-            alert('Please enter a valid IATA code.');
-            return;
+  document.getElementById('lookupButton').addEventListener('click', function () {
+    const iataCode = document.getElementById('iataCode').value.toUpperCase().trim();
+    if (!iataCode) {
+      alert('Please enter a valid IATA code.');
+      return;
+    }
+
+    const url = `https://corsproxy.io/?url=https://api.aviationapi.com/v1/airports?apt=${iataCode}`;
+
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
+        return response.json();
+      })
+      .then(data => {
+        const airportArray = data[iataCode];
 
-        const url = `https://corsproxy.io/?url=https://api.aviationapi.com/v1/airports?apt=${iataCode}`;
+        if (airportArray && airportArray.length > 0) {
+          const airport = airportArray[0];
+          const table = document.getElementById('airportTable');
+          table.innerHTML = '';
 
-        fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                const airportArray = data[iataCode];
+          for (const key in airport) {
+            const row = document.createElement('tr');
 
-                if (airportArray && airportArray.length > 0) {
-                    const airport = airportArray[0];
-                    const table = document.getElementById('airportTable');
-                    table.innerHTML = '';
+            const keyCell = document.createElement('th');
+            keyCell.textContent = key.replace(/_/g, ' ').toUpperCase();
 
-                    for (const key in airport) {
-                        const row = document.createElement('tr');
+            const valueCell = document.createElement('td');
+            valueCell.textContent = airport[key];
 
-                        const keyCell = document.createElement('th');
-                        keyCell.textContent = key.replace(/_/g, ' ').toUpperCase();
+            row.appendChild(keyCell);
+            row.appendChild(valueCell);
+            table.appendChild(row);
+          }
 
-                        const valueCell = document.createElement('td');
-                        valueCell.textContent = airport[key];
-
-                        row.appendChild(keyCell);
-                        row.appendChild(valueCell);
-                        table.appendChild(row);
-                    }
-
-                    document.getElementById('airportInfo').style.display = 'block';
-                } else {
-                    alert('No airport found with that IATA code.');
-                    document.getElementById('airportInfo').style.display = 'none';
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching airport data:', error);
-                alert('There was an error fetching the airport data. Please try again.');
-                document.getElementById('airportInfo').style.display = 'none';
-            });
-    });
+          document.getElementById('airportInfo').style.display = 'block';
+        } else {
+          alert('No airport found with that IATA code.');
+          document.getElementById('airportInfo').style.display = 'none';
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching airport data:', error);
+        alert('There was an error fetching the airport data. Please try again.');
+        document.getElementById('airportInfo').style.display = 'none';
+      });
+  });
 </script>

@@ -3,38 +3,34 @@ title: Fake Email Generator
 layout: page
 permalink: /tools/fakeemail
 ---
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            text-align: center;
-        }
-        button {
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-        .result {
-            margin-top: 20px;
-            font-weight: bold;
-            font-size: 18px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Email Generator</h1>
-        <button id="generateButton">Fake Email Generator</button>
-        <div class="result" id="result"></div>
-    </div>
-    <script>
-        document.getElementById('generateButton').addEventListener('click', generateEmail);
+<style>
+  .email-gen {
+    text-align: center;
+  }
 
-        function generateEmail() {
-            const firstNames = [
+  .email-gen button {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .email-gen .result {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+  }
+</style>
+
+<div class="email-gen">
+  <h2>Email Generator</h2>
+  <button id="generateButton">Fake Email Generator</button>
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+  document.getElementById('generateButton').addEventListener('click', generateEmail);
+
+  function generateEmail() {
+    const firstNames = [
                 'john', 'jane', 'alice', 'bob', 'charlie', 'dave', 'emily', 'frank', 'grace', 'henry', 'irene', 'jack', 
                 'karen', 'louis', 'mike', 'nina', 'oliver', 'paul', 'quincy', 'rachel', 'steve', 'tina', 'ursula', 
                 'victor', 'wanda', 'xander', 'yvonne', 'zach', 'andrew', 'brenda', 'chris', 'diana', 'eric', 'fiona',
@@ -83,8 +79,8 @@ permalink: /tools/fakeemail
             const domain = domains[Math.floor(Math.random() * domains.length)];
             const number = Math.floor(Math.random() * 100);
 
-            const email = `${firstName}.${lastName}${number}@${domain}.example`;
-            
-            document.getElementById('result').innerText = email;
-        }
-    </script>
+    const email = `${firstName}.${lastName}${number}@${domain}.example`;
+
+    document.getElementById('result').innerText = email;
+  }
+</script>

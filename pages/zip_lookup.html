@@ -2,53 +2,80 @@
 permalink: /tools/zip_lookup
 layout: page
 ---
+<style>
+  .zip-lookup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+  }
 
-</head>
-<body>
-        <input type="text" id="zipcode" placeholder="Enter ZIP Code" style="padding: 10px; margin-right: 10px; border: 1px solid #ddd; border-radius: 4px;"/>
-        <button id="lookupButton" style="padding: 10px 15px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
-            Get Info
-        </button>
-        <div id="result" style="margin-top: 15px;"></div>
-    
-    <script>
-        function lookupZipCode() {
-            const zipCode = document.getElementById('zipcode').value.trim();
-            if (!zipCode) {
-                document.getElementById('result').innerHTML = '<p style="color: red;">Please enter a ZIP code.</p>';
-                return;
-            }
-    
-            fetch(`https://api.zippopotam.us/us/${zipCode}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Invalid ZIP code');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    const output = `
-                        <h2 style="margin: 0; font-size: 1.25em;">Information for ZIP Code: ${data['post code']}</h2>
-                        <p><strong>City:</strong> ${data.places[0]['place name']}</p>
-                        <p><strong>State:</strong> ${data.places[0]['state']}</p>
-                        <p><strong>Country:</strong> ${data.country}</p>
-                        <p><strong>Coordinates:</strong> ${data.places[0].latitude}, ${data.places[0].longitude}</p>
-                    `;
-                    document.getElementById('result').innerHTML = output;
-                })
-                .catch(error => {
-                    document.getElementById('result').innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
-                });
+  .zip-lookup__input {
+    padding: 10px;
+    border: 1px solid var(--site-border);
+    border-radius: 0.5rem;
+    background: var(--site-surface);
+    color: var(--site-text);
+  }
+
+  .zip-lookup__button {
+    padding: 10px 15px;
+    background-color: var(--site-accent-2);
+    color: var(--site-heading);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+
+  .zip-lookup__result {
+    margin-top: 15px;
+    color: var(--site-text);
+  }
+</style>
+
+<div class="zip-lookup">
+  <input class="zip-lookup__input" type="text" id="zipcode" placeholder="Enter ZIP Code"/>
+  <button class="zip-lookup__button" id="lookupButton">
+  Get Info
+  </button>
+</div>
+<div class="zip-lookup__result" id="result"></div>
+
+<script>
+  function lookupZipCode() {
+    const zipCode = document.getElementById('zipcode').value.trim();
+    if (!zipCode) {
+      document.getElementById('result').innerHTML = '<p style="color: var(--site-danger);">Please enter a ZIP code.</p>';
+      return;
+    }
+
+    fetch(`https://api.zippopotam.us/us/${zipCode}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Invalid ZIP code');
         }
-    
-        document.getElementById('lookupButton').addEventListener('click', lookupZipCode);
-    
-        document.getElementById('zipcode').addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                lookupZipCode();
-            }
-        });
-    </script>
+        return response.json();
+      })
+      .then(data => {
+        const output = `
+          <h2 style="margin: 0; font-size: 1.25em; color: var(--site-heading);">Information for ZIP Code: ${data['post code']}</h2>
+          <p><strong>City:</strong> ${data.places[0]['place name']}</p>
+          <p><strong>State:</strong> ${data.places[0]['state']}</p>
+          <p><strong>Country:</strong> ${data.country}</p>
+          <p><strong>Coordinates:</strong> ${data.places[0].latitude}, ${data.places[0].longitude}</p>
+        `;
+        document.getElementById('result').innerHTML = output;
+      })
+      .catch(error => {
+        document.getElementById('result').innerHTML = `<p style="color: var(--site-danger);">Error: ${error.message}</p>`;
+      });
+  }
 
-</body>
-</html>
+  document.getElementById('lookupButton').addEventListener('click', lookupZipCode);
+
+  document.getElementById('zipcode').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      lookupZipCode();
+    }
+  });
+</script>

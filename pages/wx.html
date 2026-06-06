@@ -9,8 +9,47 @@ layout: none
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Weather Forecast</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌡️</text></svg>">
+<script>
+  (function () {
+    const storedTheme = localStorage.getItem('theme');
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    const theme = storedTheme === 'light' || (!storedTheme && prefersLight) ? 'light' : 'dark';
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+  })();
+</script>
 
 <style>
+  :root {
+    --site-bg-start: #07111f;
+    --site-bg-end: #101826;
+    --site-text: #e5eef8;
+    --site-muted: rgba(226, 232, 240, 0.82);
+    --site-heading: #f8fbff;
+    --site-surface: rgba(15, 23, 42, 0.56);
+    --site-surface-strong: rgba(15, 23, 42, 0.58);
+    --site-border: rgba(148, 163, 184, 0.16);
+    --site-link: #93c5fd;
+    --site-accent: #1abc9c;
+    --site-accent-2: #3b82f6;
+    --site-danger: #f87171;
+  }
+
+  html[data-theme="light"] {
+    --site-bg-start: #eef4fb;
+    --site-bg-end: #e2e8f0;
+    --site-text: #102033;
+    --site-muted: rgba(16, 32, 51, 0.78);
+    --site-heading: #08111d;
+    --site-surface: rgba(255, 255, 255, 0.74);
+    --site-surface-strong: rgba(255, 255, 255, 0.82);
+    --site-border: rgba(100, 116, 139, 0.18);
+    --site-link: #2563eb;
+    --site-accent: #0f766e;
+    --site-accent-2: #2563eb;
+    --site-danger: #dc2626;
+  }
+
   /* Reset & base */
   * {
     box-sizing: border-box;
@@ -18,8 +57,8 @@ layout: none
 
   body {
     margin: 0; 
-    background: linear-gradient(135deg, #2b2f38, #1c1f26);
-    color: #e3e9f0;
+    background: linear-gradient(135deg, var(--site-bg-start), var(--site-bg-end));
+    color: var(--site-text);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.5;
     min-height: 100vh;
@@ -38,8 +77,8 @@ layout: none
     font-weight: 700;
     font-size: 2rem;
     margin: 0;
-    color: #ffd166;
-    text-shadow: 0 0 5px #ffd166aa;
+    color: var(--site-heading);
+    text-shadow: 0 0 5px color-mix(in srgb, var(--site-accent-2) 55%, transparent);
   }
 
   main {
@@ -50,19 +89,19 @@ layout: none
   /* Loading & error message styles */
   #weather-data.loading,
   #weather-data.error {
-    background: #3a3f4b;
+    background: var(--site-surface);
     padding: 2rem;
     border-radius: 8px;
     font-size: 1.2rem;
-    color: #ff6b6b;
+    color: var(--site-danger);
     text-align: center;
     user-select: none;
-    box-shadow: 0 0 10px #ff6b6b33;
+    box-shadow: 0 0 10px color-mix(in srgb, var(--site-danger) 22%, transparent);
   }
 
   #weather-data.loading {
-    color: #ffd166;
-    box-shadow: 0 0 10px #ffd16633;
+    color: var(--site-link);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--site-link) 20%, transparent);
   }
 
   /* Alerts section */
@@ -84,10 +123,10 @@ layout: none
   .active-alerts li {
     margin-bottom:1em;
     padding:0.75em 1em;
-    background:#3a1e1e;
+    background: color-mix(in srgb, var(--site-danger) 16%, var(--site-surface));
     border-radius:6px;
-    box-shadow: 0 0 8px #ff6b6b88;
-    color: #ffeaea;
+    box-shadow: 0 0 8px color-mix(in srgb, var(--site-danger) 38%, transparent);
+    color: var(--site-text);
   }
 
   .active-alerts li p {
@@ -96,16 +135,16 @@ layout: none
 
   /* Current conditions card */
   .current-conditions-wrapper {
-    background: #242833;
+    background: var(--site-surface);
     padding: 1.5rem 2rem;
     border-radius: 10px;
-    box-shadow: 0 0 12px #2a9d8faa;
+    box-shadow: 0 0 12px color-mix(in srgb, var(--site-accent) 24%, transparent);
     margin-bottom: 2rem;
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    grid-gap: 1.5rem;
-    align-items: center;
-    color: #caf0f8;
+    grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+    gap: 1.5rem 2rem;
+    align-items: start;
+    color: var(--site-text);
   }
 
   .current-conditions-wrapper h2 {
@@ -113,58 +152,73 @@ layout: none
     margin: 0 0 1rem 0;
     font-weight: 700;
     font-size: 1.8rem;
-    color: #ffd166;
+    color: var(--site-heading);
   }
 
   .detailed-forecast {
     font-size: 1rem;
     line-height: 1.4;
+    margin: 0;
+  }
+
+  .current-summary {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 1rem;
+    align-items: center;
   }
 
   .current-conditions-icon {
     width: 96px;
     height: 96px;
     object-fit: contain;
-    filter: drop-shadow(0 0 3px #ffd166aa);
+    filter: drop-shadow(0 0 3px color-mix(in srgb, var(--site-accent-2) 55%, transparent));
   }
 
   .current-stats {
-    color: #caf0f8;
+    color: var(--site-text);
     font-size: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem 1rem;
+  }
+
+  .current-stats p {
+    margin: 0;
+    min-width: 0;
   }
 
   .current-stats strong {
-    color: #ffd166;
+    color: var(--site-heading);
   }
 
   .radar-container {
+    grid-column: 1 / -1;
     display: flex;
     justify-content: center;
+    margin-top: 0.5rem;
   }
 
   .radar-image {
     width: 280px;
     height: auto;
     border-radius: 8px;
-    box-shadow: 0 0 10px #2a9d8f33;
-    border: 1px solid #2a9d8f44;
+    box-shadow: 0 0 10px color-mix(in srgb, var(--site-accent) 22%, transparent);
+    border: 1px solid color-mix(in srgb, var(--site-accent) 28%, transparent);
   }
 
   /* Upcoming forecast */
   .upcoming-forecast {
-    background: #2a303c;
+    background: var(--site-surface);
     border-radius: 10px;
     padding: 1rem 2rem;
-    box-shadow: 0 0 10px #264653aa;
+    box-shadow: 0 0 10px color-mix(in srgb, var(--site-accent-2) 24%, transparent);
   }
 
   .upcoming-forecast h2 {
     margin-top: 0;
     margin-bottom: 1rem;
-    color: #e9c46a;
+    color: var(--site-heading);
     font-weight: 700;
     font-size: 1.5rem;
     text-align: center;
@@ -177,14 +231,14 @@ layout: none
   }
 
   .forecast-card {
-    background: #1f2431;
+    background: var(--site-surface-strong);
     border-radius: 10px;
     padding: 1rem 1.25rem;
-    box-shadow: 0 0 8px #1f2431aa;
+    box-shadow: 0 0 8px rgba(2, 6, 23, 0.12);
     display: flex;
     align-items: flex-start;
     gap: 1rem;
-    color: #ade8f4;
+    color: var(--site-text);
   }
 
   .forecast-card img {
@@ -192,14 +246,14 @@ layout: none
     height: 48px;
     flex-shrink: 0;
     object-fit: contain;
-    filter: drop-shadow(0 0 2px #e9c46aaa);
+    filter: drop-shadow(0 0 2px color-mix(in srgb, var(--site-accent-2) 45%, transparent));
   }
 
   .forecast-info h3 {
     margin: 0 0 0.4rem;
     font-size: 1.1rem;
     font-weight: 700;
-    color: #f4a261;
+    color: var(--site-heading);
   }
 
   .forecast-info p {
@@ -213,17 +267,20 @@ layout: none
     .current-conditions-wrapper {
       grid-template-columns: 1fr;
       text-align: center;
+      padding: 1.25rem;
+    }
+
+    .current-summary {
+      grid-template-columns: 1fr;
+      justify-items: center;
     }
 
     .current-conditions-icon {
-      margin: 0 auto 1rem auto;
+      margin: 0;
     }
 
     .current-stats {
-      flex-direction: row;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
+      grid-template-columns: 1fr;
       font-size: 0.9rem;
     }
 
@@ -276,16 +333,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  async function fetchCurrentObservation(stationsUrl) {
+    if (!stationsUrl) return null;
+
+    try {
+      const stationsRes = await fetch(stationsUrl);
+      if (!stationsRes.ok) return null;
+
+      const stationsData = await stationsRes.json();
+      const station = stationsData.features && stationsData.features[0];
+      if (!station || !station.id) return null;
+
+      const observationRes = await fetch(`${station.id}/observations/latest`);
+      if (!observationRes.ok) return null;
+
+      const observationData = await observationRes.json();
+      return {
+        ...observationData.properties,
+        stationName: station.properties.name || station.properties.stationIdentifier || 'nearest station',
+        observedAt: observationData.properties.timestamp,
+        stationIdentifier: station.properties.stationIdentifier
+      };
+    } catch (err) {
+      console.warn('Failed to fetch current observation:', err);
+      return null;
+    }
+  }
+
   async function fetchWeatherData(lat, lon) {
     weatherDataDiv.className = 'loading';
     weatherDataDiv.textContent = 'Loading weather data...';
 
     try {
+      const latitude = Number(lat);
+      const longitude = Number(lon);
+      if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+        throw new Error('Invalid coordinates. Latitude and longitude must be numbers.');
+      }
+
       const pointRes = await fetch(`https://api.weather.gov/points/${lat},${lon}`);
+      if (pointRes.status === 404) {
+        showUnsupportedLocation(latitude, longitude);
+        return;
+      }
       if (!pointRes.ok) throw new Error('Failed to fetch weather data');
 
       const pointData = await pointRes.json();
       const forecastUrl = pointData.properties.forecast;
+      const stationsUrl = pointData.properties.observationStations;
       const radarStation = pointData.properties.radarStation;
       const city = pointData.properties.relativeLocation.properties.city;
 
@@ -305,30 +400,82 @@ document.addEventListener('DOMContentLoaded', () => {
         alerts = await fetchActiveAlertsForZone(zoneId);
       }
 
-      // Fetch forecast data
-      const forecastRes = await fetch(forecastUrl);
+      // Fetch forecast and current observation data
+      const [forecastRes, currentObservation] = await Promise.all([
+        fetch(forecastUrl),
+        fetchCurrentObservation(stationsUrl)
+      ]);
       if (!forecastRes.ok) throw new Error('Failed to fetch forecast data');
       const forecastData = await forecastRes.json();
 
-      displayWeatherData(forecastData, radarStation, alerts);
+      displayWeatherData(forecastData, radarStation, alerts, currentObservation);
     } catch (error) {
       weatherDataDiv.className = 'error';
       weatherDataDiv.textContent = `An error occurred: ${error.message}`;
     }
   }
+
+  function showUnsupportedLocation(lat, lon) {
+    weatherDataDiv.className = 'error';
+    weatherDataDiv.innerHTML = `
+      <p><strong>Location outside NWS coverage.</strong></p>
+      <p>The weather page uses the National Weather Service API, which only supports the United States and its territories.</p>
+      <p>Received coordinates: ${lat.toFixed(4)}, ${lon.toFixed(4)}</p>
+      <p><a href="/wx-locator" style="color: var(--site-link); text-decoration: underline;">Try a US location</a></p>`;
+  }
   
-  function displayWeatherData(data, radarStation, alerts=[]) {
+  function formatTemperature(value) {
+    if (value == null) return 'N/A';
+    return `${Math.round((value * 9 / 5) + 32)} F`;
+  }
+
+  function formatWindSpeed(value) {
+    if (value == null) return 'N/A';
+    return `${Math.round(value * 2.23694)} mph`;
+  }
+
+  function formatWindDirection(value) {
+    if (value == null) return 'N/A';
+    const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+    const direction = directions[Math.round(value / 45) % 8];
+    return `${direction} (${Math.round(value)} degrees)`;
+  }
+
+  function formatPressure(value) {
+    if (value == null) return 'N/A';
+    return `${(value * 0.0002953).toFixed(2)} inHg`;
+  }
+
+  function formatVisibility(value) {
+    if (value == null) return 'N/A';
+    return `${(value / 1609.344).toFixed(1)} mi`;
+  }
+
+  function formatPercent(value) {
+    if (value == null) return 'N/A';
+    return `${Math.round(value)}%`;
+  }
+
+  function formatObservedTime(value) {
+    if (!value) return 'N/A';
+    return new Date(value).toLocaleString();
+  }
+
+  function displayWeatherData(data, radarStation, alerts=[], currentObservation=null) {
     weatherDataDiv.className = '';
     const periods = data.properties.periods;
-    const currentPeriod = periods[0];
+    const nextForecast = periods[0];
     const radarImageUrl = `https://radar.weather.gov/ridge/standard/${radarStation}_loop.gif`;
+    const currentIcon = currentObservation && currentObservation.icon ? currentObservation.icon : nextForecast.icon;
+    const currentDescription = currentObservation && currentObservation.textDescription ? currentObservation.textDescription : nextForecast.shortForecast;
+    const currentDetails = currentObservation ? `Observed at ${currentObservation.stationName} on ${formatObservedTime(currentObservation.observedAt)}.` : nextForecast.detailedForecast;
 
     // Alerts HTML block
     let alertsHtml = '';
     if (alerts.length > 0) {
       alertsHtml = `
         <section class="active-alerts" aria-live="polite" aria-label="Active Alerts">
-          <h2 style="color:#ff6b6b;">Active Weather Alerts</h2>
+        <h2 style="color: var(--site-danger);">Active Weather Alerts</h2>
           <ul>
             ${alerts.map(alert => `
               <li>
@@ -345,7 +492,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       alertsHtml = `
         <section class="active-alerts" aria-live="polite" aria-label="Active Alerts">
-          <h2 style="color:#4caf50;">No Active Weather Alerts</h2>
+        <h2 style="color: var(--site-accent);">No Active Weather Alerts</h2>
         </section>`;
     }
 
@@ -353,21 +500,26 @@ document.addEventListener('DOMContentLoaded', () => {
       ${alertsHtml}
 
       <div class="current-conditions-wrapper" role="region" aria-labelledby="current-conditions-title">
-        <h2 id="current-conditions-title">${currentPeriod.name}</h2>
-        <p class="detailed-forecast" aria-label="Detailed forecast">${currentPeriod.detailedForecast}</p>
-
-        <img 
-          class="current-conditions-icon" 
-          src="${currentPeriod.icon.startsWith('http') ? currentPeriod.icon : 'https://api.weather.gov/' + currentPeriod.icon}" 
-          alt="${currentPeriod.shortForecast}" 
-          width="96" height="96"
-        />
+        <h2 id="current-conditions-title">Current Conditions</h2>
+        <div class="current-summary">
+          <img
+            class="current-conditions-icon"
+            src="${currentIcon.startsWith('http') ? currentIcon : 'https://api.weather.gov/' + currentIcon}"
+            alt="${currentDescription}"
+            width="96" height="96"
+          />
+          <p class="detailed-forecast" aria-label="Current conditions summary">${currentDescription}. ${currentDetails}</p>
+        </div>
 
         <div class="current-stats" aria-label="Current weather stats">
-          <p><strong>Temperature:</strong> ${currentPeriod.temperature} ${currentPeriod.temperatureUnit}</p>
-          <p><strong>Temperature Trend:</strong> ${currentPeriod.temperatureTrend || 'N/A'}</p>
-          <p><strong>Probability of Precipitation:</strong> ${currentPeriod.probabilityOfPrecipitation.value != null ? currentPeriod.probabilityOfPrecipitation.value + '%' : 'N/A'}</p>
-          <p><strong>Wind Speed:</strong> ${currentPeriod.windSpeed}</p>
+          <p><strong>Temperature:</strong> ${currentObservation ? formatTemperature(currentObservation.temperature.value) : `${nextForecast.temperature} ${nextForecast.temperatureUnit}`}</p>
+          <p><strong>Dew Point:</strong> ${currentObservation ? formatTemperature(currentObservation.dewpoint.value) : 'N/A'}</p>
+          <p><strong>Humidity:</strong> ${currentObservation ? formatPercent(currentObservation.relativeHumidity.value) : 'N/A'}</p>
+          <p><strong>Wind Speed:</strong> ${currentObservation ? formatWindSpeed(currentObservation.windSpeed.value) : nextForecast.windSpeed}</p>
+          <p><strong>Wind Direction:</strong> ${currentObservation ? formatWindDirection(currentObservation.windDirection.value) : 'N/A'}</p>
+          <p><strong>Pressure:</strong> ${currentObservation ? formatPressure(currentObservation.barometricPressure.value) : 'N/A'}</p>
+          <p><strong>Visibility:</strong> ${currentObservation ? formatVisibility(currentObservation.visibility.value) : 'N/A'}</p>
+          <p><strong>Next Forecast:</strong> ${nextForecast.name}</p>
         </div>
 
         <div class="radar-container" aria-label="Radar image">
@@ -378,7 +530,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Upcoming forecast cards
     html += '<section class="upcoming-forecast" aria-labelledby="upcoming-forecast-title"><h2 id="upcoming-forecast-title">Upcoming Weather Forecast</h2><div class="forecast-list">';
-    periods.slice(1).forEach(period => {
+    periods.forEach(period => {
       const iconUrl = period.icon.startsWith('http') ? period.icon : 'https://api.weather.gov/' + period.icon;
       html += `
         <article class="forecast-card" aria-label="${period.name} forecast">
@@ -405,7 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <p><strong>Invalid Coordinates:</strong> Coordinates need to be passed in the URL query parameters.</p>
       <p>For example, Chicago, IL is Latitude 41.88 Longitude -87.63</p>
       <p>
-        <a href="${window.location.pathname}?lat=41.88&lon=-87.63" style="color:#ffd166; text-decoration: underline;">
+        <a href="${window.location.pathname}?lat=41.88&lon=-87.63" style="color: var(--site-link); text-decoration: underline;">
           ${window.location.pathname}?lat=41.88&lon=-87.63
         </a>
       </p>`;
