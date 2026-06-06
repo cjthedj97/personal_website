@@ -103,7 +103,7 @@ window.addEventListener('DOMContentLoaded', event => {
             { type: 'output', text: 'Curiosity........... GUILTY' },
             { type: 'output', text: 'Problem Solving..... ONLINE' },
             { type: 'output', text: 'Music Dependency.... REQUIRED' },
-            { type: 'output', text: 'Automation Urge..... ELEVATED' },
+            { type: 'output', text: 'Fix-It Reflex....... ACTIVE' },
             { type: 'output', text: 'Rabbit Hole Risk.... CRITICAL' },
             { type: 'command', text: 'cjctl deep-dive' },
             { type: 'output', text: 'warning: rabbit hole detected' },
