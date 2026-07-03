@@ -2,6 +2,40 @@
 
 /* Companion styles for testing Reveal.js built-in plugins with cj-saathoff.css. */
 
+body.reveal-light {
+  --cj-bg-start: #eef4fb;
+  --cj-bg-mid: #f7fafc;
+  --cj-bg-end: #e2e8f0;
+  --cj-text: #102033;
+  --cj-muted: rgba(16, 32, 51, 0.78);
+  --cj-heading: #08111d;
+  --cj-surface: rgba(255, 255, 255, 0.78);
+  --cj-surface-strong: rgba(255, 255, 255, 0.9);
+  --cj-border: rgba(100, 116, 139, 0.18);
+  --cj-link: #2563eb;
+  --cj-accent: #0f766e;
+  --cj-accent-2: #2563eb;
+  --cj-danger: #dc2626;
+  --cj-terminal: #166534;
+  --cj-warning: #a16207;
+  --cj-shadow: rgba(15, 23, 42, 0.16);
+  --r-background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--cj-accent) 16%, transparent), transparent 28%),
+    radial-gradient(circle at top right, color-mix(in srgb, var(--cj-accent-2) 12%, transparent), transparent 26%),
+    linear-gradient(180deg, var(--cj-bg-start) 0%, var(--cj-bg-mid) 44%, var(--cj-bg-end) 100%);
+  --r-background-color: var(--cj-bg-mid);
+  --r-overlay-element-bg-color: 255, 255, 255;
+  --r-overlay-element-fg-color: 16, 32, 51;
+  background: var(--r-background);
+  background-color: var(--r-background-color);
+}
+
+body.reveal-light .reveal-viewport,
+body.reveal-light .reveal {
+  background: var(--r-background);
+  background-color: var(--r-background-color);
+}
+
 .reveal pre code.hljs {
   background: transparent;
   color: #f8f8f2;
