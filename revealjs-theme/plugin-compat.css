@@ -110,7 +110,8 @@ body.reveal-light .reveal {
   text-align: center;
 }
 
-.reveal button {
+.reveal button,
+.reveal .plugin-button {
   appearance: none;
   border: 1px solid color-mix(in srgb, var(--cj-accent) 48%, var(--cj-border));
   border-radius: 999px;
@@ -148,16 +149,112 @@ body.reveal-light .reveal {
 }
 
 /* Third-party demo surfaces */
+.reveal .plugin-surface {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.reveal .poll-option,
+.reveal .qna-card,
+.reveal .anything-counter {
+  display: grid;
+  grid-template-columns: minmax(8rem, 1fr) minmax(8rem, 2fr) auto;
+  gap: 0.7rem;
+  align-items: center;
+  border: 1px solid var(--cj-border);
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--cj-surface-strong) 78%, transparent);
+  padding: 0.55rem 0.7rem;
+}
+
+.reveal .poll-option meter {
+  width: 100%;
+  height: 0.8rem;
+  accent-color: var(--cj-accent);
+}
+
+.reveal .qna-card {
+  grid-template-columns: auto 1fr;
+}
+
+.reveal .qna-card strong {
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--cj-accent-2) 18%, transparent);
+  color: var(--cj-heading);
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+}
+
+.reveal .qna-card.is-closed {
+  opacity: 0.7;
+}
+
+.reveal .audio-surface audio,
+.reveal .audio-demo-control,
+.reveal .audio-controls audio {
+  width: 100%;
+  min-height: 2.5rem;
+  filter: drop-shadow(0 12px 24px var(--cj-shadow));
+}
+
+.reveal .audio-controls {
+  border: 1px solid var(--cj-border);
+  border-radius: 1rem;
+  background: var(--cj-surface-strong);
+  box-shadow: 0 16px 44px var(--cj-shadow);
+  backdrop-filter: blur(16px);
+}
+
+.reveal .anything-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.reveal .anything-counter {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+}
+
+.reveal .anything-counter strong {
+  color: var(--cj-terminal);
+  font-family: var(--r-heading-font);
+  font-size: 1.7em;
+}
+
+.reveal .anything-counter span {
+  color: var(--cj-muted);
+  font-size: 0.65em;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.reveal .animate-surface svg {
+  width: 100%;
+  max-height: 52vh;
+  overflow: visible;
+}
+
+.reveal .animate-surface svg text {
+  fill: var(--cj-muted);
+  font-family: var(--r-heading-font);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.reveal .animate-surface #node-a,
+.reveal .animate-surface #node-b,
+.reveal .animate-surface #node-c {
+  fill: color-mix(in srgb, var(--cj-surface-strong) 84%, transparent);
+}
+
 .reveal .third-party-toolbar,
 .reveal .copy-code-block {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   align-items: center;
-}
-
-.reveal .third-party-toolbar {
-  margin-top: 1rem;
 }
 
 .reveal .copy-code-block {
@@ -175,66 +272,16 @@ body.reveal-light .reveal {
   z-index: 2;
 }
 
-.reveal .mermaid {
-  display: flex;
-  justify-content: center;
-  overflow-x: auto;
-  padding: 0.5rem;
-  background: transparent;
-  color: var(--cj-text);
-}
-
-.reveal .mermaid svg {
-  max-width: 100%;
-  height: auto;
-}
-
-.reveal .chart-card {
-  height: min(56vh, 26rem);
-}
-
-.reveal .chart-card canvas {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.slide-menu-wrapper,
-.slide-menu-panel,
-.slide-menu-toolbar {
-  background: var(--cj-surface-strong) !important;
-  color: var(--cj-text) !important;
-  border-color: var(--cj-border) !important;
-  backdrop-filter: blur(18px);
-}
-
-.slide-menu-item,
-.slide-menu-item a,
-.slide-menu-button {
-  color: var(--cj-text) !important;
-}
-
-.slide-menu-item.active,
-.slide-menu-item:hover,
-.slide-menu-button:hover {
-  background: color-mix(in srgb, var(--cj-accent-2) 18%, transparent) !important;
-  color: var(--cj-heading) !important;
-}
-
-.chalkboard-button,
-.chalkboard-button:hover,
-.slide-menu-button,
-.slide-menu-button:hover {
-  border-color: var(--cj-border) !important;
-}
-
-.chalkboard,
-.chalkboard-drawing-canvas,
-.annotation-canvas,
-.drawer-canvas {
-  color: var(--cj-text);
-}
-
 @media (max-width: 800px) {
+  .reveal .poll-option,
+  .reveal .qna-card {
+    grid-template-columns: 1fr;
+  }
+
+  .reveal .anything-grid {
+    grid-template-columns: 1fr;
+  }
+
   .reveal .copy-code-button {
     position: static;
   }
