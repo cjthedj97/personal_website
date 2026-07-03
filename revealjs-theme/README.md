@@ -8,9 +8,10 @@ It carries over the site’s dark infrastructure-console feel: layered navy grad
 
 - `cj-saathoff.css` — compiled CSS theme that can be dropped into any Reveal.js deck.
 - `plugin-compat.css` — optional companion CSS for testing common Reveal.js plugin UI against the theme.
-- `demo.html` — Reveal.js demo deck pointed at `cj-saathoff.css` for quick visual testing.
+- `demo.html` — official Reveal.js plugin test deck pointed at `cj-saathoff.css`.
+- `third-party-demo.html` — optional third-party integration test deck for useful client-side add-ons.
 
-## Demo
+## Official plugin demo
 
 Open `demo.html` in a browser to test the theme locally:
 
@@ -25,7 +26,7 @@ Once this branch is deployed by GitHub Pages, the demo will also be available at
 /revealjs-theme/demo.html
 ```
 
-The demo loads Reveal.js from CDN, then registers the built-in plugins that are most likely to expose CSS clashes:
+The official demo loads Reveal.js from CDN, then registers the built-in plugins that are most likely to expose CSS clashes:
 
 - `RevealHighlight` for syntax highlighting, line numbers, and stepped line highlights.
 - `RevealMarkdown` for Markdown-authored slides.
@@ -33,6 +34,22 @@ The demo loads Reveal.js from CDN, then registers the built-in plugins that are 
 - `RevealSearch` for the search overlay and matches.
 - `RevealZoom` for framed/zoomable content.
 - `RevealMath.KaTeX` for math rendering.
+
+## Third-party integration demo
+
+Open `third-party-demo.html` to test optional third-party surfaces:
+
+```text
+http://localhost:8000/revealjs-theme/third-party-demo.html
+```
+
+This deck keeps third-party integrations separate from the official-plugin demo. It checks useful client-side additions only, with no Socket.io or Multiplex setup:
+
+- `reveal.js-menu` for slide navigation by title.
+- `reveal.js-plugins/chalkboard` for annotation surfaces when available.
+- Mermaid for architecture diagrams.
+- Chart.js for dashboard-style slides.
+- Copy-code button styling and behavior.
 
 ## Usage
 
@@ -52,7 +69,7 @@ For CDN-based Reveal.js decks:
 
 ## Optional plugin compatibility CSS
 
-For decks using the Highlight, Math, Search, or Zoom plugins, load the compatibility stylesheet after the main theme:
+For decks using Highlight, Math, Search, Zoom, Mermaid, Chart.js, menu, chalkboard, or copy-code style surfaces, load the compatibility stylesheet after the main theme:
 
 ```html
 <link rel="stylesheet" href="revealjs-theme/cj-saathoff.css">
@@ -91,7 +108,7 @@ The default is dark. Add `light` to the Reveal root for a matching light variant
 </div>
 ```
 
-The demo page includes a button to toggle this class for quick comparison.
+The demo pages include buttons to toggle this class for quick comparison.
 
 ## PDF export check
 
