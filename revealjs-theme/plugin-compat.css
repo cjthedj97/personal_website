@@ -111,7 +111,8 @@ body.reveal-light .reveal {
 }
 
 .reveal button,
-.reveal .plugin-button {
+.reveal .plugin-button,
+.reveal .choice-button {
   appearance: none;
   border: 1px solid color-mix(in srgb, var(--cj-accent) 48%, var(--cj-border));
   border-radius: 999px;
@@ -153,6 +154,52 @@ body.reveal-light .reveal {
 .reveal .plugin-surface {
   display: grid;
   gap: 0.75rem;
+}
+
+.reveal .choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.reveal .choice-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--cj-surface-strong) 78%, transparent);
+  color: var(--cj-heading);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.reveal .choice-button:hover,
+.reveal .choice-button:focus-visible {
+  background: linear-gradient(135deg, var(--cj-accent), var(--cj-accent-2));
+  color: #ffffff;
+}
+
+.reveal .feedback-card {
+  border-left: 0.35rem solid var(--cj-accent);
+}
+
+.reveal .feedback-card.is-correct {
+  border-left-color: var(--cj-accent);
+}
+
+.reveal .feedback-card.is-incorrect {
+  border-left-color: var(--cj-danger);
+}
+
+.reveal .feedback-card.is-correct h2::before {
+  content: "✓ ";
+  color: var(--cj-accent);
+}
+
+.reveal .feedback-card.is-incorrect h2::before {
+  content: "↺ ";
+  color: var(--cj-danger);
 }
 
 .reveal .poll-option,
@@ -274,6 +321,7 @@ body.reveal-light .reveal {
 }
 
 @media (max-width: 800px) {
+  .reveal .choice-grid,
   .reveal .poll-option,
   .reveal .qna-card {
     grid-template-columns: 1fr;
