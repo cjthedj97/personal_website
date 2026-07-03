@@ -19,37 +19,79 @@ permalink: /revealjs-theme/third-party-demo.html
         <section class="center">
           <p class="eyebrow">Third-Party Integrations</p>
           <h1>Rajgoel <span class="gradient-text">plugin surfaces</span></h1>
-          <p class="muted">Focused test deck for local poll/questions UI, audio-slideshow, anything, and animate.</p>
+          <p class="muted">Focused test deck for multiple-choice poll/question flows, audio-slideshow, anything, and animate.</p>
           <div class="pill-row" style="justify-content:center">
-            <span>Local Poll</span>
-            <span>Questions</span>
+            <span>Multiple Choice</span>
+            <span>Feedback Slides</span>
             <span>Audio</span>
             <span>Anything</span>
             <span>Animate</span>
           </div>
         </section>
 
-        <section>
-          <p class="eyebrow">Poll</p>
-          <h2>Local poll surface</h2>
-          <div class="glass-card plugin-surface poll-surface">
-            <p class="muted">Static/local poll styling only. Use the link button when a real poll lives on a separate page or side panel.</p>
-            <h3>Which topic should we go deeper on?</h3>
-            <div class="poll-option"><span>Automation</span><meter value="0.62">62%</meter><strong>62%</strong></div>
-            <div class="poll-option"><span>Networking</span><meter value="0.25">25%</meter><strong>25%</strong></div>
-            <div class="poll-option"><span>Security</span><meter value="0.13">13%</meter><strong>13%</strong></div>
-            <p><a class="plugin-button" href="#/1" aria-label="Open linked poll surface">Open linked poll</a></p>
+        <section id="poll-question">
+          <p class="eyebrow">Poll / Question</p>
+          <h2>Multiple-choice interaction</h2>
+          <div class="glass-card plugin-surface choice-surface">
+            <p class="muted">Local slide-only interaction. Each answer links to a correct or incorrect feedback slide.</p>
+            <h3>Which command serves this demo locally?</h3>
+            <div class="choice-grid">
+              <a class="choice-button" href="#/poll-incorrect">npm run reveal</a>
+              <a class="choice-button" href="#/poll-correct">python3 -m http.server 8000</a>
+              <a class="choice-button" href="#/poll-incorrect">jekyll build --watch</a>
+              <a class="choice-button" href="#/poll-incorrect">bundle exec rake slides</a>
+            </div>
           </div>
         </section>
 
-        <section>
-          <p class="eyebrow">Questions</p>
-          <h2>Local question queue</h2>
-          <div class="glass-card plugin-surface qna-surface">
-            <p class="muted">Static/local question list styling only. This can point to a separate page or embedded side surface later.</p>
-            <article class="qna-card"><strong>8 votes</strong><span>How would this theme handle a live incident-review deck?</span></article>
-            <article class="qna-card"><strong>4 votes</strong><span>Can presenter notes include operational runbook links?</span></article>
-            <article class="qna-card is-closed"><strong>Answered</strong><span>What font pair is being used?</span></article>
+        <section id="poll-correct">
+          <p class="eyebrow">Correct</p>
+          <div class="glass-card plugin-surface feedback-card is-correct">
+            <h2>Correct.</h2>
+            <p><code>python3 -m http.server 8000</code> serves the repo locally so the demo is available at <code>/revealjs-theme/third-party-demo.html</code>.</p>
+            <p><a class="plugin-button" href="#/poll-question">Back to question</a></p>
+          </div>
+        </section>
+
+        <section id="poll-incorrect">
+          <p class="eyebrow">Try again</p>
+          <div class="glass-card plugin-surface feedback-card is-incorrect">
+            <h2>Not quite.</h2>
+            <p>This template uses a simple static server for local testing. Try the answer that starts Python’s built-in HTTP server.</p>
+            <p><a class="plugin-button" href="#/poll-question">Back to question</a></p>
+          </div>
+        </section>
+
+        <section id="linked-question">
+          <p class="eyebrow">Linked Question</p>
+          <h2>Use the same pattern for a side poll</h2>
+          <div class="glass-card plugin-surface choice-surface">
+            <p class="muted">This can point to another slide, a side-panel page, or an external poll URL later.</p>
+            <h3>Where should a deeper audience exercise live?</h3>
+            <div class="choice-grid">
+              <a class="choice-button" href="#/linked-correct">A linked side page</a>
+              <a class="choice-button" href="#/linked-incorrect">Inside the theme CSS</a>
+              <a class="choice-button" href="#/linked-incorrect">A required socket server</a>
+              <a class="choice-button" href="#/linked-incorrect">A hidden presenter note only</a>
+            </div>
+          </div>
+        </section>
+
+        <section id="linked-correct">
+          <p class="eyebrow">Correct</p>
+          <div class="glass-card plugin-surface feedback-card is-correct">
+            <h2>Correct.</h2>
+            <p>A linked side page keeps the deck static while still allowing a richer poll or question workflow when needed.</p>
+            <p><a class="plugin-button" href="#/linked-question">Back to question</a></p>
+          </div>
+        </section>
+
+        <section id="linked-incorrect">
+          <p class="eyebrow">Try again</p>
+          <div class="glass-card plugin-surface feedback-card is-incorrect">
+            <h2>Not quite.</h2>
+            <p>The template should stay static and portable. Use a linked side page when the interaction needs more than slide navigation.</p>
+            <p><a class="plugin-button" href="#/linked-question">Back to question</a></p>
           </div>
         </section>
 
@@ -175,8 +217,8 @@ permalink: /revealjs-theme/third-party-demo.html
           'audio-slideshow': Boolean(window.RevealAudioSlideshow),
           anything: Boolean(window.RevealAnything),
           animate: Boolean(window.RevealAnimate),
-          'local poll UI': 'static template',
-          'local questions UI': 'static template'
+          'multiple-choice UI': 'static slide links',
+          'feedback slides': 'correct / incorrect'
         };
 
         document.getElementById('thirdPartyStatus').innerHTML = `
