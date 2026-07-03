@@ -26,9 +26,12 @@
   --cj-terminal: #7cff88;
   --cj-warning: #facc15;
   --cj-shadow: rgba(2, 6, 23, 0.28);
-}
 
-.reveal {
+  /* Reveal.js theme API variables */
+  --r-background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--cj-accent) 16%, transparent), transparent 28%),
+    radial-gradient(circle at top right, color-mix(in srgb, var(--cj-accent-2) 12%, transparent), transparent 26%),
+    linear-gradient(180deg, var(--cj-bg-start) 0%, var(--cj-bg-mid) 44%, var(--cj-bg-end) 100%);
   --r-background-color: var(--cj-bg-mid);
   --r-main-font: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --r-main-font-size: 38px;
@@ -42,16 +45,32 @@
   --r-heading-text-transform: none;
   --r-heading-text-shadow: none;
   --r-heading-font-weight: 800;
+  --r-heading1-text-shadow: none;
+  --r-heading1-size: clamp(2.45em, 8vw, 4.25em);
+  --r-heading2-size: clamp(1.65em, 5vw, 2.8em);
+  --r-heading3-size: clamp(1.2em, 3.4vw, 1.75em);
+  --r-heading4-size: 1em;
+  --r-code-font: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   --r-link-color: var(--cj-link);
+  --r-link-color-dark: color-mix(in srgb, var(--cj-link) 74%, black);
   --r-link-color-hover: color-mix(in srgb, var(--cj-link) 78%, white);
   --r-selection-background-color: color-mix(in srgb, var(--cj-accent) 70%, transparent);
   --r-selection-color: #ffffff;
-  --r-code-font: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-  background:
-    radial-gradient(circle at top left, color-mix(in srgb, var(--cj-accent) 16%, transparent), transparent 28%),
-    radial-gradient(circle at top right, color-mix(in srgb, var(--cj-accent-2) 12%, transparent), transparent 26%),
-    linear-gradient(180deg, var(--cj-bg-start) 0%, var(--cj-bg-mid) 44%, var(--cj-bg-end) 100%);
+  --r-overlay-element-bg-color: 15, 23, 42;
+  --r-overlay-element-fg-color: 229, 238, 248;
+}
+
+.reveal-viewport,
+.reveal {
+  background: var(--r-background);
+  background-color: var(--r-background-color);
+}
+
+.reveal {
   color: var(--r-main-color);
+  font-family: var(--r-main-font);
+  font-size: var(--r-main-font-size);
+  font-weight: normal;
 }
 
 .reveal *,
@@ -77,16 +96,23 @@
   --cj-terminal: #166534;
   --cj-warning: #a16207;
   --cj-shadow: rgba(15, 23, 42, 0.16);
+  --r-background-color: var(--cj-bg-mid);
+  --r-link-color-dark: color-mix(in srgb, var(--cj-link) 72%, black);
+  --r-overlay-element-bg-color: 255, 255, 255;
+  --r-overlay-element-fg-color: 16, 32, 51;
 }
 
 .reveal .slides {
   text-align: left;
 }
 
-.reveal .slides section {
+.reveal .slides section,
+.reveal .slides section > section {
   box-sizing: border-box;
   max-width: 100%;
   padding: clamp(1rem, 4vmin, 2rem);
+  line-height: 1.3;
+  font-weight: inherit;
 }
 
 .reveal .slides section.center,
@@ -101,26 +127,34 @@
 .reveal h5,
 .reveal h6 {
   max-width: 100%;
+  margin: var(--r-heading-margin);
   color: var(--r-heading-color);
   font-family: var(--r-heading-font);
   font-weight: var(--r-heading-font-weight);
   letter-spacing: var(--r-heading-letter-spacing);
   line-height: var(--r-heading-line-height);
   text-transform: var(--r-heading-text-transform);
+  text-shadow: var(--r-heading-text-shadow);
+  word-wrap: break-word;
   overflow-wrap: balance;
 }
 
 .reveal h1 {
-  font-size: clamp(2.45em, 8vw, 4.25em);
+  font-size: var(--r-heading1-size);
   line-height: 0.96;
+  text-shadow: var(--r-heading1-text-shadow);
 }
 
 .reveal h2 {
-  font-size: clamp(1.65em, 5vw, 2.8em);
+  font-size: var(--r-heading2-size);
 }
 
 .reveal h3 {
-  font-size: clamp(1.2em, 3.4vw, 1.75em);
+  font-size: var(--r-heading3-size);
+}
+
+.reveal h4 {
+  font-size: var(--r-heading4-size);
 }
 
 .reveal p,
@@ -145,16 +179,35 @@
   font-weight: 700;
 }
 
+.reveal em {
+  font-style: italic;
+}
+
+.reveal img,
+.reveal video,
+.reveal iframe {
+  max-width: 95%;
+  max-height: 95%;
+}
+
 .reveal a {
   color: var(--r-link-color);
   text-decoration: underline;
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.18em;
+  transition: color 0.15s ease;
 }
 
 .reveal a:hover,
 .reveal a:focus {
   color: var(--r-link-color-hover);
+  text-shadow: none;
+  border: 0;
+}
+
+.reveal .roll span::after {
+  color: #ffffff;
+  background: var(--r-link-color-dark);
 }
 
 .reveal .eyebrow {
@@ -199,6 +252,8 @@
 }
 
 .reveal blockquote {
+  display: block;
+  position: relative;
   width: auto;
   padding: 1.15rem 1.35rem;
   color: var(--cj-muted);
@@ -226,7 +281,9 @@
 
 .reveal table {
   max-width: 100%;
+  margin: auto;
   border-collapse: collapse;
+  border-spacing: 0;
   border-radius: 0.85rem;
   overflow: hidden;
   box-shadow: 0 18px 50px var(--cj-shadow);
@@ -237,6 +294,7 @@
   background: color-mix(in srgb, var(--cj-accent-2) 18%, var(--cj-surface-strong));
   font-family: var(--r-heading-font);
   font-size: 0.76em;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -245,18 +303,38 @@
 .reveal table th {
   border-color: var(--cj-border);
   padding: 0.48em 0.68em;
+  text-align: left;
+}
+
+.reveal table th[align="center"],
+.reveal table td[align="center"] {
+  text-align: center;
+}
+
+.reveal table th[align="right"],
+.reveal table td[align="right"] {
+  text-align: right;
 }
 
 .reveal pre {
+  display: block;
+  position: relative;
   width: 100%;
   max-width: 100%;
   margin: 1.1rem 0;
   border-radius: 1rem;
+  text-align: left;
+  font-family: var(--r-code-font);
+  font-size: 0.55em;
+  line-height: 1.2em;
+  word-wrap: break-word;
   box-shadow: 0 24px 70px var(--cj-shadow), inset 0 0 42px color-mix(in srgb, var(--cj-accent) 8%, transparent);
 }
 
 .reveal code {
   font-family: var(--r-code-font);
+  tab-size: 2;
+  text-transform: none;
 }
 
 .reveal pre code {
@@ -273,7 +351,16 @@
   overflow-x: auto;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+  word-wrap: normal;
   text-shadow: 0 0 10px color-mix(in srgb, var(--cj-terminal) 38%, transparent);
+}
+
+.reveal .code-wrapper {
+  white-space: normal;
+}
+
+.reveal .code-wrapper code {
+  white-space: pre;
 }
 
 .reveal :not(pre) > code {
@@ -319,6 +406,20 @@
   background: transparent;
 }
 
+.reveal .r-frame {
+  border: 4px solid var(--r-main-color);
+  box-shadow: 0 0 10px rgba(var(--r-overlay-element-bg-color), 0.24);
+}
+
+.reveal a .r-frame {
+  transition: border-color 0.15s linear, box-shadow 0.15s linear;
+}
+
+.reveal a:hover .r-frame {
+  border-color: var(--r-link-color);
+  box-shadow: 0 0 20px rgba(var(--r-overlay-element-fg-color), 0.32);
+}
+
 .reveal .pill-row {
   display: flex;
   flex-wrap: wrap;
@@ -356,11 +457,12 @@
 }
 
 .reveal .progress {
-  color: var(--cj-accent);
+  background: rgba(var(--r-overlay-element-bg-color), 0.2);
+  color: var(--r-link-color);
 }
 
 .reveal .controls {
-  color: var(--cj-link);
+  color: var(--r-link-color);
 }
 
 .reveal .slide-number {
@@ -379,6 +481,13 @@
 .reveal ::selection {
   background: var(--r-selection-background-color);
   color: var(--r-selection-color);
+  text-shadow: none;
+}
+
+.reveal ::-moz-selection {
+  background: var(--r-selection-background-color);
+  color: var(--r-selection-color);
+  text-shadow: none;
 }
 
 @media (max-width: 800px) {
@@ -386,7 +495,8 @@
     --r-main-font-size: 30px;
   }
 
-  .reveal .slides section {
+  .reveal .slides section,
+  .reveal .slides section > section {
     padding: 1rem;
   }
 
@@ -398,8 +508,14 @@
 
 @media print {
   .reveal {
+    --r-background: #ffffff;
+    --r-background-color: #ffffff;
     background: #ffffff;
     color: #111827;
+  }
+
+  .backgrounds {
+    background-color: var(--r-background-color);
   }
 
   .reveal h1,
