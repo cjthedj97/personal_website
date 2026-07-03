@@ -1,0 +1,384 @@
+---
+layout: null
+permalink: /revealjs-theme/demo.html
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CJ Saathoff Reveal.js Theme Demo</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/monokai.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    <link rel="stylesheet" href="./cj-saathoff.css">
+    <link rel="stylesheet" href="./plugin-compat.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="center">
+          <p class="eyebrow">Reveal.js Theme Demo</p>
+          <h1>CJ Saathoff <span class="gradient-text">Slides</span></h1>
+          <p class="muted">Official plugins, local interaction patterns, layouts, generated content, SVG animation, and light-mode testing.</p>
+          <div class="pill-row" style="justify-content:center">
+            <span>Infrastructure</span>
+            <span>Automation</span>
+            <span>Security</span>
+            <span>Operations</span>
+          </div>
+          <small class="muted">Press <strong>S</strong> for speaker notes, <strong>Ctrl+Shift+F</strong> for search, and <strong>Alt+Click</strong> to zoom.</small>
+          <aside class="notes">
+            Speaker notes plugin check: this should appear in the speaker view.
+          </aside>
+        </section>
+
+        <section>
+          <p class="eyebrow">Typography</p>
+          <h2>Readable, practical, and technical.</h2>
+          <p>This slide tests normal paragraph copy, <strong>strong emphasis</strong>, <a href="https://revealjs.com/">links</a>, and inline <code>code</code>.</p>
+          <ul>
+            <li class="fragment">Montserrat headings</li>
+            <li class="fragment">Lato body copy</li>
+            <li class="fragment">Accent-colored markers and links</li>
+          </ul>
+        </section>
+
+        <section>
+          <p class="eyebrow">Layout</p>
+          <h2>Two-column content</h2>
+          <div class="layout-split">
+            <div class="glass-card">
+              <h3>Plan</h3>
+              <p>Use split layouts for agenda, before/after views, or architecture tradeoffs.</p>
+            </div>
+            <div class="glass-card">
+              <h3>Operate</h3>
+              <p>Keep each panel compact, readable, and visually tied to the personal site.</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <p class="eyebrow">Layout</p>
+          <h2>Metric cards</h2>
+          <div class="metric-grid">
+            <div class="metric-card"><strong>99.9%</strong><span>uptime target</span></div>
+            <div class="metric-card"><strong>42</strong><span>automations</span></div>
+            <div class="metric-card"><strong>7m</strong><span>mean response</span></div>
+          </div>
+          <div class="callout" style="margin-top:1rem">This checks card grids, spacing, and accent treatment.</div>
+        </section>
+
+        <section>
+          <p class="eyebrow">Terminal</p>
+          <h2>Console-style code</h2>
+          <div class="terminal-card">
+            <pre><code>$ whoami
+cj-saathoff
+
+$ ./deploy-theme --target revealjs
+✔ loaded cj-saathoff.css
+✔ slides ready for review</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <p class="eyebrow">Highlight Plugin</p>
+          <h2>Syntax highlighting + line numbers</h2>
+          <pre><code class="language-javascript" data-trim data-line-numbers="2-4|7-9">
+            const theme = {
+              name: 'cj-saathoff',
+              accent: '#1abc9c',
+              plugins: ['highlight', 'notes', 'search', 'zoom', 'math', 'markdown']
+            };
+
+            function loadTheme(deck) {
+              deck.configure({ hash: true, slideNumber: true });
+              return theme;
+            }
+          </code></pre>
+          <small class="muted">This checks Highlight.js colors, Reveal line numbers, and stepped highlighted lines.</small>
+        </section>
+
+        <section>
+          <p class="eyebrow">Markdown Plugin</p>
+          <section data-markdown>
+            <script type="text/template">
+              ## Markdown slide
+
+              - Rendered through `RevealMarkdown`
+              - Uses normal theme typography
+              - Keeps list spacing and inline `code` readable
+            </script>
+          </section>
+        </section>
+
+        <section>
+          <p class="eyebrow">Math Plugin</p>
+          <h2>KaTeX rendering</h2>
+          <p>Inline math should blend with text: \( E = mc^2 \).</p>
+          <p class="glass-card">\[\nabla \cdot \vec{E} = \frac{\rho}{\varepsilon_0}\]</p>
+          <small class="muted">This checks that KaTeX output inherits the theme without clashing.</small>
+        </section>
+
+        <section>
+          <p class="eyebrow">Search + Zoom Plugins</p>
+          <h2>Interaction surfaces</h2>
+          <div class="glass-card r-frame">
+            <p>Search for <strong>automation</strong> with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd>.</p>
+            <p>Use <strong>Alt+Click</strong> on this framed card to test zoom styling.</p>
+          </div>
+        </section>
+
+        <section>
+          <section id="poll-question">
+            <p class="eyebrow">Poll / Question</p>
+            <h2>Multiple-choice interaction</h2>
+            <div class="glass-card plugin-surface choice-surface">
+              <p class="muted">Local slide-only interaction. Correct and incorrect feedback slides live below this question.</p>
+              <h3>Which command serves this demo locally?</h3>
+              <div class="choice-grid">
+                <a class="choice-button" href="#/poll-incorrect">npm run reveal</a>
+                <a class="choice-button" href="#/poll-correct">python3 -m http.server 8000</a>
+                <a class="choice-button" href="#/poll-incorrect">jekyll build --watch</a>
+                <a class="choice-button" href="#/poll-incorrect">bundle exec rake slides</a>
+              </div>
+            </div>
+          </section>
+
+          <section id="poll-correct">
+            <p class="eyebrow">Correct</p>
+            <div class="glass-card plugin-surface feedback-card is-correct">
+              <h2>Correct.</h2>
+              <p><code>python3 -m http.server 8000</code> serves the repo locally so the demo is available at <code>/revealjs-theme/demo.html</code>.</p>
+              <p><a class="plugin-button" href="#/poll-question">Back to question</a></p>
+            </div>
+          </section>
+
+          <section id="poll-incorrect">
+            <p class="eyebrow">Try again</p>
+            <div class="glass-card plugin-surface feedback-card is-incorrect">
+              <h2>Not quite.</h2>
+              <p>This template uses a simple static server for local testing. Try the answer that starts Python’s built-in HTTP server.</p>
+              <p><a class="plugin-button" href="#/poll-question">Back to question</a></p>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section id="linked-question">
+            <p class="eyebrow">Linked Question</p>
+            <h2>Side poll pattern</h2>
+            <div class="glass-card plugin-surface choice-surface">
+              <p class="muted">This can point down to feedback slides, or out to a side-panel page or external poll URL later.</p>
+              <h3>Where should a deeper audience exercise live?</h3>
+              <div class="choice-grid">
+                <a class="choice-button" href="#/linked-correct">A linked side page</a>
+                <a class="choice-button" href="#/linked-incorrect">Inside the theme CSS</a>
+                <a class="choice-button" href="#/linked-incorrect">A required socket server</a>
+                <a class="choice-button" href="#/linked-incorrect">A hidden presenter note only</a>
+              </div>
+            </div>
+          </section>
+
+          <section id="linked-correct">
+            <p class="eyebrow">Correct</p>
+            <div class="glass-card plugin-surface feedback-card is-correct">
+              <h2>Correct.</h2>
+              <p>A linked side page keeps the deck static while still allowing a richer poll or question workflow when needed.</p>
+              <p><a class="plugin-button" href="#/linked-question">Back to question</a></p>
+            </div>
+          </section>
+
+          <section id="linked-incorrect">
+            <p class="eyebrow">Try again</p>
+            <div class="glass-card plugin-surface feedback-card is-incorrect">
+              <h2>Not quite.</h2>
+              <p>The template should stay static and portable. Use a linked side page when the interaction needs more than slide navigation.</p>
+              <p><a class="plugin-button" href="#/linked-question">Back to question</a></p>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <p class="eyebrow">Anything</p>
+          <h2>Generated content</h2>
+          <div class="glass-card plugin-surface anything-surface">
+            <p>Anything plugin output:</p>
+            <div class="anything-grid">
+              <span class="anything-counter"><!-- { "label": "Systems", "value": 97 } --></span>
+              <span class="anything-counter"><!-- { "label": "Automations", "value": 42 } --></span>
+              <span class="anything-counter"><!-- { "label": "Alerts", "value": 3 } --></span>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <p class="eyebrow">Animate</p>
+          <h2>SVG animation surface</h2>
+          <div class="glass-card plugin-surface animate-surface" data-animate>
+            <svg viewBox="0 0 640 220" role="img" aria-label="Animated infrastructure pipeline demo">
+              <defs>
+                <linearGradient id="flowGradient" x1="0" x2="1">
+                  <stop offset="0%" stop-color="#1abc9c" />
+                  <stop offset="100%" stop-color="#3b82f6" />
+                </linearGradient>
+              </defs>
+              <line id="pipeline" x1="110" y1="110" x2="530" y2="110" stroke="url(#flowGradient)" stroke-width="8" stroke-linecap="round" />
+              <circle id="node-a" cx="110" cy="110" r="34" fill="#0b1220" stroke="#1abc9c" stroke-width="5" />
+              <circle id="node-b" cx="320" cy="110" r="34" fill="#0b1220" stroke="#93c5fd" stroke-width="5" />
+              <circle id="node-c" cx="530" cy="110" r="34" fill="#0b1220" stroke="#3b82f6" stroke-width="5" />
+              <circle id="packet" cx="110" cy="110" r="13" fill="#7cff88" />
+              <text x="110" y="175" text-anchor="middle">Build</text>
+              <text x="320" y="175" text-anchor="middle">Test</text>
+              <text x="530" y="175" text-anchor="middle">Deploy</text>
+            </svg>
+            <!--
+            {
+              "animation": [
+                { "element": "#packet", "modifier": "move", "parameters": [110, 110, 800, 0] },
+                { "element": "#packet", "modifier": "move", "parameters": [320, 110, 800, 800] },
+                { "element": "#packet", "modifier": "move", "parameters": [530, 110, 800, 1600] }
+              ]
+            }
+            -->
+          </div>
+          <small class="muted">If the animate plugin is unavailable, this still tests SVG styling.</small>
+        </section>
+
+        <section>
+          <p class="eyebrow">Tables</p>
+          <h2>Quick comparison</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Element</th>
+                <th>Purpose</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Gradient background</td><td>Site visual match</td><td>Ready</td></tr>
+              <tr><td>Glass surfaces</td><td>Cards and callouts</td><td>Ready</td></tr>
+              <tr><td>Terminal code</td><td>Technical demos</td><td>Ready</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <section>
+            <p class="eyebrow">Vertical Slides</p>
+            <h2>Press down for more.</h2>
+            <p class="muted">This checks Reveal.js vertical navigation and progress controls.</p>
+          </section>
+          <section>
+            <blockquote>
+              Better systems, fewer surprises.
+            </blockquote>
+          </section>
+        </section>
+
+        <section class="center">
+          <p class="eyebrow">Light Variant</p>
+          <h2>Test light mode</h2>
+          <p>Add <code>light</code> to the Reveal root, body, document element, and viewport.</p>
+          <pre><code>&lt;div class="reveal light"&gt;</code></pre>
+          <p><button id="toggleTheme" type="button">Toggle demo theme</button></p>
+        </section>
+
+        <section>
+          <p class="eyebrow">Plugin Status</p>
+          <h2>Registered plugins</h2>
+          <div id="pluginStatus" class="glass-card"></div>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/search/search.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/zoom/zoom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/math/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/anything/plugin.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.1.2/svg.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/animate/plugin.js"></script>
+    <script>
+      function isLightMode() {
+        return document.querySelector('.reveal').classList.contains('light');
+      }
+
+      function setLightMode(isLight, persist = true) {
+        const revealRoot = document.querySelector('.reveal');
+        revealRoot.classList.toggle('light', isLight);
+        document.body.classList.toggle('reveal-light', isLight);
+        document.documentElement.classList.toggle('reveal-light', isLight);
+
+        const viewport = document.querySelector('.reveal-viewport');
+        if (viewport) {
+          viewport.classList.toggle('reveal-light', isLight);
+        }
+
+        if (persist) {
+          localStorage.setItem('cjRevealTheme', isLight ? 'light' : 'dark');
+        }
+
+        if (window.Reveal && Reveal.isReady()) {
+          Reveal.layout();
+        }
+      }
+
+      const requestedTheme = new URLSearchParams(window.location.search).get('theme');
+      const savedTheme = localStorage.getItem('cjRevealTheme');
+      setLightMode(requestedTheme === 'light' || (!requestedTheme && savedTheme === 'light'), false);
+
+      const optionalPlugins = [
+        RevealMarkdown,
+        RevealHighlight,
+        RevealNotes,
+        RevealSearch,
+        RevealZoom,
+        RevealMath.KaTeX,
+        window.RevealAnything,
+        window.RevealAnimate
+      ].filter(Boolean);
+
+      Reveal.initialize({
+        hash: true,
+        slideNumber: true,
+        controls: true,
+        progress: true,
+        center: true,
+        anything: [{
+          className: 'anything-counter',
+          defaults: { label: 'Metric', value: 0 },
+          initialize: (container, options) => {
+            container.innerHTML = `<strong>${options.value}</strong><span>${options.label}</span>`;
+          }
+        }],
+        animate: {
+          autoplay: true
+        },
+        plugins: optionalPlugins
+      }).then(() => {
+        setLightMode(isLightMode(), false);
+        const pluginNames = ['markdown', 'highlight', 'notes', 'search', 'zoom', 'math', 'anything', 'animate'];
+        const status = document.getElementById('pluginStatus');
+
+        status.innerHTML = `
+          <ul>
+            ${pluginNames.map((name) => `<li><strong>${name}</strong>: ${Reveal.hasPlugin(name) ? 'loaded' : name === 'anything' && window.RevealAnything ? 'loaded' : name === 'animate' && window.RevealAnimate ? 'loaded' : 'not loaded'}</li>`).join('')}
+            <li><strong>multiple-choice UI</strong>: vertical feedback slides</li>
+          </ul>
+        `;
+      });
+
+      document.getElementById('toggleTheme').addEventListener('click', function () {
+        setLightMode(!isLightMode());
+      });
+    </script>
+  </body>
+</html>

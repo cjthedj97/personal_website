@@ -1,0 +1,538 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@400;700;800&display=swap");
+
+/*
+ * CJ Saathoff Reveal.js Theme
+ * Based on cjthedj97/personal_website: dark navy gradients, glass panels,
+ * teal/blue accents, and terminal-inspired code treatment.
+ *
+ * Include after reveal.js/dist/reveal.css.
+ */
+
+:root {
+  --cj-bg-start: #07111f;
+  --cj-bg-mid: #0b1220;
+  --cj-bg-end: #0b1220;
+  --cj-text: #e5eef8;
+  --cj-muted: rgba(226, 232, 240, 0.82);
+  --cj-heading: #f8fbff;
+  --cj-surface: rgba(15, 23, 42, 0.58);
+  --cj-surface-strong: rgba(15, 23, 42, 0.72);
+  --cj-border: rgba(148, 163, 184, 0.16);
+  --cj-link: #93c5fd;
+  --cj-accent: #1abc9c;
+  --cj-accent-2: #3b82f6;
+  --cj-danger: #f87171;
+  --cj-terminal: #7cff88;
+  --cj-warning: #facc15;
+  --cj-shadow: rgba(2, 6, 23, 0.28);
+
+  --r-background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--cj-accent) 16%, transparent), transparent 28%),
+    radial-gradient(circle at top right, color-mix(in srgb, var(--cj-accent-2) 12%, transparent), transparent 26%),
+    linear-gradient(180deg, var(--cj-bg-start) 0%, var(--cj-bg-mid) 44%, var(--cj-bg-end) 100%);
+  --r-background-color: var(--cj-bg-mid);
+  --r-main-font: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --r-main-font-size: 30px;
+  --r-main-color: var(--cj-text);
+  --r-block-margin: 1rem;
+  --r-heading-margin: 0 0 0.45em 0;
+  --r-heading-font: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --r-heading-color: var(--cj-heading);
+  --r-heading-line-height: 1.08;
+  --r-heading-letter-spacing: -0.035em;
+  --r-heading-text-transform: none;
+  --r-heading-text-shadow: none;
+  --r-heading-font-weight: 800;
+  --r-heading1-text-shadow: none;
+  --r-heading1-size: 2.55em;
+  --r-heading2-size: 1.75em;
+  --r-heading3-size: 1.25em;
+  --r-heading4-size: 1em;
+  --r-code-font: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  --r-link-color: var(--cj-link);
+  --r-link-color-dark: color-mix(in srgb, var(--cj-link) 74%, black);
+  --r-link-color-hover: color-mix(in srgb, var(--cj-link) 78%, white);
+  --r-selection-background-color: color-mix(in srgb, var(--cj-accent) 70%, transparent);
+  --r-selection-color: #ffffff;
+  --r-overlay-element-bg-color: 15, 23, 42;
+  --r-overlay-element-fg-color: 229, 238, 248;
+}
+
+.reveal-viewport,
+.reveal {
+  background: var(--r-background);
+  background-color: var(--r-background-color);
+}
+
+.reveal {
+  color: var(--r-main-color);
+  font-family: var(--r-main-font);
+  font-size: var(--r-main-font-size);
+  font-weight: normal;
+}
+
+.reveal *,
+.reveal *::before,
+.reveal *::after {
+  box-sizing: border-box;
+}
+
+.reveal.light {
+  --cj-bg-start: #eef4fb;
+  --cj-bg-mid: #f7fafc;
+  --cj-bg-end: #e2e8f0;
+  --cj-text: #102033;
+  --cj-muted: rgba(16, 32, 51, 0.78);
+  --cj-heading: #08111d;
+  --cj-surface: rgba(255, 255, 255, 0.78);
+  --cj-surface-strong: rgba(255, 255, 255, 0.9);
+  --cj-border: rgba(100, 116, 139, 0.18);
+  --cj-link: #2563eb;
+  --cj-accent: #0f766e;
+  --cj-accent-2: #2563eb;
+  --cj-danger: #dc2626;
+  --cj-terminal: #166534;
+  --cj-warning: #a16207;
+  --cj-shadow: rgba(15, 23, 42, 0.16);
+  --r-background-color: var(--cj-bg-mid);
+  --r-link-color-dark: color-mix(in srgb, var(--cj-link) 72%, black);
+  --r-overlay-element-bg-color: 255, 255, 255;
+  --r-overlay-element-fg-color: 16, 32, 51;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section,
+.reveal .slides section > section {
+  max-width: 100%;
+  padding: clamp(0.8rem, 3vmin, 1.6rem);
+  line-height: 1.3;
+  font-weight: inherit;
+}
+
+.reveal .slides section.center,
+.reveal .slides section[data-align="center"] {
+  text-align: center;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  max-width: 100%;
+  margin: var(--r-heading-margin);
+  color: var(--r-heading-color);
+  font-family: var(--r-heading-font);
+  font-weight: var(--r-heading-font-weight);
+  letter-spacing: var(--r-heading-letter-spacing);
+  line-height: var(--r-heading-line-height);
+  text-transform: var(--r-heading-text-transform);
+  text-shadow: var(--r-heading-text-shadow);
+  word-wrap: break-word;
+  overflow-wrap: balance;
+}
+
+.reveal h1 {
+  font-size: var(--r-heading1-size);
+  line-height: 0.98;
+  text-shadow: var(--r-heading1-text-shadow);
+}
+
+.reveal h2 {
+  font-size: var(--r-heading2-size);
+}
+
+.reveal h3 {
+  font-size: var(--r-heading3-size);
+}
+
+.reveal h4 {
+  font-size: var(--r-heading4-size);
+}
+
+.reveal p,
+.reveal li,
+.reveal blockquote {
+  color: var(--cj-text);
+}
+
+.reveal p,
+.reveal li {
+  line-height: 1.45;
+}
+
+.reveal small,
+.reveal .muted {
+  color: var(--cj-muted);
+}
+
+.reveal strong,
+.reveal b {
+  color: var(--cj-heading);
+  font-weight: 700;
+}
+
+.reveal em {
+  font-style: italic;
+}
+
+.reveal img,
+.reveal video,
+.reveal iframe {
+  max-width: 95%;
+  max-height: 95%;
+}
+
+.reveal a {
+  color: var(--r-link-color);
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+  transition: color 0.15s ease;
+}
+
+.reveal a:hover,
+.reveal a:focus {
+  color: var(--r-link-color-hover);
+  text-shadow: none;
+  border: 0;
+}
+
+.reveal .roll span::after {
+  color: #ffffff;
+  background: var(--r-link-color-dark);
+}
+
+.reveal .eyebrow {
+  margin-bottom: 0.8rem;
+  color: var(--cj-link);
+  font-family: var(--r-heading-font);
+  font-size: 0.5em;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.reveal .accent {
+  color: var(--cj-accent);
+}
+
+.reveal .gradient-text {
+  background: linear-gradient(135deg, var(--cj-accent), var(--cj-accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.reveal .glass-card,
+.reveal .terminal-card,
+.reveal blockquote {
+  max-width: 100%;
+  border: 1px solid var(--cj-border);
+  background: var(--cj-surface);
+  border-radius: 1rem;
+  box-shadow: 0 18px 52px var(--cj-shadow);
+  backdrop-filter: blur(18px);
+}
+
+.reveal .glass-card {
+  padding: 1rem 1.15rem;
+}
+
+.reveal .glass-card > :last-child,
+.reveal .terminal-card > :last-child {
+  margin-bottom: 0;
+}
+
+.reveal blockquote {
+  display: block;
+  position: relative;
+  width: auto;
+  padding: 1rem 1.15rem;
+  color: var(--cj-muted);
+  font-style: normal;
+  text-align: left;
+}
+
+.reveal blockquote::before {
+  content: "“";
+  color: var(--cj-accent);
+  font-family: var(--r-heading-font);
+  font-size: 1.65em;
+  line-height: 0;
+  vertical-align: -0.35em;
+}
+
+.reveal ul,
+.reveal ol {
+  margin-left: 1.05em;
+}
+
+.reveal li::marker {
+  color: var(--cj-accent);
+}
+
+.reveal table {
+  max-width: 100%;
+  margin: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-radius: 0.85rem;
+  overflow: hidden;
+  box-shadow: 0 14px 42px var(--cj-shadow);
+}
+
+.reveal table th {
+  color: var(--cj-heading);
+  background: color-mix(in srgb, var(--cj-accent-2) 18%, var(--cj-surface-strong));
+  font-family: var(--r-heading-font);
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.reveal table td,
+.reveal table th {
+  border-color: var(--cj-border);
+  padding: 0.42em 0.62em;
+  text-align: left;
+}
+
+.reveal table th[align="center"],
+.reveal table td[align="center"] {
+  text-align: center;
+}
+
+.reveal table th[align="right"],
+.reveal table td[align="right"] {
+  text-align: right;
+}
+
+.reveal pre {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0.9rem 0;
+  border-radius: 0.9rem;
+  text-align: left;
+  font-family: var(--r-code-font);
+  font-size: 0.52em;
+  line-height: 1.2em;
+  word-wrap: break-word;
+  box-shadow: 0 18px 52px var(--cj-shadow), inset 0 0 36px color-mix(in srgb, var(--cj-accent) 8%, transparent);
+}
+
+.reveal code {
+  font-family: var(--r-code-font);
+  tab-size: 2;
+  text-transform: none;
+}
+
+.reveal pre code {
+  display: block;
+  max-width: 100%;
+  max-height: none;
+  padding: 0.85rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--cj-accent) 30%, var(--cj-border));
+  border-radius: 0.9rem;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--cj-surface-strong) 92%, transparent), color-mix(in srgb, var(--cj-bg-end) 86%, transparent));
+  color: var(--cj-terminal);
+  line-height: 1.45;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-wrap: normal;
+  text-shadow: 0 0 10px color-mix(in srgb, var(--cj-terminal) 38%, transparent);
+}
+
+.reveal .code-wrapper {
+  white-space: normal;
+}
+
+.reveal .code-wrapper code {
+  white-space: pre;
+}
+
+.reveal :not(pre) > code {
+  padding: 0.1em 0.3em;
+  border: 1px solid color-mix(in srgb, var(--cj-accent) 24%, var(--cj-border));
+  border-radius: 0.35em;
+  background: color-mix(in srgb, var(--cj-surface-strong) 78%, transparent);
+  color: var(--cj-terminal);
+}
+
+.reveal .terminal-card {
+  width: min(100%, 38rem);
+  max-width: calc(100vw - 4rem);
+  overflow: hidden;
+}
+
+.reveal .terminal-card--wide {
+  width: 100%;
+}
+
+.reveal .terminal-card::before {
+  content: "";
+  display: block;
+  height: 1rem;
+  border-bottom: 1px solid var(--cj-border);
+  background:
+    radial-gradient(circle at 0.9rem 50%, color-mix(in srgb, var(--cj-text) 34%, transparent) 0.18rem, transparent 0.2rem),
+    radial-gradient(circle at 1.55rem 50%, color-mix(in srgb, var(--cj-text) 24%, transparent) 0.18rem, transparent 0.2rem),
+    radial-gradient(circle at 2.2rem 50%, color-mix(in srgb, var(--cj-text) 16%, transparent) 0.18rem, transparent 0.2rem),
+    color-mix(in srgb, var(--cj-bg-end) 62%, transparent);
+}
+
+.reveal .terminal-card pre {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  box-shadow: none;
+}
+
+.reveal .terminal-card pre code {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.reveal .r-frame {
+  border: 4px solid var(--r-main-color);
+  box-shadow: 0 0 10px rgba(var(--r-overlay-element-bg-color), 0.24);
+}
+
+.reveal a .r-frame {
+  transition: border-color 0.15s linear, box-shadow 0.15s linear;
+}
+
+.reveal a:hover .r-frame {
+  border-color: var(--r-link-color);
+  box-shadow: 0 0 20px rgba(var(--r-overlay-element-fg-color), 0.32);
+}
+
+.reveal .pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0.85rem 0;
+}
+
+.reveal .pill,
+.reveal .pill-row span {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid color-mix(in srgb, var(--cj-border) 88%, var(--cj-accent));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--cj-surface) 88%, transparent);
+  color: var(--cj-text);
+  padding: 0.34rem 0.58rem;
+  font-size: 0.52em;
+  line-height: 1;
+  backdrop-filter: blur(14px);
+}
+
+.reveal .callout {
+  border-left: 0.22rem solid var(--cj-accent);
+  padding: 0.75rem 0.95rem;
+  background: color-mix(in srgb, var(--cj-surface) 84%, transparent);
+  color: var(--cj-muted);
+}
+
+.reveal .callout.warning {
+  border-left-color: var(--cj-warning);
+}
+
+.reveal .callout.danger {
+  border-left-color: var(--cj-danger);
+}
+
+.reveal .progress {
+  background: rgba(var(--r-overlay-element-bg-color), 0.2);
+  color: var(--r-link-color);
+}
+
+.reveal .controls {
+  color: var(--r-link-color);
+}
+
+.reveal .slide-number {
+  border: 1px solid var(--cj-border);
+  border-radius: 999px;
+  background: var(--cj-surface-strong);
+  color: var(--cj-muted);
+  font-family: var(--r-code-font);
+  padding: 0.16rem 0.42rem;
+}
+
+.reveal .speaker-notes {
+  color: var(--cj-text);
+}
+
+.reveal ::selection {
+  background: var(--r-selection-background-color);
+  color: var(--r-selection-color);
+  text-shadow: none;
+}
+
+.reveal ::-moz-selection {
+  background: var(--r-selection-background-color);
+  color: var(--r-selection-color);
+  text-shadow: none;
+}
+
+@media (max-width: 800px) {
+  .reveal {
+    --r-main-font-size: 26px;
+    --r-heading1-size: 2.2em;
+    --r-heading2-size: 1.55em;
+  }
+
+  .reveal .slides section,
+  .reveal .slides section > section {
+    padding: 0.85rem;
+  }
+
+  .reveal .terminal-card {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media print {
+  .reveal {
+    --r-background: #ffffff;
+    --r-background-color: #ffffff;
+    background: #ffffff;
+    color: #111827;
+  }
+
+  .backgrounds {
+    background-color: var(--r-background-color);
+  }
+
+  .reveal h1,
+  .reveal h2,
+  .reveal h3,
+  .reveal h4,
+  .reveal h5,
+  .reveal h6,
+  .reveal p,
+  .reveal li {
+    color: #111827;
+  }
+
+  .reveal .glass-card,
+  .reveal .terminal-card,
+  .reveal blockquote,
+  .reveal pre code {
+    box-shadow: none;
+  }
+}

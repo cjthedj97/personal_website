@@ -1,0 +1,368 @@
+@charset "UTF-8";
+
+/* Companion styles for demo/plugin surfaces loaded after cj-saathoff.css. */
+
+html.reveal-light,
+body.reveal-light {
+  --cj-bg-start: #eef4fb;
+  --cj-bg-mid: #f7fafc;
+  --cj-bg-end: #e2e8f0;
+  --cj-text: #102033;
+  --cj-muted: rgba(16, 32, 51, 0.78);
+  --cj-heading: #08111d;
+  --cj-surface: rgba(255, 255, 255, 0.78);
+  --cj-surface-strong: rgba(255, 255, 255, 0.9);
+  --cj-border: rgba(100, 116, 139, 0.18);
+  --cj-link: #2563eb;
+  --cj-accent: #0f766e;
+  --cj-accent-2: #2563eb;
+  --cj-danger: #dc2626;
+  --cj-terminal: #166534;
+  --cj-warning: #a16207;
+  --cj-shadow: rgba(15, 23, 42, 0.16);
+  --r-background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--cj-accent) 16%, transparent), transparent 28%),
+    radial-gradient(circle at top right, color-mix(in srgb, var(--cj-accent-2) 12%, transparent), transparent 26%),
+    linear-gradient(180deg, var(--cj-bg-start) 0%, var(--cj-bg-mid) 44%, var(--cj-bg-end) 100%);
+  --r-background-color: var(--cj-bg-mid);
+  --r-overlay-element-bg-color: 255, 255, 255;
+  --r-overlay-element-fg-color: 16, 32, 51;
+  background: var(--r-background);
+  background-color: var(--r-background-color);
+}
+
+html.reveal-light body,
+html.reveal-light .reveal-viewport,
+html.reveal-light .reveal,
+body.reveal-light .reveal-viewport,
+body.reveal-light .reveal {
+  background: var(--r-background);
+  background-color: var(--r-background-color);
+}
+
+html.reveal-light .reveal pre code,
+body.reveal-light .reveal pre code {
+  text-shadow: none;
+}
+
+html.reveal-light .reveal pre,
+body.reveal-light .reveal pre {
+  box-shadow: 0 18px 52px rgba(15, 23, 42, 0.24), inset 0 0 36px color-mix(in srgb, var(--cj-accent) 8%, transparent);
+}
+
+html.reveal-light .reveal pre code,
+body.reveal-light .reveal pre code,
+html.reveal-light .reveal pre code.hljs,
+body.reveal-light .reveal pre code.hljs {
+  border-color: color-mix(in srgb, var(--cj-accent) 32%, rgba(15, 23, 42, 0.24));
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(8, 13, 24, 0.96));
+  color: #e5eef8;
+}
+
+html.reveal-light .reveal .terminal-card,
+body.reveal-light .reveal .terminal-card {
+  background: rgba(15, 23, 42, 0.96);
+  border-color: rgba(15, 23, 42, 0.22);
+}
+
+html.reveal-light .reveal .terminal-card::before,
+body.reveal-light .reveal .terminal-card::before {
+  background:
+    radial-gradient(circle at 0.9rem 50%, rgba(226, 232, 240, 0.58) 0.18rem, transparent 0.2rem),
+    radial-gradient(circle at 1.55rem 50%, rgba(226, 232, 240, 0.42) 0.18rem, transparent 0.2rem),
+    radial-gradient(circle at 2.2rem 50%, rgba(226, 232, 240, 0.28) 0.18rem, transparent 0.2rem),
+    rgba(2, 6, 23, 0.72);
+}
+
+html.reveal-light .reveal .terminal-card pre code,
+body.reveal-light .reveal .terminal-card pre code,
+html.reveal-light .reveal .terminal-card pre code.hljs,
+body.reveal-light .reveal .terminal-card pre code.hljs {
+  background: transparent;
+  color: #7cff88;
+}
+
+html.reveal-light .reveal pre code.hljs .hljs-comment,
+body.reveal-light .reveal pre code.hljs .hljs-comment,
+html.reveal-light .reveal pre code.hljs .hljs-quote,
+body.reveal-light .reveal pre code.hljs .hljs-quote {
+  color: #94a3b8;
+}
+
+.reveal pre code.hljs {
+  background: transparent;
+  color: #f8f8f2;
+  text-shadow: none;
+}
+
+.reveal pre code.hljs .hljs-comment,
+.reveal pre code.hljs .hljs-quote {
+  color: color-mix(in srgb, var(--cj-muted) 78%, transparent);
+}
+
+.reveal .hljs-ln,
+.reveal .hljs table {
+  width: 100%;
+  box-shadow: none;
+}
+
+.reveal .hljs-ln td,
+.reveal .hljs-ln th,
+.reveal .hljs table td,
+.reveal .hljs table th {
+  border: 0;
+  background: transparent;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.reveal .hljs-ln-numbers {
+  min-width: 2.5em;
+  padding-right: 0.85em !important;
+  border-right: 1px solid var(--cj-border) !important;
+  color: color-mix(in srgb, var(--cj-muted) 70%, transparent);
+  text-align: right !important;
+  user-select: none;
+}
+
+.reveal .hljs-ln-code {
+  padding-left: 0.85em !important;
+}
+
+.reveal .hljs.has-highlights tr:not(.highlight-line) {
+  opacity: 0.42;
+}
+
+.reveal .hljs mark,
+.reveal .hljs .highlight-line {
+  background: color-mix(in srgb, var(--cj-accent-2) 24%, transparent);
+  color: inherit;
+}
+
+.reveal .katex,
+.reveal .katex-display {
+  color: var(--cj-heading);
+}
+
+.reveal .katex-display {
+  margin: 0.8em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.reveal kbd {
+  display: inline-block;
+  min-width: 1.65em;
+  padding: 0.12em 0.38em;
+  border: 1px solid var(--cj-border);
+  border-radius: 0.35em;
+  background: var(--cj-surface-strong);
+  color: var(--cj-heading);
+  font-family: var(--r-code-font);
+  font-size: 0.72em;
+  text-align: center;
+}
+
+.reveal button,
+.reveal .plugin-button,
+.reveal .choice-button {
+  appearance: none;
+  border: 1px solid color-mix(in srgb, var(--cj-accent) 48%, var(--cj-border));
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--cj-accent), var(--cj-accent-2));
+  color: #ffffff;
+  cursor: pointer;
+  font-family: var(--r-heading-font);
+  font-size: 0.55em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.6em 1em;
+  text-decoration: none;
+}
+
+.reveal button:hover,
+.reveal button:focus-visible,
+.reveal .plugin-button:hover,
+.reveal .plugin-button:focus-visible,
+.reveal .choice-button:hover,
+.reveal .choice-button:focus-visible {
+  color: #ffffff;
+  filter: brightness(1.06);
+  outline: 2px solid color-mix(in srgb, var(--cj-link) 72%, white);
+  outline-offset: 3px;
+}
+
+.reveal .searchbox {
+  border: 1px solid var(--cj-border);
+  border-radius: 999px;
+  background: var(--cj-surface-strong);
+  color: var(--cj-text);
+}
+
+.reveal .searchinput,
+.reveal input[type="search"] {
+  color: var(--cj-heading);
+  caret-color: var(--cj-accent);
+}
+
+.reveal .searchmatch {
+  color: #ffffff !important;
+  background: color-mix(in srgb, var(--cj-accent) 72%, transparent) !important;
+  text-shadow: none !important;
+}
+
+.reveal .searchmatch.current {
+  background: color-mix(in srgb, var(--cj-accent-2) 78%, transparent) !important;
+}
+
+/* Layout helpers */
+.reveal .layout-split,
+.reveal .metric-grid,
+.reveal .choice-grid,
+.reveal .anything-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.reveal .layout-split {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.reveal .metric-grid,
+.reveal .anything-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.reveal .metric-card,
+.reveal .anything-counter {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  min-height: 6rem;
+  border: 1px solid var(--cj-border);
+  border-radius: 0.9rem;
+  background: color-mix(in srgb, var(--cj-surface-strong) 78%, transparent);
+  padding: 0.7rem;
+  text-align: center;
+}
+
+.reveal .metric-card strong,
+.reveal .anything-counter strong {
+  color: var(--cj-terminal);
+  font-family: var(--r-heading-font);
+  font-size: 1.65em;
+  line-height: 1;
+}
+
+.reveal .metric-card span,
+.reveal .anything-counter span {
+  color: var(--cj-muted);
+  font-size: 0.62em;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Local multiple-choice interaction surfaces */
+.reveal .plugin-surface {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.reveal .choice-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.reveal .choice-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--cj-surface-strong) 78%, transparent);
+  color: var(--cj-heading);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.reveal .choice-button:hover,
+.reveal .choice-button:focus-visible {
+  background: linear-gradient(135deg, var(--cj-accent), var(--cj-accent-2));
+}
+
+.reveal .feedback-card {
+  border-left: 0.35rem solid var(--cj-accent);
+}
+
+.reveal .feedback-card.is-correct {
+  border-left-color: var(--cj-accent);
+}
+
+.reveal .feedback-card.is-incorrect {
+  border-left-color: var(--cj-danger);
+}
+
+.reveal .feedback-card.is-correct h2::before {
+  content: "✓ ";
+  color: var(--cj-accent);
+}
+
+.reveal .feedback-card.is-incorrect h2::before {
+  content: "↺ ";
+  color: var(--cj-danger);
+}
+
+/* Optional plugin surfaces */
+.reveal .animate-surface svg {
+  width: 100%;
+  max-height: 52vh;
+  overflow: visible;
+}
+
+.reveal .animate-surface svg text {
+  fill: var(--cj-muted);
+  font-family: var(--r-heading-font);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.reveal .animate-surface #node-a,
+.reveal .animate-surface #node-b,
+.reveal .animate-surface #node-c {
+  fill: color-mix(in srgb, var(--cj-surface-strong) 84%, transparent);
+}
+
+.reveal .third-party-toolbar,
+.reveal .copy-code-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.reveal .copy-code-block {
+  position: relative;
+}
+
+.reveal .copy-code-block pre {
+  flex: 1 1 100%;
+}
+
+.reveal .copy-code-button {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.45rem;
+  z-index: 2;
+}
+
+@media (max-width: 800px) {
+  .reveal .layout-split,
+  .reveal .metric-grid,
+  .reveal .choice-grid,
+  .reveal .anything-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reveal .copy-code-button {
+    position: static;
+  }
+}
