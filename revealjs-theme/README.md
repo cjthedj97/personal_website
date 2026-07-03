@@ -9,7 +9,7 @@ It carries over the site’s dark infrastructure-console feel: layered navy grad
 - `cj-saathoff.css` — compiled CSS theme that can be dropped into any Reveal.js deck.
 - `plugin-compat.css` — optional companion CSS for testing common Reveal.js plugin UI against the theme.
 - `demo.html` — official Reveal.js plugin test deck pointed at `cj-saathoff.css`.
-- `third-party-demo.html` — optional third-party integration test deck for useful client-side add-ons.
+- `third-party-demo.html` — optional third-party integration test deck for selected rajgoel plugins.
 
 ## Official plugin demo
 
@@ -43,13 +43,13 @@ Open `third-party-demo.html` to test optional third-party surfaces:
 http://localhost:8000/revealjs-theme/third-party-demo.html
 ```
 
-This deck keeps third-party integrations separate from the official-plugin demo. It checks useful client-side additions only, with no Socket.io or Multiplex setup:
+This deck focuses on selected `rajgoel/reveal.js-plugins` integrations:
 
-- `reveal.js-menu` for slide navigation by title.
-- `reveal.js-plugins/chalkboard` for annotation surfaces when available.
-- Mermaid for architecture diagrams.
-- Chart.js for dashboard-style slides.
-- Copy-code button styling and behavior.
+- `audio-slideshow` with safe no-autoplay/no-default-audio settings.
+- `anything` for generated content surfaces.
+- `animate` for SVG animation surfaces.
+- `poll` as a themed mock surface because the live plugin requires the seminar/live-room stack.
+- `questions` as a themed mock surface because the live plugin requires the seminar/live-room stack.
 
 ## Usage
 
@@ -69,7 +69,7 @@ For CDN-based Reveal.js decks:
 
 ## Optional plugin compatibility CSS
 
-For decks using Highlight, Math, Search, Zoom, Mermaid, Chart.js, menu, chalkboard, or copy-code style surfaces, load the compatibility stylesheet after the main theme:
+For decks using Highlight, Math, Search, Zoom, audio-slideshow, anything, animate, poll, or questions-style surfaces, load the compatibility stylesheet after the main theme:
 
 ```html
 <link rel="stylesheet" href="revealjs-theme/cj-saathoff.css">
