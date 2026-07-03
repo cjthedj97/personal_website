@@ -48,8 +48,10 @@ This deck focuses on selected `rajgoel/reveal.js-plugins` integrations:
 - `audio-slideshow` with safe no-autoplay/no-default-audio settings.
 - `anything` for generated content surfaces.
 - `animate` for SVG animation surfaces.
-- `poll` as a themed mock surface because the live plugin requires the seminar/live-room stack.
-- `questions` as a themed mock surface because the live plugin requires the seminar/live-room stack.
+- local/static `poll` styling, with an optional link button for a separate poll page or side panel.
+- local/static `questions` styling for a separate Q&A page or side panel.
+
+No room codes, join-room UI, Seminar setup, or Socket.io dependency is included.
 
 ## Usage
 
