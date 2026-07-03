@@ -10,8 +10,6 @@ permalink: /revealjs-theme/third-party-demo.html
     <title>CJ Saathoff Reveal.js Third-Party Demo</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/poll/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/questions/style.css">
     <link rel="stylesheet" href="./cj-saathoff.css">
     <link rel="stylesheet" href="./plugin-compat.css">
   </head>
@@ -21,8 +19,9 @@ permalink: /revealjs-theme/third-party-demo.html
         <section class="center">
           <p class="eyebrow">Third-Party Integrations</p>
           <h1>Rajgoel <span class="gradient-text">plugin surfaces</span></h1>
-          <p class="muted">Focused test deck for poll, questions, audio-slideshow, anything, and animate.</p>
+          <p class="muted">Focused test deck for room-style poll/questions UI, audio-slideshow, anything, and animate.</p>
           <div class="pill-row" style="justify-content:center">
+            <span>Room UI</span>
             <span>Poll</span>
             <span>Questions</span>
             <span>Audio</span>
@@ -32,10 +31,31 @@ permalink: /revealjs-theme/third-party-demo.html
         </section>
 
         <section>
+          <p class="eyebrow">Room UI</p>
+          <h2>Audience room surface</h2>
+          <div class="glass-card plugin-surface room-surface">
+            <p class="muted">No Socket.io or live backend is loaded. This is the visual template for a future room-style experience.</p>
+            <div class="room-grid">
+              <div>
+                <span class="room-label">Room code</span>
+                <strong class="room-code">CJ-042</strong>
+                <span class="room-note">join.cjthedj.me/CJ-042</span>
+              </div>
+              <div class="room-qr" aria-label="QR placeholder">QR</div>
+              <div class="room-meta">
+                <span><strong>24</strong> joined</span>
+                <span><strong>3</strong> active questions</span>
+                <span><strong>1</strong> open poll</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
           <p class="eyebrow">Poll</p>
-          <h2>Poll result surface</h2>
+          <h2>Room poll surface</h2>
           <div class="glass-card plugin-surface poll-surface">
-            <p class="muted">Mocked here because the real poll plugin requires Seminar + Socket.io.</p>
+            <p class="muted">Room-style poll UI only. The live plugin path can be wired later behind a custom backend if needed.</p>
             <h3>Which topic should we go deeper on?</h3>
             <div class="poll-option"><span>Automation</span><meter value="0.62">62%</meter><strong>62%</strong></div>
             <div class="poll-option"><span>Networking</span><meter value="0.25">25%</meter><strong>25%</strong></div>
@@ -45,12 +65,12 @@ permalink: /revealjs-theme/third-party-demo.html
 
         <section>
           <p class="eyebrow">Questions</p>
-          <h2>Q&A dashboard surface</h2>
+          <h2>Room Q&A queue</h2>
           <div class="glass-card plugin-surface qna-surface">
-            <p class="muted">Mocked here because the real questions plugin also requires Seminar + Socket.io.</p>
+            <p class="muted">Room-style question queue only. This tests the layout without a live Socket.io dependency.</p>
             <article class="qna-card"><strong>8 votes</strong><span>How would this theme handle a live incident-review deck?</span></article>
             <article class="qna-card"><strong>4 votes</strong><span>Can presenter notes include operational runbook links?</span></article>
-            <article class="qna-card is-closed"><strong>Closed</strong><span>What font pair is being used?</span></article>
+            <article class="qna-card is-closed"><strong>Answered</strong><span>What font pair is being used?</span></article>
           </div>
         </section>
 
@@ -176,8 +196,8 @@ permalink: /revealjs-theme/third-party-demo.html
           'audio-slideshow': Boolean(window.RevealAudioSlideshow),
           anything: Boolean(window.RevealAnything),
           animate: Boolean(window.RevealAnimate),
-          poll: 'mock surface only',
-          questions: 'mock surface only'
+          'room poll UI': 'static template',
+          'room questions UI': 'static template'
         };
 
         document.getElementById('thirdPartyStatus').innerHTML = `
