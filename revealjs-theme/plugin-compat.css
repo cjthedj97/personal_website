@@ -146,3 +146,96 @@ body.reveal-light .reveal {
 .reveal .searchmatch.current {
   background: color-mix(in srgb, var(--cj-accent-2) 78%, transparent) !important;
 }
+
+/* Third-party demo surfaces */
+.reveal .third-party-toolbar,
+.reveal .copy-code-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.reveal .third-party-toolbar {
+  margin-top: 1rem;
+}
+
+.reveal .copy-code-block {
+  position: relative;
+}
+
+.reveal .copy-code-block pre {
+  flex: 1 1 100%;
+}
+
+.reveal .copy-code-button {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.45rem;
+  z-index: 2;
+}
+
+.reveal .mermaid {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  padding: 0.5rem;
+  background: transparent;
+  color: var(--cj-text);
+}
+
+.reveal .mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.reveal .chart-card {
+  height: min(56vh, 26rem);
+}
+
+.reveal .chart-card canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.slide-menu-wrapper,
+.slide-menu-panel,
+.slide-menu-toolbar {
+  background: var(--cj-surface-strong) !important;
+  color: var(--cj-text) !important;
+  border-color: var(--cj-border) !important;
+  backdrop-filter: blur(18px);
+}
+
+.slide-menu-item,
+.slide-menu-item a,
+.slide-menu-button {
+  color: var(--cj-text) !important;
+}
+
+.slide-menu-item.active,
+.slide-menu-item:hover,
+.slide-menu-button:hover {
+  background: color-mix(in srgb, var(--cj-accent-2) 18%, transparent) !important;
+  color: var(--cj-heading) !important;
+}
+
+.chalkboard-button,
+.chalkboard-button:hover,
+.slide-menu-button,
+.slide-menu-button:hover {
+  border-color: var(--cj-border) !important;
+}
+
+.chalkboard,
+.chalkboard-drawing-canvas,
+.annotation-canvas,
+.drawer-canvas {
+  color: var(--cj-text);
+}
+
+@media (max-width: 800px) {
+  .reveal .copy-code-button {
+    position: static;
+  }
+}
