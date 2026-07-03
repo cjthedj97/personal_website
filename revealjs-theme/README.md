@@ -48,8 +48,8 @@ This deck focuses on selected `rajgoel/reveal.js-plugins` integrations:
 - `audio-slideshow` with safe no-autoplay/no-default-audio settings.
 - `anything` for generated content surfaces.
 - `animate` for SVG animation surfaces.
-- local/static `poll` styling, with an optional link button for a separate poll page or side panel.
-- local/static `questions` styling for a separate Q&A page or side panel.
+- local/static multiple-choice poll and question flows where answer buttons link to correct or incorrect feedback slides.
+- optional link-out button styling for a separate poll page or side panel when a deck needs more than slide navigation.
 
 No room codes, join-room UI, Seminar setup, or Socket.io dependency is included.
 
@@ -71,7 +71,7 @@ For CDN-based Reveal.js decks:
 
 ## Optional plugin compatibility CSS
 
-For decks using Highlight, Math, Search, Zoom, audio-slideshow, anything, animate, poll, or questions-style surfaces, load the compatibility stylesheet after the main theme:
+For decks using Highlight, Math, Search, Zoom, audio-slideshow, anything, animate, or local multiple-choice question/poll surfaces, load the compatibility stylesheet after the main theme:
 
 ```html
 <link rel="stylesheet" href="revealjs-theme/cj-saathoff.css">
