@@ -1,0 +1,262 @@
+---
+layout: null
+permalink: /revealjs-theme/third-party-demo.html
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CJ Saathoff Reveal.js Third-Party Demo</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-menu@2.1.0/menu.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/chalkboard/style.css">
+    <link rel="stylesheet" href="./cj-saathoff.css">
+    <link rel="stylesheet" href="./plugin-compat.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="center" data-menu-title="Third-Party Demo">
+          <p class="eyebrow">Third-Party Integrations</p>
+          <h1>Useful <span class="gradient-text">extras</span></h1>
+          <p class="muted">A separate test deck for popular client-side plugins and integrations without adding them to the default theme.</p>
+          <div class="pill-row" style="justify-content:center">
+            <span>Menu</span>
+            <span>Chalkboard</span>
+            <span>Mermaid</span>
+            <span>Chart.js</span>
+            <span>Copy Code</span>
+          </div>
+        </section>
+
+        <section data-menu-title="Navigation Helpers">
+          <p class="eyebrow">Menu / Toolbar Surfaces</p>
+          <h2>Deck navigation helpers</h2>
+          <div class="glass-card">
+            <p>If <code>reveal.js-menu</code> loads, use the slide-out menu to jump by title.</p>
+            <p>The toolbar below is a theme-compatibility surface for common menu, toolbar, and custom-control plugins.</p>
+            <div class="third-party-toolbar" aria-label="Demo toolbar">
+              <button type="button" data-action="prev">Previous</button>
+              <button type="button" data-action="next">Next</button>
+              <button type="button" data-action="overview">Overview</button>
+              <button type="button" id="toggleTheme" data-action="theme">Toggle theme</button>
+            </div>
+          </div>
+        </section>
+
+        <section data-menu-title="Mermaid Diagram">
+          <p class="eyebrow">Mermaid</p>
+          <h2>Architecture diagrams</h2>
+          <div class="glass-card">
+            <pre class="mermaid">
+flowchart LR
+  Speaker[Speaker Deck] --> Reveal[Reveal.js]
+  Reveal --> Theme[cj-saathoff.css]
+  Reveal --> Plugins[Optional Plugins]
+  Plugins --> Diagrams[Mermaid]
+  Plugins --> Charts[Chart.js]
+            </pre>
+          </div>
+        </section>
+
+        <section data-menu-title="Chart.js">
+          <p class="eyebrow">Chart.js</p>
+          <h2>Operational dashboard slide</h2>
+          <div class="glass-card chart-card">
+            <canvas id="opsChart" aria-label="Demo operational metrics chart" role="img"></canvas>
+          </div>
+        </section>
+
+        <section data-menu-title="Copy Code">
+          <p class="eyebrow">Copy Code</p>
+          <h2>Snippet workflow</h2>
+          <div class="copy-code-block">
+            <button class="copy-code-button" type="button" data-copy-target="deploySnippet">Copy snippet</button>
+            <pre><code id="deploySnippet">python3 -m http.server 8000
+open http://localhost:8000/revealjs-theme/third-party-demo.html</code></pre>
+          </div>
+          <small class="muted">This tests copy-code button styling without requiring a plugin dependency.</small>
+        </section>
+
+        <section data-menu-title="Chalkboard / Annotation">
+          <p class="eyebrow">Chalkboard / Annotation</p>
+          <h2>Live markup surfaces</h2>
+          <div class="glass-card">
+            <p>If the chalkboard plugin loads, this deck exposes its annotation controls. The theme also styles likely annotation and drawer surfaces.</p>
+            <p class="muted">This stays optional because drawing plugins can vary by install method and Reveal.js version.</p>
+          </div>
+        </section>
+
+        <section data-menu-title="Third-Party Status">
+          <p class="eyebrow">Status</p>
+          <h2>Loaded integrations</h2>
+          <div id="thirdPartyStatus" class="glass-card"></div>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-menu@2.1.0/menu.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/chalkboard/plugin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.js"></script>
+    <script>
+      const optionalPlugins = [
+        window.RevealMenu,
+        window.RevealChalkboard
+      ].filter(Boolean);
+
+      Reveal.initialize({
+        hash: true,
+        slideNumber: true,
+        controls: true,
+        progress: true,
+        center: true,
+        plugins: optionalPlugins,
+        menu: {
+          side: 'left',
+          numbers: true,
+          titleSelector: 'h1, h2, h3, .menu-title'
+        },
+        chalkboard: {
+          boardmarkerWidth: 3,
+          chalkWidth: 5,
+          theme: 'chalkboard'
+        }
+      }).then(() => {
+        renderMermaid();
+        renderChart();
+        updateStatus();
+      });
+
+      function cssVar(name) {
+        return getComputedStyle(document.querySelector('.reveal')).getPropertyValue(name).trim();
+      }
+
+      function isLightMode() {
+        return document.querySelector('.reveal').classList.contains('light');
+      }
+
+      function setLightMode(isLight) {
+        const revealRoot = document.querySelector('.reveal');
+        revealRoot.classList.toggle('light', isLight);
+        document.body.classList.toggle('reveal-light', isLight);
+        document.documentElement.classList.toggle('reveal-light', isLight);
+
+        const viewport = document.querySelector('.reveal-viewport');
+        if (viewport) {
+          viewport.classList.toggle('reveal-light', isLight);
+        }
+
+        Reveal.layout();
+        renderMermaid(true);
+        renderChart(true);
+      }
+
+      function renderMermaid(force) {
+        if (!window.mermaid) return;
+
+        window.mermaid.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          theme: isLightMode() ? 'default' : 'dark'
+        });
+
+        document.querySelectorAll('.mermaid').forEach((node, index) => {
+          if (force) {
+            node.removeAttribute('data-processed');
+            if (node.dataset.source) {
+              node.textContent = node.dataset.source;
+            }
+          }
+
+          if (!node.dataset.source) {
+            node.dataset.source = node.textContent;
+          }
+
+          node.id = node.id || `mermaid-${index}`;
+        });
+
+        window.mermaid.run({ querySelector: '.mermaid' });
+      }
+
+      let chart;
+      function renderChart(force) {
+        if (!window.Chart) return;
+        const canvas = document.getElementById('opsChart');
+        if (!canvas) return;
+
+        if (chart && force) {
+          chart.destroy();
+        } else if (chart) {
+          return;
+        }
+
+        const accent = cssVar('--cj-accent') || '#1abc9c';
+        const accent2 = cssVar('--cj-accent-2') || '#3b82f6';
+        const text = cssVar('--cj-text') || '#e5eef8';
+        const muted = cssVar('--cj-muted') || 'rgba(226, 232, 240, 0.82)';
+
+        chart = new Chart(canvas, {
+          type: 'bar',
+          data: {
+            labels: ['Incidents', 'Automation', 'Patches', 'Backups'],
+            datasets: [{
+              label: 'Demo score',
+              data: [3, 9, 7, 8],
+              borderColor: accent,
+              backgroundColor: [accent, accent2, accent, accent2]
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { labels: { color: text } }
+            },
+            scales: {
+              x: { ticks: { color: text }, grid: { color: 'transparent' } },
+              y: { ticks: { color: text }, grid: { color: muted } }
+            }
+          }
+        });
+      }
+
+      function updateStatus() {
+        const status = document.getElementById('thirdPartyStatus');
+        const checks = {
+          'reveal.js-menu': Boolean(window.RevealMenu),
+          'reveal.js-plugins/chalkboard': Boolean(window.RevealChalkboard),
+          Mermaid: Boolean(window.mermaid),
+          'Chart.js': Boolean(window.Chart)
+        };
+
+        status.innerHTML = `
+          <ul>
+            ${Object.entries(checks).map(([name, loaded]) => `<li><strong>${name}</strong>: ${loaded ? 'loaded' : 'not loaded'}</li>`).join('')}
+          </ul>
+        `;
+      }
+
+      document.addEventListener('click', (event) => {
+        const action = event.target.dataset.action;
+        if (action === 'prev') Reveal.prev();
+        if (action === 'next') Reveal.next();
+        if (action === 'overview') Reveal.toggleOverview();
+        if (action === 'theme') setLightMode(!isLightMode());
+
+        const targetId = event.target.dataset.copyTarget;
+        if (targetId) {
+          const target = document.getElementById(targetId);
+          if (!target) return;
+          navigator.clipboard.writeText(target.textContent.trim()).then(() => {
+            event.target.textContent = 'Copied';
+            setTimeout(() => { event.target.textContent = 'Copy snippet'; }, 1200);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
