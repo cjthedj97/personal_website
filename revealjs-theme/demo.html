@@ -132,80 +132,74 @@ $ ./deploy-theme --target revealjs
           </div>
         </section>
 
-        <section id="poll-question">
-          <p class="eyebrow">Poll / Question</p>
-          <h2>Multiple-choice interaction</h2>
-          <div class="glass-card plugin-surface choice-surface">
-            <p class="muted">Local slide-only interaction. Each answer links to a correct or incorrect feedback slide.</p>
-            <h3>Which command serves this demo locally?</h3>
-            <div class="choice-grid">
-              <a class="choice-button" href="#/poll-incorrect">npm run reveal</a>
-              <a class="choice-button" href="#/poll-correct">python3 -m http.server 8000</a>
-              <a class="choice-button" href="#/poll-incorrect">jekyll build --watch</a>
-              <a class="choice-button" href="#/poll-incorrect">bundle exec rake slides</a>
+        <section>
+          <section id="poll-question">
+            <p class="eyebrow">Poll / Question</p>
+            <h2>Multiple-choice interaction</h2>
+            <div class="glass-card plugin-surface choice-surface">
+              <p class="muted">Local slide-only interaction. Correct and incorrect feedback slides live below this question.</p>
+              <h3>Which command serves this demo locally?</h3>
+              <div class="choice-grid">
+                <a class="choice-button" href="#/poll-incorrect">npm run reveal</a>
+                <a class="choice-button" href="#/poll-correct">python3 -m http.server 8000</a>
+                <a class="choice-button" href="#/poll-incorrect">jekyll build --watch</a>
+                <a class="choice-button" href="#/poll-incorrect">bundle exec rake slides</a>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section id="poll-correct">
-          <p class="eyebrow">Correct</p>
-          <div class="glass-card plugin-surface feedback-card is-correct">
-            <h2>Correct.</h2>
-            <p><code>python3 -m http.server 8000</code> serves the repo locally so the demo is available at <code>/revealjs-theme/demo.html</code>.</p>
-            <p><a class="plugin-button" href="#/poll-question">Back to question</a></p>
-          </div>
-        </section>
-
-        <section id="poll-incorrect">
-          <p class="eyebrow">Try again</p>
-          <div class="glass-card plugin-surface feedback-card is-incorrect">
-            <h2>Not quite.</h2>
-            <p>This template uses a simple static server for local testing. Try the answer that starts Python’s built-in HTTP server.</p>
-            <p><a class="plugin-button" href="#/poll-question">Back to question</a></p>
-          </div>
-        </section>
-
-        <section id="linked-question">
-          <p class="eyebrow">Linked Question</p>
-          <h2>Side poll pattern</h2>
-          <div class="glass-card plugin-surface choice-surface">
-            <p class="muted">This can point to another slide, a side-panel page, or an external poll URL later.</p>
-            <h3>Where should a deeper audience exercise live?</h3>
-            <div class="choice-grid">
-              <a class="choice-button" href="#/linked-correct">A linked side page</a>
-              <a class="choice-button" href="#/linked-incorrect">Inside the theme CSS</a>
-              <a class="choice-button" href="#/linked-incorrect">A required socket server</a>
-              <a class="choice-button" href="#/linked-incorrect">A hidden presenter note only</a>
+          <section id="poll-correct">
+            <p class="eyebrow">Correct</p>
+            <div class="glass-card plugin-surface feedback-card is-correct">
+              <h2>Correct.</h2>
+              <p><code>python3 -m http.server 8000</code> serves the repo locally so the demo is available at <code>/revealjs-theme/demo.html</code>.</p>
+              <p><a class="plugin-button" href="#/poll-question">Back to question</a></p>
             </div>
-          </div>
+          </section>
+
+          <section id="poll-incorrect">
+            <p class="eyebrow">Try again</p>
+            <div class="glass-card plugin-surface feedback-card is-incorrect">
+              <h2>Not quite.</h2>
+              <p>This template uses a simple static server for local testing. Try the answer that starts Python’s built-in HTTP server.</p>
+              <p><a class="plugin-button" href="#/poll-question">Back to question</a></p>
+            </div>
+          </section>
         </section>
 
-        <section id="linked-correct">
-          <p class="eyebrow">Correct</p>
-          <div class="glass-card plugin-surface feedback-card is-correct">
-            <h2>Correct.</h2>
-            <p>A linked side page keeps the deck static while still allowing a richer poll or question workflow when needed.</p>
-            <p><a class="plugin-button" href="#/linked-question">Back to question</a></p>
-          </div>
-        </section>
+        <section>
+          <section id="linked-question">
+            <p class="eyebrow">Linked Question</p>
+            <h2>Side poll pattern</h2>
+            <div class="glass-card plugin-surface choice-surface">
+              <p class="muted">This can point down to feedback slides, or out to a side-panel page or external poll URL later.</p>
+              <h3>Where should a deeper audience exercise live?</h3>
+              <div class="choice-grid">
+                <a class="choice-button" href="#/linked-correct">A linked side page</a>
+                <a class="choice-button" href="#/linked-incorrect">Inside the theme CSS</a>
+                <a class="choice-button" href="#/linked-incorrect">A required socket server</a>
+                <a class="choice-button" href="#/linked-incorrect">A hidden presenter note only</a>
+              </div>
+            </div>
+          </section>
 
-        <section id="linked-incorrect">
-          <p class="eyebrow">Try again</p>
-          <div class="glass-card plugin-surface feedback-card is-incorrect">
-            <h2>Not quite.</h2>
-            <p>The template should stay static and portable. Use a linked side page when the interaction needs more than slide navigation.</p>
-            <p><a class="plugin-button" href="#/linked-question">Back to question</a></p>
-          </div>
-        </section>
+          <section id="linked-correct">
+            <p class="eyebrow">Correct</p>
+            <div class="glass-card plugin-surface feedback-card is-correct">
+              <h2>Correct.</h2>
+              <p>A linked side page keeps the deck static while still allowing a richer poll or question workflow when needed.</p>
+              <p><a class="plugin-button" href="#/linked-question">Back to question</a></p>
+            </div>
+          </section>
 
-        <section data-audio-src="">
-          <p class="eyebrow">Audio Slideshow</p>
-          <h2>Playback UI surface</h2>
-          <div class="glass-card plugin-surface audio-surface">
-            <p>The audio-slideshow plugin is loaded with autoplay off, default audio lookup off, and no auto-advance.</p>
-            <audio controls preload="none" class="audio-demo-control" aria-label="Demo audio controls"></audio>
-            <p class="fragment" data-audio-text="Fragment narration placeholder.">Fragment-level narration placeholder.</p>
-          </div>
+          <section id="linked-incorrect">
+            <p class="eyebrow">Try again</p>
+            <div class="glass-card plugin-surface feedback-card is-incorrect">
+              <h2>Not quite.</h2>
+              <p>The template should stay static and portable. Use a linked side page when the interaction needs more than slide navigation.</p>
+              <p><a class="plugin-button" href="#/linked-question">Back to question</a></p>
+            </div>
+          </section>
         </section>
 
         <section>
@@ -309,7 +303,6 @@ $ ./deploy-theme --target revealjs
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/search/search.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/zoom/zoom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/math/math.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/audio-slideshow/plugin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/anything/plugin.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.1.2/svg.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/animate/plugin.js"></script>
@@ -349,7 +342,6 @@ $ ./deploy-theme --target revealjs
         RevealSearch,
         RevealZoom,
         RevealMath.KaTeX,
-        window.RevealAudioSlideshow,
         window.RevealAnything,
         window.RevealAnimate
       ].filter(Boolean);
@@ -360,13 +352,6 @@ $ ./deploy-theme --target revealjs
         controls: true,
         progress: true,
         center: true,
-        audio: {
-          autoplay: false,
-          defaultAudios: false,
-          defaultDuration: 0,
-          advance: -1,
-          playerOpacity: 0.9
-        },
         anything: [{
           className: 'anything-counter',
           defaults: { label: 'Metric', value: 0 },
@@ -380,14 +365,13 @@ $ ./deploy-theme --target revealjs
         plugins: optionalPlugins
       }).then(() => {
         setLightMode(isLightMode(), false);
-        const pluginNames = ['markdown', 'highlight', 'notes', 'search', 'zoom', 'math', 'audio-slideshow', 'anything', 'animate'];
+        const pluginNames = ['markdown', 'highlight', 'notes', 'search', 'zoom', 'math', 'anything', 'animate'];
         const status = document.getElementById('pluginStatus');
 
         status.innerHTML = `
           <ul>
-            ${pluginNames.map((name) => `<li><strong>${name}</strong>: ${Reveal.hasPlugin(name) ? 'loaded' : name === 'anything' && window.RevealAnything ? 'loaded' : name === 'animate' && window.RevealAnimate ? 'loaded' : name === 'audio-slideshow' && window.RevealAudioSlideshow ? 'loaded' : 'not loaded'}</li>`).join('')}
-            <li><strong>multiple-choice UI</strong>: static slide links</li>
-            <li><strong>feedback slides</strong>: correct / incorrect</li>
+            ${pluginNames.map((name) => `<li><strong>${name}</strong>: ${Reveal.hasPlugin(name) ? 'loaded' : name === 'anything' && window.RevealAnything ? 'loaded' : name === 'animate' && window.RevealAnimate ? 'loaded' : 'not loaded'}</li>`).join('')}
+            <li><strong>multiple-choice UI</strong>: vertical feedback slides</li>
           </ul>
         `;
       });
