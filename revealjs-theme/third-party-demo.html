@@ -10,102 +10,125 @@ permalink: /revealjs-theme/third-party-demo.html
     <title>CJ Saathoff Reveal.js Third-Party Demo</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-menu@2.1.0/menu.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/chalkboard/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/poll/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/questions/style.css">
     <link rel="stylesheet" href="./cj-saathoff.css">
     <link rel="stylesheet" href="./plugin-compat.css">
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
-        <section class="center" data-menu-title="Third-Party Demo">
+        <section class="center">
           <p class="eyebrow">Third-Party Integrations</p>
-          <h1>Useful <span class="gradient-text">extras</span></h1>
-          <p class="muted">A separate test deck for popular client-side plugins and integrations without adding them to the default theme.</p>
+          <h1>Rajgoel <span class="gradient-text">plugin surfaces</span></h1>
+          <p class="muted">Focused test deck for poll, questions, audio-slideshow, anything, and animate.</p>
           <div class="pill-row" style="justify-content:center">
-            <span>Menu</span>
-            <span>Chalkboard</span>
-            <span>Mermaid</span>
-            <span>Chart.js</span>
-            <span>Copy Code</span>
+            <span>Poll</span>
+            <span>Questions</span>
+            <span>Audio</span>
+            <span>Anything</span>
+            <span>Animate</span>
           </div>
         </section>
 
-        <section data-menu-title="Navigation Helpers">
-          <p class="eyebrow">Menu / Toolbar Surfaces</p>
-          <h2>Deck navigation helpers</h2>
-          <div class="glass-card">
-            <p>If <code>reveal.js-menu</code> loads, use the slide-out menu to jump by title.</p>
-            <p>The toolbar below is a theme-compatibility surface for common menu, toolbar, and custom-control plugins.</p>
-            <div class="third-party-toolbar" aria-label="Demo toolbar">
-              <button type="button" data-action="prev">Previous</button>
-              <button type="button" data-action="next">Next</button>
-              <button type="button" data-action="overview">Overview</button>
-              <button type="button" id="toggleTheme" data-action="theme">Toggle theme</button>
+        <section>
+          <p class="eyebrow">Poll</p>
+          <h2>Poll result surface</h2>
+          <div class="glass-card plugin-surface poll-surface">
+            <p class="muted">Mocked here because the real poll plugin requires Seminar + Socket.io.</p>
+            <h3>Which topic should we go deeper on?</h3>
+            <div class="poll-option"><span>Automation</span><meter value="0.62">62%</meter><strong>62%</strong></div>
+            <div class="poll-option"><span>Networking</span><meter value="0.25">25%</meter><strong>25%</strong></div>
+            <div class="poll-option"><span>Security</span><meter value="0.13">13%</meter><strong>13%</strong></div>
+          </div>
+        </section>
+
+        <section>
+          <p class="eyebrow">Questions</p>
+          <h2>Q&A dashboard surface</h2>
+          <div class="glass-card plugin-surface qna-surface">
+            <p class="muted">Mocked here because the real questions plugin also requires Seminar + Socket.io.</p>
+            <article class="qna-card"><strong>8 votes</strong><span>How would this theme handle a live incident-review deck?</span></article>
+            <article class="qna-card"><strong>4 votes</strong><span>Can presenter notes include operational runbook links?</span></article>
+            <article class="qna-card is-closed"><strong>Closed</strong><span>What font pair is being used?</span></article>
+          </div>
+        </section>
+
+        <section data-audio-src="">
+          <p class="eyebrow">Audio Slideshow</p>
+          <h2>Playback UI surface</h2>
+          <div class="glass-card plugin-surface audio-surface">
+            <p>The audio-slideshow plugin is loaded with autoplay off, default audio lookup off, and no auto-advance.</p>
+            <audio controls preload="none" class="audio-demo-control" aria-label="Demo audio controls"></audio>
+            <p class="fragment" data-audio-text="Fragment narration placeholder.">Fragment-level narration placeholder.</p>
+          </div>
+        </section>
+
+        <section>
+          <p class="eyebrow">Anything</p>
+          <h2>Generated content</h2>
+          <div class="glass-card plugin-surface anything-surface">
+            <p>Anything plugin output:</p>
+            <div class="anything-grid">
+              <span class="anything-counter"><!-- { "label": "Systems", "value": 97 } --></span>
+              <span class="anything-counter"><!-- { "label": "Automations", "value": 42 } --></span>
+              <span class="anything-counter"><!-- { "label": "Alerts", "value": 3 } --></span>
             </div>
           </div>
         </section>
 
-        <section data-menu-title="Mermaid Diagram">
-          <p class="eyebrow">Mermaid</p>
-          <h2>Architecture diagrams</h2>
-          <div class="glass-card">
-            <pre class="mermaid">
-flowchart LR
-  Speaker[Speaker Deck] --> Reveal[Reveal.js]
-  Reveal --> Theme[cj-saathoff.css]
-  Reveal --> Plugins[Optional Plugins]
-  Plugins --> Diagrams[Mermaid]
-  Plugins --> Charts[Chart.js]
-            </pre>
+        <section>
+          <p class="eyebrow">Animate</p>
+          <h2>SVG animation surface</h2>
+          <div class="glass-card plugin-surface animate-surface" data-animate>
+            <svg viewBox="0 0 640 220" role="img" aria-label="Animated infrastructure pipeline demo">
+              <defs>
+                <linearGradient id="flowGradient" x1="0" x2="1">
+                  <stop offset="0%" stop-color="#1abc9c" />
+                  <stop offset="100%" stop-color="#3b82f6" />
+                </linearGradient>
+              </defs>
+              <line id="pipeline" x1="110" y1="110" x2="530" y2="110" stroke="url(#flowGradient)" stroke-width="8" stroke-linecap="round" />
+              <circle id="node-a" cx="110" cy="110" r="34" fill="#0b1220" stroke="#1abc9c" stroke-width="5" />
+              <circle id="node-b" cx="320" cy="110" r="34" fill="#0b1220" stroke="#93c5fd" stroke-width="5" />
+              <circle id="node-c" cx="530" cy="110" r="34" fill="#0b1220" stroke="#3b82f6" stroke-width="5" />
+              <circle id="packet" cx="110" cy="110" r="13" fill="#7cff88" />
+              <text x="110" y="175" text-anchor="middle">Build</text>
+              <text x="320" y="175" text-anchor="middle">Test</text>
+              <text x="530" y="175" text-anchor="middle">Deploy</text>
+            </svg>
+            <!--
+            {
+              "animation": [
+                { "element": "#packet", "modifier": "move", "parameters": [110, 110, 800, 0] },
+                { "element": "#packet", "modifier": "move", "parameters": [320, 110, 800, 800] },
+                { "element": "#packet", "modifier": "move", "parameters": [530, 110, 800, 1600] }
+              ]
+            }
+            -->
           </div>
+          <small class="muted">If the animate plugin is unavailable, this still tests SVG styling.</small>
         </section>
 
-        <section data-menu-title="Chart.js">
-          <p class="eyebrow">Chart.js</p>
-          <h2>Operational dashboard slide</h2>
-          <div class="glass-card chart-card">
-            <canvas id="opsChart" aria-label="Demo operational metrics chart" role="img"></canvas>
-          </div>
-        </section>
-
-        <section data-menu-title="Copy Code">
-          <p class="eyebrow">Copy Code</p>
-          <h2>Snippet workflow</h2>
-          <div class="copy-code-block">
-            <button class="copy-code-button" type="button" data-copy-target="deploySnippet">Copy snippet</button>
-            <pre><code id="deploySnippet">python3 -m http.server 8000
-open http://localhost:8000/revealjs-theme/third-party-demo.html</code></pre>
-          </div>
-          <small class="muted">This tests copy-code button styling without requiring a plugin dependency.</small>
-        </section>
-
-        <section data-menu-title="Chalkboard / Annotation">
-          <p class="eyebrow">Chalkboard / Annotation</p>
-          <h2>Live markup surfaces</h2>
-          <div class="glass-card">
-            <p>If the chalkboard plugin loads, this deck exposes its annotation controls. The theme also styles likely annotation and drawer surfaces.</p>
-            <p class="muted">This stays optional because drawing plugins can vary by install method and Reveal.js version.</p>
-          </div>
-        </section>
-
-        <section data-menu-title="Third-Party Status">
+        <section>
           <p class="eyebrow">Status</p>
           <h2>Loaded integrations</h2>
           <div id="thirdPartyStatus" class="glass-card"></div>
+          <p><button id="toggleTheme" type="button">Toggle theme</button></p>
         </section>
       </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js-menu@2.1.0/menu.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/chalkboard/plugin.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/audio-slideshow/plugin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/anything/plugin.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.1.2/svg.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/animate/plugin.js"></script>
     <script>
       const optionalPlugins = [
-        window.RevealMenu,
-        window.RevealChalkboard
+        window.RevealAudioSlideshow,
+        window.RevealAnything,
+        window.RevealAnimate
       ].filter(Boolean);
 
       Reveal.initialize({
@@ -114,26 +137,25 @@ open http://localhost:8000/revealjs-theme/third-party-demo.html</code></pre>
         controls: true,
         progress: true,
         center: true,
-        plugins: optionalPlugins,
-        menu: {
-          side: 'left',
-          numbers: true,
-          titleSelector: 'h1, h2, h3, .menu-title'
+        audio: {
+          autoplay: false,
+          defaultAudios: false,
+          defaultDuration: 0,
+          advance: -1,
+          playerOpacity: 0.9
         },
-        chalkboard: {
-          boardmarkerWidth: 3,
-          chalkWidth: 5,
-          theme: 'chalkboard'
-        }
-      }).then(() => {
-        renderMermaid();
-        renderChart();
-        updateStatus();
-      });
-
-      function cssVar(name) {
-        return getComputedStyle(document.querySelector('.reveal')).getPropertyValue(name).trim();
-      }
+        anything: [{
+          className: 'anything-counter',
+          defaults: { label: 'Metric', value: 0 },
+          initialize: (container, options) => {
+            container.innerHTML = `<strong>${options.value}</strong><span>${options.label}</span>`;
+          }
+        }],
+        animate: {
+          autoplay: true
+        },
+        plugins: optionalPlugins
+      }).then(updateStatus);
 
       function isLightMode() {
         return document.querySelector('.reveal').classList.contains('light');
@@ -144,119 +166,28 @@ open http://localhost:8000/revealjs-theme/third-party-demo.html</code></pre>
         revealRoot.classList.toggle('light', isLight);
         document.body.classList.toggle('reveal-light', isLight);
         document.documentElement.classList.toggle('reveal-light', isLight);
-
         const viewport = document.querySelector('.reveal-viewport');
-        if (viewport) {
-          viewport.classList.toggle('reveal-light', isLight);
-        }
-
+        if (viewport) viewport.classList.toggle('reveal-light', isLight);
         Reveal.layout();
-        renderMermaid(true);
-        renderChart(true);
-      }
-
-      function renderMermaid(force) {
-        if (!window.mermaid) return;
-
-        window.mermaid.initialize({
-          startOnLoad: false,
-          securityLevel: 'loose',
-          theme: isLightMode() ? 'default' : 'dark'
-        });
-
-        document.querySelectorAll('.mermaid').forEach((node, index) => {
-          if (force) {
-            node.removeAttribute('data-processed');
-            if (node.dataset.source) {
-              node.textContent = node.dataset.source;
-            }
-          }
-
-          if (!node.dataset.source) {
-            node.dataset.source = node.textContent;
-          }
-
-          node.id = node.id || `mermaid-${index}`;
-        });
-
-        window.mermaid.run({ querySelector: '.mermaid' });
-      }
-
-      let chart;
-      function renderChart(force) {
-        if (!window.Chart) return;
-        const canvas = document.getElementById('opsChart');
-        if (!canvas) return;
-
-        if (chart && force) {
-          chart.destroy();
-        } else if (chart) {
-          return;
-        }
-
-        const accent = cssVar('--cj-accent') || '#1abc9c';
-        const accent2 = cssVar('--cj-accent-2') || '#3b82f6';
-        const text = cssVar('--cj-text') || '#e5eef8';
-        const muted = cssVar('--cj-muted') || 'rgba(226, 232, 240, 0.82)';
-
-        chart = new Chart(canvas, {
-          type: 'bar',
-          data: {
-            labels: ['Incidents', 'Automation', 'Patches', 'Backups'],
-            datasets: [{
-              label: 'Demo score',
-              data: [3, 9, 7, 8],
-              borderColor: accent,
-              backgroundColor: [accent, accent2, accent, accent2]
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: { labels: { color: text } }
-            },
-            scales: {
-              x: { ticks: { color: text }, grid: { color: 'transparent' } },
-              y: { ticks: { color: text }, grid: { color: muted } }
-            }
-          }
-        });
       }
 
       function updateStatus() {
-        const status = document.getElementById('thirdPartyStatus');
         const checks = {
-          'reveal.js-menu': Boolean(window.RevealMenu),
-          'reveal.js-plugins/chalkboard': Boolean(window.RevealChalkboard),
-          Mermaid: Boolean(window.mermaid),
-          'Chart.js': Boolean(window.Chart)
+          'audio-slideshow': Boolean(window.RevealAudioSlideshow),
+          anything: Boolean(window.RevealAnything),
+          animate: Boolean(window.RevealAnimate),
+          poll: 'mock surface only',
+          questions: 'mock surface only'
         };
 
-        status.innerHTML = `
+        document.getElementById('thirdPartyStatus').innerHTML = `
           <ul>
-            ${Object.entries(checks).map(([name, loaded]) => `<li><strong>${name}</strong>: ${loaded ? 'loaded' : 'not loaded'}</li>`).join('')}
+            ${Object.entries(checks).map(([name, loaded]) => `<li><strong>${name}</strong>: ${loaded === true ? 'loaded' : loaded === false ? 'not loaded' : loaded}</li>`).join('')}
           </ul>
         `;
       }
 
-      document.addEventListener('click', (event) => {
-        const action = event.target.dataset.action;
-        if (action === 'prev') Reveal.prev();
-        if (action === 'next') Reveal.next();
-        if (action === 'overview') Reveal.toggleOverview();
-        if (action === 'theme') setLightMode(!isLightMode());
-
-        const targetId = event.target.dataset.copyTarget;
-        if (targetId) {
-          const target = document.getElementById(targetId);
-          if (!target) return;
-          navigator.clipboard.writeText(target.textContent.trim()).then(() => {
-            event.target.textContent = 'Copied';
-            setTimeout(() => { event.target.textContent = 'Copy snippet'; }, 1200);
-          });
-        }
-      });
+      document.getElementById('toggleTheme').addEventListener('click', () => setLightMode(!isLightMode()));
     </script>
   </body>
 </html>
