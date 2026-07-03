@@ -268,22 +268,6 @@ body.reveal-light .reveal pre code {
 }
 
 /* Optional plugin surfaces */
-.reveal .audio-surface audio,
-.reveal .audio-demo-control,
-.reveal .audio-controls audio {
-  width: 100%;
-  min-height: 2.5rem;
-  filter: drop-shadow(0 12px 24px var(--cj-shadow));
-}
-
-.reveal .audio-controls {
-  border: 1px solid var(--cj-border);
-  border-radius: 1rem;
-  background: var(--cj-surface-strong);
-  box-shadow: 0 16px 44px var(--cj-shadow);
-  backdrop-filter: blur(16px);
-}
-
 .reveal .animate-surface svg {
   width: 100%;
   max-height: 52vh;
