@@ -28,11 +28,11 @@ Once this branch is deployed by GitHub Pages, the demo will also be available at
 The demo loads Reveal.js from CDN and exercises:
 
 - official plugins: Highlight, Markdown, Notes, Search, Zoom, and Math/KaTeX.
-- selected `rajgoel/reveal.js-plugins` surfaces: `audio-slideshow`, `anything`, and `animate`.
-- local/static multiple-choice poll and question flows where answer buttons link to correct or incorrect feedback slides.
+- selected `rajgoel/reveal.js-plugins` surfaces: `anything` and `animate`.
+- local/static multiple-choice poll and question flows where answer buttons link to correct or incorrect feedback slides below the question.
 - layout examples for split content, metrics, cards, tables, vertical slides, terminal blocks, and light mode.
 
-No room codes, join-room UI, Seminar setup, or Socket.io dependency is included.
+No room codes, join-room UI, Seminar setup, Socket.io dependency, or audio-slideshow integration is included.
 
 ## Usage
 
@@ -52,7 +52,7 @@ For CDN-based Reveal.js decks:
 
 ## Optional plugin compatibility CSS
 
-For decks using Highlight, Math, Search, Zoom, audio-slideshow, anything, animate, or local multiple-choice question/poll surfaces, load the compatibility stylesheet after the main theme:
+For decks using Highlight, Math, Search, Zoom, anything, animate, or local multiple-choice question/poll surfaces, load the compatibility stylesheet after the main theme:
 
 ```html
 <link rel="stylesheet" href="revealjs-theme/cj-saathoff.css">
