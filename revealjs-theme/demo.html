@@ -10,6 +10,8 @@ permalink: /revealjs-theme/demo.html
     <title>CJ Saathoff Reveal.js Theme Demo</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/monokai.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
     <link rel="stylesheet" href="./cj-saathoff.css">
   </head>
   <body>
@@ -18,13 +20,17 @@ permalink: /revealjs-theme/demo.html
         <section class="center">
           <p class="eyebrow">Reveal.js Theme Demo</p>
           <h1>CJ Saathoff <span class="gradient-text">Slides</span></h1>
-          <p class="muted">Dark navy gradients, glass panels, teal/blue accents, and terminal-inspired code.</p>
+          <p class="muted">Dark navy gradients, glass panels, teal/blue accents, terminal-inspired code, and built-in plugin coverage.</p>
           <div class="pill-row" style="justify-content:center">
             <span>Infrastructure</span>
             <span>Automation</span>
             <span>Security</span>
             <span>Operations</span>
           </div>
+          <small class="muted">Press <strong>S</strong> for speaker notes, <strong>Ctrl+Shift+F</strong> for search, and <strong>Alt+Click</strong> to zoom.</small>
+          <aside class="notes">
+            Speaker notes plugin check: this should appear in the speaker view.
+          </aside>
         </section>
 
         <section>
@@ -59,6 +65,54 @@ cj-saathoff
 $ ./deploy-theme --target revealjs
 ✔ loaded cj-saathoff.css
 ✔ slides ready for review</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <p class="eyebrow">Highlight Plugin</p>
+          <h2>Syntax highlighting + line numbers</h2>
+          <pre><code class="language-javascript" data-trim data-line-numbers="2-4|7-9">
+            const theme = {
+              name: 'cj-saathoff',
+              accent: '#1abc9c',
+              plugins: ['highlight', 'notes', 'search', 'zoom', 'math', 'markdown']
+            };
+
+            function loadTheme(deck) {
+              deck.configure({ hash: true, slideNumber: true });
+              return theme;
+            }
+          </code></pre>
+          <small class="muted">This checks Highlight.js colors, Reveal line numbers, and step-by-step highlighted lines.</small>
+        </section>
+
+        <section>
+          <p class="eyebrow">Markdown Plugin</p>
+          <section data-markdown>
+            <script type="text/template">
+              ## Markdown slide
+
+              - Rendered through `RevealMarkdown`
+              - Uses normal theme typography
+              - Keeps list spacing and inline `code` readable
+            </script>
+          </section>
+        </section>
+
+        <section>
+          <p class="eyebrow">Math Plugin</p>
+          <h2>KaTeX rendering</h2>
+          <p>Inline math should blend with text: \( E = mc^2 \).</p>
+          <p class="glass-card">\[\nabla \cdot \vec{E} = \frac{\rho}{\varepsilon_0}\]</p>
+          <small class="muted">This checks that KaTeX output inherits the theme without clashing.</small>
+        </section>
+
+        <section>
+          <p class="eyebrow">Search + Zoom Plugins</p>
+          <h2>Interaction surfaces</h2>
+          <div class="glass-card r-frame">
+            <p>Search for <strong>automation</strong> with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd>.</p>
+            <p>Use <strong>Alt+Click</strong> on this framed card to test zoom styling.</p>
           </div>
         </section>
 
@@ -113,17 +167,46 @@ $ ./deploy-theme --target revealjs
           <pre><code>&lt;div class="reveal light"&gt;</code></pre>
           <p><button id="toggleTheme" type="button">Toggle demo theme</button></p>
         </section>
+
+        <section>
+          <p class="eyebrow">Plugin Status</p>
+          <h2>Registered plugins</h2>
+          <div id="pluginStatus" class="glass-card"></div>
+        </section>
       </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/search/search.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/zoom/zoom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/math/math.js"></script>
     <script>
       Reveal.initialize({
         hash: true,
         slideNumber: true,
         controls: true,
         progress: true,
-        center: true
+        center: true,
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom,
+          RevealMath.KaTeX
+        ]
+      }).then(() => {
+        const pluginNames = ['markdown', 'highlight', 'notes', 'search', 'zoom', 'math'];
+        const status = document.getElementById('pluginStatus');
+
+        status.innerHTML = `
+          <ul>
+            ${pluginNames.map((name) => `<li><strong>${name}</strong>: ${Reveal.hasPlugin(name) ? 'loaded' : 'not loaded'}</li>`).join('')}
+          </ul>
+        `;
       });
 
       document.getElementById('toggleTheme').addEventListener('click', function () {
