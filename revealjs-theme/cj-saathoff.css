@@ -1,0 +1,392 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@400;700;800&display=swap");
+
+/*
+ * CJ Saathoff Reveal.js Theme
+ * Based on cjthedj97/personal_website: dark navy gradients, glass panels,
+ * teal/blue accents, and terminal-inspired code treatment.
+ *
+ * Include after reveal.js/dist/reveal.css.
+ */
+
+:root {
+  --cj-bg-start: #07111f;
+  --cj-bg-mid: #0b1220;
+  --cj-bg-end: #0b1220;
+  --cj-text: #e5eef8;
+  --cj-muted: rgba(226, 232, 240, 0.82);
+  --cj-heading: #f8fbff;
+  --cj-surface: rgba(15, 23, 42, 0.58);
+  --cj-surface-strong: rgba(15, 23, 42, 0.72);
+  --cj-border: rgba(148, 163, 184, 0.16);
+  --cj-link: #93c5fd;
+  --cj-accent: #1abc9c;
+  --cj-accent-2: #3b82f6;
+  --cj-danger: #f87171;
+  --cj-terminal: #7cff88;
+  --cj-warning: #facc15;
+  --cj-shadow: rgba(2, 6, 23, 0.28);
+}
+
+.reveal {
+  --r-background-color: var(--cj-bg-mid);
+  --r-main-font: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --r-main-font-size: 38px;
+  --r-main-color: var(--cj-text);
+  --r-block-margin: 1.1rem;
+  --r-heading-margin: 0 0 0.45em 0;
+  --r-heading-font: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --r-heading-color: var(--cj-heading);
+  --r-heading-line-height: 1.08;
+  --r-heading-letter-spacing: -0.035em;
+  --r-heading-text-transform: none;
+  --r-heading-text-shadow: none;
+  --r-heading-font-weight: 800;
+  --r-link-color: var(--cj-link);
+  --r-link-color-hover: color-mix(in srgb, var(--cj-link) 78%, white);
+  --r-selection-background-color: color-mix(in srgb, var(--cj-accent) 70%, transparent);
+  --r-selection-color: #ffffff;
+  --r-code-font: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--cj-accent) 16%, transparent), transparent 28%),
+    radial-gradient(circle at top right, color-mix(in srgb, var(--cj-accent-2) 12%, transparent), transparent 26%),
+    linear-gradient(180deg, var(--cj-bg-start) 0%, var(--cj-bg-mid) 44%, var(--cj-bg-end) 100%);
+  color: var(--r-main-color);
+}
+
+.reveal.light {
+  --cj-bg-start: #eef4fb;
+  --cj-bg-mid: #f7fafc;
+  --cj-bg-end: #e2e8f0;
+  --cj-text: #102033;
+  --cj-muted: rgba(16, 32, 51, 0.78);
+  --cj-heading: #08111d;
+  --cj-surface: rgba(255, 255, 255, 0.78);
+  --cj-surface-strong: rgba(255, 255, 255, 0.9);
+  --cj-border: rgba(100, 116, 139, 0.18);
+  --cj-link: #2563eb;
+  --cj-accent: #0f766e;
+  --cj-accent-2: #2563eb;
+  --cj-danger: #dc2626;
+  --cj-terminal: #166534;
+  --cj-warning: #a16207;
+  --cj-shadow: rgba(15, 23, 42, 0.16);
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  box-sizing: border-box;
+  padding: 2rem;
+}
+
+.reveal .slides section.center,
+.reveal .slides section[data-align="center"] {
+  text-align: center;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  color: var(--r-heading-color);
+  font-family: var(--r-heading-font);
+  font-weight: var(--r-heading-font-weight);
+  letter-spacing: var(--r-heading-letter-spacing);
+  line-height: var(--r-heading-line-height);
+  text-transform: var(--r-heading-text-transform);
+}
+
+.reveal h1 {
+  font-size: clamp(2.45em, 8vw, 4.25em);
+  line-height: 0.96;
+}
+
+.reveal h2 {
+  font-size: clamp(1.65em, 5vw, 2.8em);
+}
+
+.reveal h3 {
+  font-size: clamp(1.2em, 3.4vw, 1.75em);
+}
+
+.reveal p,
+.reveal li,
+.reveal blockquote {
+  color: var(--cj-text);
+}
+
+.reveal p,
+.reveal li {
+  line-height: 1.45;
+}
+
+.reveal small,
+.reveal .muted {
+  color: var(--cj-muted);
+}
+
+.reveal strong,
+.reveal b {
+  color: var(--cj-heading);
+  font-weight: 700;
+}
+
+.reveal a {
+  color: var(--r-link-color);
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+.reveal a:hover,
+.reveal a:focus {
+  color: var(--r-link-color-hover);
+}
+
+.reveal .eyebrow {
+  margin-bottom: 1rem;
+  color: var(--cj-link);
+  font-family: var(--r-heading-font);
+  font-size: 0.56em;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.reveal .accent {
+  color: var(--cj-accent);
+}
+
+.reveal .gradient-text {
+  background: linear-gradient(135deg, var(--cj-accent), var(--cj-accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.reveal .glass-card,
+.reveal .terminal-card,
+.reveal blockquote {
+  border: 1px solid var(--cj-border);
+  background: var(--cj-surface);
+  border-radius: 1.25rem;
+  box-shadow: 0 24px 70px var(--cj-shadow);
+  backdrop-filter: blur(18px);
+}
+
+.reveal .glass-card {
+  padding: 1.25rem 1.4rem;
+}
+
+.reveal .glass-card > :last-child,
+.reveal .terminal-card > :last-child {
+  margin-bottom: 0;
+}
+
+.reveal blockquote {
+  width: auto;
+  padding: 1.15rem 1.35rem;
+  color: var(--cj-muted);
+  font-style: normal;
+  text-align: left;
+}
+
+.reveal blockquote::before {
+  content: "“";
+  color: var(--cj-accent);
+  font-family: var(--r-heading-font);
+  font-size: 2em;
+  line-height: 0;
+  vertical-align: -0.35em;
+}
+
+.reveal ul,
+.reveal ol {
+  margin-left: 1.05em;
+}
+
+.reveal li::marker {
+  color: var(--cj-accent);
+}
+
+.reveal table {
+  border-collapse: collapse;
+  border-radius: 0.85rem;
+  overflow: hidden;
+  box-shadow: 0 18px 50px var(--cj-shadow);
+}
+
+.reveal table th {
+  color: var(--cj-heading);
+  background: color-mix(in srgb, var(--cj-accent-2) 18%, var(--cj-surface-strong));
+  font-family: var(--r-heading-font);
+  font-size: 0.76em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.reveal table td,
+.reveal table th {
+  border-color: var(--cj-border);
+  padding: 0.48em 0.68em;
+}
+
+.reveal pre {
+  width: 100%;
+  margin: 1.1rem 0;
+  border-radius: 1rem;
+  box-shadow: 0 24px 70px var(--cj-shadow), inset 0 0 42px color-mix(in srgb, var(--cj-accent) 8%, transparent);
+}
+
+.reveal code {
+  font-family: var(--r-code-font);
+}
+
+.reveal pre code {
+  max-height: none;
+  padding: 1.05rem 1.2rem;
+  border: 1px solid color-mix(in srgb, var(--cj-accent) 30%, var(--cj-border));
+  border-radius: 1rem;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--cj-surface-strong) 92%, transparent), color-mix(in srgb, var(--cj-bg-end) 86%, transparent));
+  color: var(--cj-terminal);
+  line-height: 1.55;
+  text-shadow: 0 0 10px color-mix(in srgb, var(--cj-terminal) 38%, transparent);
+}
+
+.reveal :not(pre) > code {
+  padding: 0.1em 0.34em;
+  border: 1px solid color-mix(in srgb, var(--cj-accent) 24%, var(--cj-border));
+  border-radius: 0.35em;
+  background: color-mix(in srgb, var(--cj-surface-strong) 78%, transparent);
+  color: var(--cj-terminal);
+}
+
+.reveal .terminal-card {
+  overflow: hidden;
+}
+
+.reveal .terminal-card::before {
+  content: "";
+  display: block;
+  height: 1.15rem;
+  border-bottom: 1px solid var(--cj-border);
+  background:
+    radial-gradient(circle at 1rem 50%, color-mix(in srgb, var(--cj-text) 34%, transparent) 0.22rem, transparent 0.24rem),
+    radial-gradient(circle at 1.75rem 50%, color-mix(in srgb, var(--cj-text) 24%, transparent) 0.22rem, transparent 0.24rem),
+    radial-gradient(circle at 2.5rem 50%, color-mix(in srgb, var(--cj-text) 16%, transparent) 0.22rem, transparent 0.24rem),
+    color-mix(in srgb, var(--cj-bg-end) 62%, transparent);
+}
+
+.reveal .terminal-card pre {
+  margin: 0;
+  box-shadow: none;
+}
+
+.reveal .terminal-card pre code {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.reveal .pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 1rem 0;
+}
+
+.reveal .pill,
+.reveal .pill-row span {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid color-mix(in srgb, var(--cj-border) 88%, var(--cj-accent));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--cj-surface) 88%, transparent);
+  color: var(--cj-text);
+  padding: 0.42rem 0.72rem;
+  font-size: 0.58em;
+  line-height: 1;
+  backdrop-filter: blur(14px);
+}
+
+.reveal .callout {
+  border-left: 0.22rem solid var(--cj-accent);
+  padding: 0.9rem 1.1rem;
+  background: color-mix(in srgb, var(--cj-surface) 84%, transparent);
+  color: var(--cj-muted);
+}
+
+.reveal .callout.warning {
+  border-left-color: var(--cj-warning);
+}
+
+.reveal .callout.danger {
+  border-left-color: var(--cj-danger);
+}
+
+.reveal .progress {
+  color: var(--cj-accent);
+}
+
+.reveal .controls {
+  color: var(--cj-link);
+}
+
+.reveal .slide-number {
+  border: 1px solid var(--cj-border);
+  border-radius: 999px;
+  background: var(--cj-surface-strong);
+  color: var(--cj-muted);
+  font-family: var(--r-code-font);
+  padding: 0.18rem 0.45rem;
+}
+
+.reveal .speaker-notes {
+  color: var(--cj-text);
+}
+
+.reveal ::selection {
+  background: var(--r-selection-background-color);
+  color: var(--r-selection-color);
+}
+
+@media (max-width: 800px) {
+  .reveal {
+    --r-main-font-size: 30px;
+  }
+
+  .reveal .slides section {
+    padding: 1rem;
+  }
+}
+
+@media print {
+  .reveal {
+    background: #ffffff;
+    color: #111827;
+  }
+
+  .reveal h1,
+  .reveal h2,
+  .reveal h3,
+  .reveal h4,
+  .reveal h5,
+  .reveal h6,
+  .reveal p,
+  .reveal li {
+    color: #111827;
+  }
+
+  .reveal .glass-card,
+  .reveal .terminal-card,
+  .reveal blockquote,
+  .reveal pre code {
+    box-shadow: none;
+  }
+}
