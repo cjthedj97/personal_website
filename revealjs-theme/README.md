@@ -7,6 +7,22 @@ It carries over the site’s dark infrastructure-console feel: layered navy grad
 ## Files
 
 - `cj-saathoff.css` — compiled CSS theme that can be dropped into any Reveal.js deck.
+- `demo.html` — Reveal.js demo deck pointed at `cj-saathoff.css` for quick visual testing.
+
+## Demo
+
+Open `demo.html` in a browser to test the theme locally:
+
+```bash
+python3 -m http.server 8000
+# then open http://localhost:8000/revealjs-theme/demo.html
+```
+
+Once this branch is deployed by GitHub Pages, the demo will also be available at:
+
+```text
+/revealjs-theme/demo.html
+```
 
 ## Usage
 
@@ -53,6 +69,8 @@ The default is dark. Add `light` to the Reveal root for a matching light variant
   <div class="slides">...</div>
 </div>
 ```
+
+The demo page includes a button to toggle this class for quick comparison.
 
 ## Notes
 
