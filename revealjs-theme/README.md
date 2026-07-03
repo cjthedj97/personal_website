@@ -7,11 +7,10 @@ It carries over the site’s dark infrastructure-console feel: layered navy grad
 ## Files
 
 - `cj-saathoff.css` — compiled CSS theme that can be dropped into any Reveal.js deck.
-- `plugin-compat.css` — optional companion CSS for testing common Reveal.js plugin UI against the theme.
-- `demo.html` — official Reveal.js plugin test deck pointed at `cj-saathoff.css`.
-- `third-party-demo.html` — optional third-party integration test deck for selected rajgoel plugins.
+- `plugin-compat.css` — optional companion CSS for testing common Reveal.js plugin UI and demo surfaces against the theme.
+- `demo.html` — consolidated Reveal.js demo deck pointed at `cj-saathoff.css`.
 
-## Official plugin demo
+## Demo
 
 Open `demo.html` in a browser to test the theme locally:
 
@@ -26,30 +25,12 @@ Once this branch is deployed by GitHub Pages, the demo will also be available at
 /revealjs-theme/demo.html
 ```
 
-The official demo loads Reveal.js from CDN, then registers the built-in plugins that are most likely to expose CSS clashes:
+The demo loads Reveal.js from CDN and exercises:
 
-- `RevealHighlight` for syntax highlighting, line numbers, and stepped line highlights.
-- `RevealMarkdown` for Markdown-authored slides.
-- `RevealNotes` for speaker notes.
-- `RevealSearch` for the search overlay and matches.
-- `RevealZoom` for framed/zoomable content.
-- `RevealMath.KaTeX` for math rendering.
-
-## Third-party integration demo
-
-Open `third-party-demo.html` to test optional third-party surfaces:
-
-```text
-http://localhost:8000/revealjs-theme/third-party-demo.html
-```
-
-This deck focuses on selected `rajgoel/reveal.js-plugins` integrations:
-
-- `audio-slideshow` with safe no-autoplay/no-default-audio settings.
-- `anything` for generated content surfaces.
-- `animate` for SVG animation surfaces.
+- official plugins: Highlight, Markdown, Notes, Search, Zoom, and Math/KaTeX.
+- selected `rajgoel/reveal.js-plugins` surfaces: `audio-slideshow`, `anything`, and `animate`.
 - local/static multiple-choice poll and question flows where answer buttons link to correct or incorrect feedback slides.
-- optional link-out button styling for a separate poll page or side panel when a deck needs more than slide navigation.
+- layout examples for split content, metrics, cards, tables, vertical slides, terminal blocks, and light mode.
 
 No room codes, join-room UI, Seminar setup, or Socket.io dependency is included.
 
@@ -78,7 +59,7 @@ For decks using Highlight, Math, Search, Zoom, audio-slideshow, anything, animat
 <link rel="stylesheet" href="revealjs-theme/plugin-compat.css">
 ```
 
-It keeps plugin surfaces aligned with the theme without making those plugin styles mandatory for every deck.
+It keeps plugin and demo surfaces aligned with the theme without making those styles mandatory for every deck.
 
 ## Optional slide helpers
 
@@ -110,7 +91,7 @@ The default is dark. Add `light` to the Reveal root for a matching light variant
 </div>
 ```
 
-The demo pages include buttons to toggle this class for quick comparison.
+The demo includes a button to toggle this class for quick comparison. It also persists the selected demo mode in `localStorage` and supports `?theme=light`.
 
 ## PDF export check
 
