@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+/* Companion styles for testing Reveal.js built-in plugins with cj-saathoff.css. */
+
+.reveal pre code.hljs {
+  background: transparent;
+  color: #f8f8f2;
+  text-shadow: none;
+}
+
+.reveal pre code.hljs .hljs-comment,
+.reveal pre code.hljs .hljs-quote {
+  color: color-mix(in srgb, var(--cj-muted) 78%, transparent);
+}
+
+.reveal .hljs-ln,
+.reveal .hljs table {
+  width: 100%;
+  box-shadow: none;
+}
+
+.reveal .hljs-ln td,
+.reveal .hljs-ln th,
+.reveal .hljs table td,
+.reveal .hljs table th {
+  border: 0;
+  background: transparent;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.reveal .hljs-ln-numbers {
+  min-width: 2.5em;
+  padding-right: 0.85em !important;
+  border-right: 1px solid var(--cj-border) !important;
+  color: color-mix(in srgb, var(--cj-muted) 70%, transparent);
+  text-align: right !important;
+  user-select: none;
+}
+
+.reveal .hljs-ln-code {
+  padding-left: 0.85em !important;
+}
+
+.reveal .hljs.has-highlights tr:not(.highlight-line) {
+  opacity: 0.42;
+}
+
+.reveal .hljs mark,
+.reveal .hljs .highlight-line {
+  background: color-mix(in srgb, var(--cj-accent-2) 24%, transparent);
+  color: inherit;
+}
+
+.reveal .katex,
+.reveal .katex-display {
+  color: var(--cj-heading);
+}
+
+.reveal .katex-display {
+  margin: 0.8em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.reveal kbd {
+  display: inline-block;
+  min-width: 1.65em;
+  padding: 0.12em 0.38em;
+  border: 1px solid var(--cj-border);
+  border-radius: 0.35em;
+  background: var(--cj-surface-strong);
+  color: var(--cj-heading);
+  font-family: var(--r-code-font);
+  font-size: 0.72em;
+  text-align: center;
+}
+
+.reveal button {
+  appearance: none;
+  border: 1px solid color-mix(in srgb, var(--cj-accent) 48%, var(--cj-border));
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--cj-accent), var(--cj-accent-2));
+  color: #ffffff;
+  cursor: pointer;
+  font-family: var(--r-heading-font);
+  font-size: 0.55em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.6em 1em;
+}
+
+.reveal .searchbox {
+  border: 1px solid var(--cj-border);
+  border-radius: 999px;
+  background: var(--cj-surface-strong);
+  color: var(--cj-text);
+}
+
+.reveal .searchinput,
+.reveal input[type="search"] {
+  color: var(--cj-heading);
+  caret-color: var(--cj-accent);
+}
+
+.reveal .searchmatch {
+  color: #ffffff !important;
+  background: color-mix(in srgb, var(--cj-accent) 72%, transparent) !important;
+  text-shadow: none !important;
+}
+
+.reveal .searchmatch.current {
+  background: color-mix(in srgb, var(--cj-accent-2) 78%, transparent) !important;
+}
