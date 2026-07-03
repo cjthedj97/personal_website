@@ -1,0 +1,134 @@
+---
+layout: null
+permalink: /revealjs-theme/demo.html
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CJ Saathoff Reveal.js Theme Demo</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+    <link rel="stylesheet" href="./cj-saathoff.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="center">
+          <p class="eyebrow">Reveal.js Theme Demo</p>
+          <h1>CJ Saathoff <span class="gradient-text">Slides</span></h1>
+          <p class="muted">Dark navy gradients, glass panels, teal/blue accents, and terminal-inspired code.</p>
+          <div class="pill-row" style="justify-content:center">
+            <span>Infrastructure</span>
+            <span>Automation</span>
+            <span>Security</span>
+            <span>Operations</span>
+          </div>
+        </section>
+
+        <section>
+          <p class="eyebrow">Typography</p>
+          <h2>Readable, practical, and technical.</h2>
+          <p>This slide tests normal paragraph copy, <strong>strong emphasis</strong>, <a href="https://revealjs.com/">links</a>, and inline <code>code</code>.</p>
+          <ul>
+            <li class="fragment">Montserrat headings</li>
+            <li class="fragment">Lato body copy</li>
+            <li class="fragment">Accent-colored markers and links</li>
+          </ul>
+        </section>
+
+        <section>
+          <p class="eyebrow">Cards</p>
+          <div class="glass-card">
+            <h2>Operational Excellence</h2>
+            <p>Use <code>.glass-card</code> when a slide needs the same translucent surface treatment as the personal site.</p>
+          </div>
+          <div class="callout" style="margin-top:1rem">
+            This callout checks bordered content blocks and accent treatments.
+          </div>
+        </section>
+
+        <section>
+          <p class="eyebrow">Terminal</p>
+          <h2>Console-style code</h2>
+          <div class="terminal-card">
+            <pre><code>$ whoami
+cj-saathoff
+
+$ ./deploy-theme --target revealjs
+✔ loaded cj-saathoff.css
+✔ slides ready for review</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <p class="eyebrow">Tables</p>
+          <h2>Quick comparison</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Element</th>
+                <th>Purpose</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Gradient background</td>
+                <td>Site visual match</td>
+                <td>Ready</td>
+              </tr>
+              <tr>
+                <td>Glass surfaces</td>
+                <td>Cards and callouts</td>
+                <td>Ready</td>
+              </tr>
+              <tr>
+                <td>Terminal code</td>
+                <td>Technical demos</td>
+                <td>Ready</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <section>
+            <p class="eyebrow">Vertical Slides</p>
+            <h2>Press down for more.</h2>
+            <p class="muted">This checks Reveal.js vertical navigation and progress controls.</p>
+          </section>
+          <section>
+            <blockquote>
+              Better systems, fewer surprises.
+            </blockquote>
+          </section>
+        </section>
+
+        <section class="center">
+          <p class="eyebrow">Light Variant</p>
+          <h2>Test light mode</h2>
+          <p>Add <code>light</code> to the Reveal root:</p>
+          <pre><code>&lt;div class="reveal light"&gt;</code></pre>
+          <p><button id="toggleTheme" type="button">Toggle demo theme</button></p>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        slideNumber: true,
+        controls: true,
+        progress: true,
+        center: true
+      });
+
+      document.getElementById('toggleTheme').addEventListener('click', function () {
+        document.querySelector('.reveal').classList.toggle('light');
+      });
+    </script>
+  </body>
+</html>
