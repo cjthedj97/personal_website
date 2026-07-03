@@ -211,7 +211,17 @@ $ ./deploy-theme --target revealjs
       });
 
       document.getElementById('toggleTheme').addEventListener('click', function () {
-        document.querySelector('.reveal').classList.toggle('light');
+        const revealRoot = document.querySelector('.reveal');
+        const isLight = revealRoot.classList.toggle('light');
+        document.body.classList.toggle('reveal-light', isLight);
+        document.documentElement.classList.toggle('reveal-light', isLight);
+
+        const viewport = document.querySelector('.reveal-viewport');
+        if (viewport) {
+          viewport.classList.toggle('reveal-light', isLight);
+        }
+
+        Reveal.layout();
       });
     </script>
   </body>
