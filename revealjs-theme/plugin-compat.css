@@ -123,6 +123,7 @@ body.reveal-light .reveal {
   font-weight: 700;
   letter-spacing: 0.02em;
   padding: 0.6em 1em;
+  text-decoration: none;
 }
 
 .reveal .searchbox {
@@ -154,72 +155,6 @@ body.reveal-light .reveal {
   gap: 0.75rem;
 }
 
-.reveal .room-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(7rem, 0.65fr) minmax(0, 1fr);
-  gap: 1rem;
-  align-items: stretch;
-}
-
-.reveal .room-grid > *,
-.reveal .room-meta span,
-.reveal .poll-option,
-.reveal .qna-card,
-.reveal .anything-counter {
-  border: 1px solid var(--cj-border);
-  border-radius: 0.85rem;
-  background: color-mix(in srgb, var(--cj-surface-strong) 78%, transparent);
-  padding: 0.55rem 0.7rem;
-}
-
-.reveal .room-label,
-.reveal .room-note {
-  display: block;
-  color: var(--cj-muted);
-  font-size: 0.56em;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.reveal .room-code {
-  display: block;
-  color: var(--cj-terminal);
-  font-family: var(--r-code-font);
-  font-size: 1.8em;
-  letter-spacing: 0.05em;
-  margin: 0.15em 0;
-}
-
-.reveal .room-qr {
-  display: grid;
-  place-items: center;
-  min-height: 7rem;
-  color: var(--cj-heading);
-  font-family: var(--r-heading-font);
-  font-size: 1.15em;
-  font-weight: 800;
-  background:
-    linear-gradient(90deg, color-mix(in srgb, var(--cj-heading) 22%, transparent) 50%, transparent 0) 0 0 / 1rem 1rem,
-    linear-gradient(color-mix(in srgb, var(--cj-heading) 18%, transparent) 50%, transparent 0) 0 0 / 1rem 1rem,
-    color-mix(in srgb, var(--cj-surface-strong) 85%, transparent);
-}
-
-.reveal .room-meta {
-  display: grid;
-  gap: 0.55rem;
-}
-
-.reveal .room-meta span {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.6rem;
-  color: var(--cj-muted);
-}
-
-.reveal .room-meta strong {
-  color: var(--cj-heading);
-}
-
 .reveal .poll-option,
 .reveal .qna-card,
 .reveal .anything-counter {
@@ -227,6 +162,10 @@ body.reveal-light .reveal {
   grid-template-columns: minmax(8rem, 1fr) minmax(8rem, 2fr) auto;
   gap: 0.7rem;
   align-items: center;
+  border: 1px solid var(--cj-border);
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--cj-surface-strong) 78%, transparent);
+  padding: 0.55rem 0.7rem;
 }
 
 .reveal .poll-option meter {
@@ -335,7 +274,6 @@ body.reveal-light .reveal {
 }
 
 @media (max-width: 800px) {
-  .reveal .room-grid,
   .reveal .poll-option,
   .reveal .qna-card {
     grid-template-columns: 1fr;
