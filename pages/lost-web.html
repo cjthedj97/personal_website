@@ -105,6 +105,14 @@ description: Pick a year and rediscover a forgotten corner of the web through th
   }
   .lost-web-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
   .lost-web-link { display: none; align-items: center; }
+  body.page-page .page-content a.lost-web-link,
+  body.page-page .page-content a.lost-web-link:hover,
+  body.page-page .page-content a.lost-web-link:focus,
+  body.page-page .page-content a.lost-web-link:active,
+  body.page-page .page-content a.lost-web-link:visited {
+    color: var(--site-bg-mid);
+    font-weight: 600;
+  }
   .lost-web-note {
     margin: 1rem 0 0;
     color: var(--site-muted, inherit);
