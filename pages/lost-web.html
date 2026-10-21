@@ -1,0 +1,283 @@
+---
+permalink: /tools/lost-web
+layout: page
+title: Lost Web Fortune Cookie
+description: Pick a year and rediscover a forgotten corner of the web through the Internet Archive.
+---
+
+<style>
+  .lost-web-intro {
+    max-width: 48rem;
+    margin: 0 auto 1.5rem;
+  }
+  .lost-web-eyebrow {
+    color: var(--site-accent-2, #3b82f6);
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  .lost-web-panel {
+    overflow: hidden;
+    border: 1px solid var(--site-border, rgba(148, 163, 184, .18));
+    border-radius: 1.5rem;
+    background: var(--site-surface-strong, rgba(15, 23, 42, .58));
+    box-shadow: 0 24px 70px rgba(2, 6, 23, .16);
+    backdrop-filter: blur(18px);
+  }
+  .lost-web-panel__bar {
+    display: flex;
+    align-items: center;
+    gap: .45rem;
+    min-height: 2.5rem;
+    padding: .7rem 1.1rem;
+    border-bottom: 1px solid var(--site-border, rgba(148, 163, 184, .18));
+  }
+  .lost-web-panel__dot {
+    width: .65rem;
+    height: .65rem;
+    border-radius: 50%;
+    background: var(--site-accent, #1abc9c);
+    opacity: .55;
+  }
+  .lost-web-panel__body { padding: clamp(1.25rem, 4vw, 2rem); }
+  .lost-web-kicker {
+    margin: 0 0 .6rem;
+    color: var(--site-accent, #1abc9c);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  .lost-web-name {
+    margin: 0 0 .45rem;
+    color: var(--site-heading, inherit);
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 700;
+    line-height: 1.15;
+  }
+  .lost-web-status {
+    display: inline-flex;
+    margin: 0 0 .65rem;
+    padding: .25rem .65rem;
+    border: 1px solid var(--site-pill-border, var(--site-border));
+    border-radius: 999px;
+    background: var(--site-pill-bg, var(--site-surface));
+    color: var(--site-muted, inherit);
+    font-size: .75rem;
+  }
+  .lost-web-url {
+    overflow-wrap: anywhere;
+    color: var(--site-muted, inherit);
+    font-family: var(--bs-font-monospace, monospace);
+    font-size: .9rem;
+  }
+  .lost-web-why { margin: 1rem 0 1.25rem; color: var(--site-text, inherit); }
+  .lost-web-result {
+    min-height: 1.75rem;
+    padding-top: .85rem;
+    border-top: 1px solid var(--site-border, rgba(148, 163, 184, .18));
+    color: var(--site-muted, inherit);
+    font-size: .9rem;
+  }
+  .lost-web-date { color: var(--site-accent, #1abc9c); font-weight: 700; }
+  .lost-web-controls {
+    display: flex;
+    align-items: end;
+    gap: .75rem;
+    flex-wrap: wrap;
+    margin-top: 1.25rem;
+  }
+  .lost-web-controls label {
+    display: grid;
+    gap: .35rem;
+    color: var(--site-muted, inherit);
+    font-size: .8rem;
+    font-weight: 700;
+  }
+  .lost-web-controls select {
+    min-width: 8rem;
+    padding: .65rem .8rem;
+    border: 1px solid var(--site-border, rgba(148, 163, 184, .22));
+    border-radius: .75rem;
+    background: var(--site-surface, rgba(15, 23, 42, .56));
+    color: var(--site-text, inherit);
+  }
+  .lost-web-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
+  .lost-web-link { display: none; align-items: center; }
+  .lost-web-note {
+    margin: 1rem 0 0;
+    color: var(--site-muted, inherit);
+    font-size: .78rem;
+  }
+  @media (max-width: 575.98px) {
+    .lost-web-controls { align-items: stretch; }
+    .lost-web-controls label { width: 100%; }
+    .lost-web-controls select { width: 100%; }
+  }
+</style>
+
+<div class="lost-web-intro">
+  <p class="lost-web-eyebrow">A tiny portal into the old web</p>
+  <p>Choose a year, crack a fortune, and wander through a handpicked archive of once-popular sites—some still around, many long gone.</p>
+</div>
+
+<section class="lost-web-panel" aria-label="Lost Web Fortune Cookie">
+  <div class="lost-web-panel__bar" aria-hidden="true"><span class="lost-web-panel__dot"></span><span class="lost-web-panel__dot"></span><span class="lost-web-panel__dot"></span></div>
+  <div class="lost-web-panel__body" aria-live="polite">
+    <p class="lost-web-kicker">Your fortune</p>
+    <h2 class="lost-web-name" id="lostWebName">Ready when you are.</h2>
+    <span class="lost-web-status" id="lostWebSiteStatus" hidden></span>
+    <div class="lost-web-url" id="lostWebUrl"></div>
+    <p class="lost-web-why" id="lostWebWhy">Pick a year and discover a forgotten corner of the web.</p>
+    <div class="lost-web-result" id="lostWebResult" role="status">The Internet Archive will look for a capture from the selected year.</div>
+    <div class="lost-web-controls">
+      <label for="lostWebYear">Target archive year
+        <select id="lostWebYear" aria-label="Target archive year"></select>
+      </label>
+      <div class="lost-web-actions">
+        <button type="button" class="btn btn-primary" id="lostWebOpen">Crack a fortune</button>
+        <button type="button" class="btn btn-outline-primary" id="lostWebAnother" hidden>Another one</button>
+        <a class="btn btn-primary lost-web-link" id="lostWebSnapshot" target="_blank" rel="noopener noreferrer">Open archived snapshot</a>
+      </div>
+    </div>
+    <p class="lost-web-note">This page checks the Wayback Machine only when you ask. Archived pages open on the Internet Archive; this site does not fetch or rehost them.</p>
+  </div>
+</section>
+
+<script>
+(() => {
+  const collection = [
+    {name:'Space Jam (1996)',url:'https://www.spacejam.com/1996/',status:'Surviving time capsule',why:'The original movie site is still a glorious time capsule of 1990s web design.'},
+    {name:'A List Apart',url:'https://alistapart.com/',status:'Still online',why:'A landmark publication about web standards, design, and making the web better.'},
+    {name:'The original Apple homepage',url:'https://www.apple.com/',status:'Still online',why:'A peek at how the web’s biggest brands introduced themselves in another era.'},
+    {name:'Wired, early web edition',url:'https://www.wired.com/',status:'Still online',why:'A window into the publication that helped make “the future is online” feel real.'},
+    {name:'GeoCities',url:'https://www.geocities.com/',status:'Retired',why:'The neighborhood streets are gone, but the personal-homepage spirit survives in archives.'},
+    {name:'Netscape',url:'https://home.netscape.com/',status:'Retired portal',why:'A portal to the browser wars and the early commercial web.'},
+    {name:'The Internet Movie Database',url:'https://www.imdb.com/',status:'Still online',why:'A look at a once-quirky community-built movie database before it became a giant.'},
+    {name:'Yahoo!',url:'https://www.yahoo.com/',status:'Still online',why:'Remember when the internet felt like a directory you could wander through?'},
+    {name:'Orkut',url:'https://www.orkut.com/',status:'Retired 2014',why:'Google’s social network was a major online home, especially in Brazil and India.'},
+    {name:'Vine',url:'https://vine.co/',status:'Retired',why:'Six-second looping videos made an entire comedy language before the service closed.'},
+    {name:'Friendster',url:'https://www.friendster.com/',status:'Original social network retired',why:'One of the early social networks that helped define profiles, friends, and feeds.'},
+    {name:'Yahoo Directory',url:'https://dir.yahoo.com/',status:'Retired 2014',why:'Before search engines swallowed the web, humans organized it into categories.'},
+    {name:'AIM (AOL Instant Messenger)',url:'https://www.aim.com/',status:'Retired 2017',why:'An away message, a door slam, and that unmistakable login sound—gone but not forgotten.'},
+    {name:'Google Wave',url:'https://wave.google.com/',status:'Retired',why:'A wildly ambitious attempt to reinvent email and collaboration in one browser window.'},
+    {name:'StumbleUpon',url:'https://www.stumbleupon.com/',status:'Retired 2018',why:'One click sent you to a random corner of the web. This project owes it a little.'},
+    {name:'Delicious',url:'https://del.icio.us/',status:'Classic service retired',why:'Social bookmarking made tags and shared links feel like a map of the web.'},
+    {name:'AltaVista',url:'https://www.altavista.com/',status:'Retired 2013',why:'An early search giant from before “just Google it” became the reflex.'},
+    {name:'Club Penguin',url:'https://www.clubpenguin.com/',status:'Retired 2017',why:'A penguin-filled online world where millions of kids met, played, and decorated igloos.'},
+    {name:'MSN Messenger',url:'https://messenger.msn.com/',status:'Retired',why:'The little nudge, custom status, and contact list that defined after-school chat.'},
+    {name:'Google Video',url:'https://video.google.com/',status:'Standalone service retired',why:'A pre-YouTube video destination whose archive catches the web mid-transition.'},
+    {name:'Windows Live Spaces',url:'https://spaces.live.com/',status:'Retired 2011',why:'A blogging and profile service from the era when every portal wanted to be your homepage.'},
+    {name:'Bebo',url:'https://www.bebo.com/',status:'Original social network retired',why:'A hugely popular profile-and-friends network, especially in the UK and Ireland.'},
+    {name:'Xanga',url:'https://www.xanga.com/',status:'Classic blogging community retired',why:'Personal blogs, themed layouts, and “What I did today” posts in their natural habitat.'},
+    {name:'Webshots',url:'https://www.webshots.com/',status:'Original photo-sharing service ended',why:'A popular home for shared photos and desktop wallpapers before social feeds took over.'},
+    {name:'Yahoo Answers',url:'https://answers.yahoo.com/',status:'Retired 2021',why:'The internet’s sprawling question box: earnest, bizarre, and often accidentally hilarious.'},
+    {name:'Yahoo Pipes',url:'https://pipes.yahoo.com/',status:'Retired 2015',why:'A visual mashup editor that let curious people remix feeds before no-code was fashionable.'},
+    {name:'MSN Encarta',url:'https://encarta.msn.com/',status:'Retired 2009',why:'The multimedia encyclopedia that sat between printed reference books and Wikipedia.'},
+    {name:'Napster (original)',url:'https://www.napster.com/',status:'Original service ended',why:'The file-sharing service that helped force the music industry to confront the internet.'},
+    {name:'eWorld',url:'https://www.eworld.com/',status:'Retired 1996',why:'Apple’s short-lived online service tried to make the internet feel like a place to visit.'}
+  ];
+  const $ = id => document.getElementById(id);
+  const yearSelect = $('lostWebYear');
+  const currentYear = new Date().getUTCFullYear();
+  for (let year = currentYear; year >= 1996; year--) {
+    const option = document.createElement('option');
+    option.value = String(year);
+    option.textContent = String(year);
+    if (year === 2000) option.selected = true;
+    yearSelect.append(option);
+  }
+  let seen = new Set();
+
+  function pickSite() {
+    let choices = collection.map((_, index) => index).filter(index => !seen.has(index));
+    if (!choices.length) { seen = new Set(); choices = collection.map((_, index) => index); }
+    const selected = choices[Math.floor(Math.random() * choices.length)];
+    seen.add(selected);
+    return collection[selected];
+  }
+
+  function offerDirectBrowse(url) {
+    const link = $('lostWebSnapshot');
+    link.href = `https://web.archive.org/web/*/${url}`;
+    link.textContent = 'Browse captures directly';
+    link.style.display = 'inline-flex';
+  }
+
+  async function findSnapshot(url, targetYear) {
+    const endpoint = `/api/wayback?url=${encodeURIComponent(url)}&timestamp=${encodeURIComponent(targetYear)}`;
+    let lastError;
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 12000);
+      try {
+        const response = await fetch(endpoint, {headers:{Accept:'application/json'},signal:controller.signal});
+        if (response.status === 503) {
+          let message = 'The archive lookup is temporarily unavailable.';
+          try { message = (await response.json()).error || message; } catch (_) {}
+          const error = new Error(message);
+          error.retryable = false;
+          throw error;
+        }
+        if (!response.ok) throw new Error(`Site lookup returned HTTP ${response.status}`);
+        const data = await response.json();
+        return data?.archived_snapshots?.closest || null;
+      } catch (error) {
+        lastError = error;
+        if (error.retryable === false) break;
+        if (attempt === 0) await new Promise(resolve => setTimeout(resolve, 900));
+      } finally { clearTimeout(timer); }
+    }
+    throw lastError;
+  }
+
+  async function crackFortune() {
+    const button = $('lostWebOpen');
+    const item = pickSite();
+    const targetYear = yearSelect.value;
+    $('lostWebOpen').disabled = true;
+    $('lostWebAnother').hidden = true;
+    $('lostWebSnapshot').style.display = 'none';
+    $('lostWebName').textContent = item.name;
+    $('lostWebSiteStatus').textContent = item.status;
+    $('lostWebSiteStatus').hidden = false;
+    $('lostWebUrl').textContent = item.url;
+    $('lostWebWhy').textContent = item.why;
+    $('lostWebResult').textContent = `Looking for a capture from ${targetYear}…`;
+    try {
+      const snapshot = await findSnapshot(item.url, targetYear);
+      if (!snapshot?.available || !snapshot.url || snapshot.timestamp?.slice(0, 4) !== targetYear) {
+        $('lostWebResult').textContent = `No successful capture was found from ${targetYear}. Browse all captures instead.`;
+        offerDirectBrowse(item.url);
+      } else {
+        const timestamp = snapshot.timestamp || '';
+        const date = timestamp.length >= 8 ? `${timestamp.slice(0,4)}-${timestamp.slice(4,6)}-${timestamp.slice(6,8)}` : 'date unavailable';
+        const archiveUrl = new URL(snapshot.url);
+        if (archiveUrl.hostname !== 'web.archive.org' || !['http:', 'https:'].includes(archiveUrl.protocol)) {
+          throw new Error('The archive returned an unexpected snapshot link.');
+        }
+        archiveUrl.protocol = 'https:';
+        const dateLabel = document.createElement('span');
+        dateLabel.className = 'lost-web-date';
+        dateLabel.textContent = date;
+        const result = $('lostWebResult');
+        result.textContent = `Capture from ${targetYear}: `;
+        result.append(dateLabel);
+        $('lostWebSnapshot').href = archiveUrl.href;
+        $('lostWebSnapshot').textContent = 'Open archived snapshot';
+        $('lostWebSnapshot').style.display = 'inline-flex';
+      }
+    } catch (error) {
+      $('lostWebResult').textContent = 'The automatic archive lookup is unavailable. Browse captures directly, or try again later.';
+      offerDirectBrowse(item.url);
+    } finally {
+      button.disabled = false;
+      $('lostWebAnother').hidden = false;
+    }
+  }
+
+  $('lostWebOpen').addEventListener('click', crackFortune);
+  $('lostWebAnother').addEventListener('click', crackFortune);
+})();
+</script>
