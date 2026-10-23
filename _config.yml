@@ -45,6 +45,17 @@ github_username:  cjthedj97
 #   - Gemfile.lock
 #   - node_modules/
 #   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+# Exclude the Cloudflare Pages Functions source from the static Jekyll output.
+# Keep Jekyll's standard exclusions for compatibility with older Jekyll versions.
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - functions/
